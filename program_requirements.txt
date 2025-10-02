@@ -1,0 +1,123 @@
+# Roulette Betting System - Complete Requirements
+Date: 2025-10-02
+
+## System Overview
+A command-line roulette betting system that implements a complex Stage 1 betting strategy with sequence codes, A1 wait rules, and four corner loss rules.
+
+## Core Components
+
+### 1. Lists and Numbers
+- **A1**: [2,3,5,6,17,18,20,21,25,26,28,29,31,32,34,35] (16 corner bet numbers)
+- **A2**: [1-6,13-18,19-24,25-30,31-36] (30 six-line bet numbers)
+- **Outcomes**: [0,15,27,33,26,14,36,2,16,22,7,17,30,22,28,9,10,11,6,1,33,10,15,18,11,9,1,7,30,30,36,36]
+
+### 2. Win/Loss Determination
+- **Win ('W')**: If outcome is in A1 list
+- **Loss ('L')**: If outcome is NOT in A1 list
+
+### 3. Bet Progression System
+- **Bet1**: 5 chips on A2 numbers (+1 profit if win, -5 if lose)
+- **Bet2**: 4 chips on A1 numbers (+5 profit if win, -4 if lose)
+- **Bet3**: 8 chips on A1 numbers (+10 profit if win, -8 if lose)
+- **Progression**: After win → Reset to Bet1, After loss → Next bet type
+- **Stage End**: If Bet3 loses → Stage 1 ends
+
+### 4. Sequence Codes
+- **Initial**: a=3, b=4, c=2
+- **Trigger**: Start recording after first A1 win
+- **Win Formula**:
+  - if a > 13 then a = 10
+  - if 10 < a < 14 then a = a-4
+  - if 7 < a < 11 then a = a-3
+  - if a < 8 then a = a-2
+  - b = b - c
+  - c = (int(b/a)) * 2
+- **Loss Formula**:
+  - a = a + 1
+  - b = b + c
+  - c = (int(b/a)) * 2
+- **Special Rule**: If b > 89 then b = int((b+1)/2)
+
+### 5. A1 Wait Rule
+- **Trigger**: After any A1 win (outcome in A1 AND bet wins)
+- **Effect**:
+  - Betting STOPS (no actual bets placed)
+  - Sequence codes CONTINUE to be calculated and recorded
+- **Wait Condition**: 3 consecutive non-A1 outcomes
+- **Reset**: Any A1 outcome during wait resets counter to 0
+- **Resume**: Betting resumes on line AFTER 3rd consecutive non-A1 outcome
+
+### 6. Four Corner Loss Rule
+- **Trigger**: After 4 consecutive non-A1 outcomes
+- **Effect**: Calculate new sequence codes but don't record them on next line
+- **Wait**: System waits for A1 outcome to end the rule
+- **Resume**: Pending codes are recorded on line AFTER A1 outcome
+
+## Program Flow
+
+### Phase 1: Initialization
+1. Load outcomes list
+2. Set initial sequence codes (3,4,2)
+3. Initialize all counters and flags
+
+### Phase 2: Wait for First A1 Win
+- Process outcomes until first A1 win occurs
+- Record outcomes with no bets, no sequence codes
+
+### Phase 3: Active Betting Phase
+For each outcome:
+1. **Check A1 Wait Rule**
+   - If active: no betting, but continue sequence codes
+   - Track consecutive non-A1 outcomes to end wait
+
+2. **Display Sequence Codes**
+   - Apply pending codes from four corner rule if available
+   - Show current codes (unless four corner rule suppresses)
+
+3. **Place Bet** (if not in A1 wait)
+   - Use current bet progression (Bet1/Bet2/Bet3)
+   - Update balance and bet progression
+
+4. **Track Four Corner Rule**
+   - Count consecutive non-A1 outcomes
+   - Trigger rule after 4 consecutive non-A1
+   - End rule when A1 outcome appears
+
+5. **Update Sequence Codes**
+   - Always update (even during A1 wait)
+   - Based on A1 win/loss, not bet win/loss
+   - Apply special b > 89 rule if needed
+
+6. **Check A1 Wait Trigger**
+   - If A1 win occurred, start A1 wait rule
+
+### Phase 4: End Conditions
+- Bet3 loss → Stage 1 ends
+- All outcomes processed → Display results
+
+## Key Implementation Notes
+
+### Critical Logic Separations
+1. **Betting Logic**: Independent of sequence codes
+2. **Sequence Codes**: Always update, even during A1 wait
+3. **A1 Wait Rule**: Affects betting only, not sequence codes
+4. **Four Corner Rule**: Affects sequence code display timing only
+
+### Timing Rules
+- Sequence codes calculated AFTER outcome, applied to NEXT line
+- A1 wait rule stops betting but continues sequence codes
+- Four corner rule delays sequence code recording by 2 lines
+- Betting resumes line AFTER wait periods end
+
+### DataFrame Output
+- Empty values shown as empty strings (not NaN)
+- Balance only shown when bets are placed
+- Sequence codes continue during A1 wait periods
+- Four corner rule creates gaps in sequence code display
+
+## Technical Specifications
+- Language: Python with pandas
+- Starting bank: $1000 (1 chip = $1)
+- DataFrame columns: ['line', 'outcome', 'win', 'a', 'b', 'c', 'actual bet', 'negative', 'positive', 'balance']
+- All calculations use integer arithmetic
+- No external dependencies beyond pandas

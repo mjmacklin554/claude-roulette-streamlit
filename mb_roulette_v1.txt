@@ -1,0 +1,155 @@
+﻿# Project: Roulette Betting System
+# File: mb_roulette_v1.txt
+
+## Overview:
+Create a command-line Roulette Betting System which displays the results in a Pandas DataFrame. The System consists of 2 Stages. Stage 1 is a Betting Stage and Stage 2 is the Recovery Stage. The System uses 2 Lists of User-Defined Numbers, A1 and A2 as numbers that have been Bet on and a predefined list of Roulette Outcomes. In this Game 1 Chip = $1 and the Starting Bank is $1000. The System consists of many Sequences. Each Sequence ends when a profit is made or the bank is lost. For a Sequence to begin a Set of Rules must be satisfied.
+
+## Betting Logic:
+
+### Betting begins with Stage 1
+
+#### Stage 1: Sequential Betting System - Only ONE bet per outcome
+
+The system places only ONE bet per roulette outcome, following this progression:
+
+1.	**Bet1**: Uses numbers in the A2 list. Bet of 5 Chips. Win = +1 chip profit, Lose = -5 chips
+   - If Bet1 WINS: Move to next outcome, start with Bet1 again
+   - If Bet1 LOSES: Move to next outcome, try Bet2
+
+2.	**Bet2**: Uses numbers in the A1 list. Bet of 4 chips. Win = +5 chips profit, Lose = -4 chips
+   - If Bet2 WINS: Move to next outcome, start with Bet1 again
+   - If Bet2 LOSES: Move to next outcome, try Bet3
+
+3.  **Bet3**: Uses numbers in the A1 list. Bet of 8 chips. Win = +10 chips profit, Lose = -8 chips
+   - If Bet3 WINS: Move to next outcome, start with Bet1 again
+   - If Bet3 LOSES: **Stage 1 ends, proceed to Stage 2**
+
+**Example Flow:**
+- Lines 1-5: No bets (waiting for initial A1 win trigger)
+- Line 6: First bet with codes (3,4,2), Bet1=5chips on A2, Win
+- Line 7: Next bet with codes, Bet1=5chips on A2, Win
+- Line 8: Bet with codes, Bet1=5chips on A2, Win (outcome 2 is in A1) → **Triggers A1 Wait Rule**
+- Lines 9-11: No bets (waiting for 3 consecutive non-A1 outcomes: 16,22,7)
+- Line 12: Resume betting (A1 wait period ended)
+- Bet progression: Bet1(5chips,A2) → Bet2(4chips,A1) → Bet3(8chips,A1)
+- After any win: Reset to Bet1
+- After Bet3 loss: Stage 1 ends
+
+
+
+
+## A1 Wait Rule:
+
+- **Trigger**: After any A1 win (when outcome is in A1 list AND bet wins)
+- **Betting**: Betting STOPS during wait period
+- **Sequence Codes**: Continue to be calculated and recorded normally
+- **Wait Condition**: System waits for 3 consecutive non-A1 outcomes
+- **Reset Rule**: Any A1 outcome during wait resets the counter to 0
+- **Resume**: Betting resumes on the line AFTER the 3rd consecutive non-A1 outcome
+- **Example**: Line 8 A1 win → Lines 9-11 show sequence codes but no bets → Line 12 resume betting
+
+## Four Corner Loss Rule:
+
+- **Trigger**: After 4 consecutive non-A1 outcomes
+- **Action Taken**: Calculate the new Sequence Code but don't record it on the next line
+- **Wait Condition**: System waits for A1 outcome 
+- **Resume**: Current Sequence Code is now recorded the line AFTER
+- **Example**: Line 23: outcomes [1,33,10,15] ->  new code 9 45 10 but NOT recorded on 
+    the NEXT line. Line24: A1 win -> current sequence code now recorded the line AFTER
+
+
+
+
+
+
+
+## Technical Requirements:
+
+-	Outcome of Roulette Wheel Spins = [0,15,27,33,26,14,36,2,16,22,7,17,30,22,28,9,10,11,6,1,33,10,15,18,11,9,1,7,30,30,36,36]
+-	A1 consisting of 16 numbers ( which are 4 x Corner Bets) are [2, 3, 5, 6, 17, 18, 20, 21, 25, 26, 28, 29, 31, 32, 34, 35]
+
+-	A2 consisting of 30 numbers (which are 5 x Six-Line Bets) are 1-6, 13-18, 19-24, 25-30 and 31-36 
+
+-   The DataFrame has the columns ['line', 'outcome', 'win', 'a', 'b', 'c', 'actual bet', 'negative', 'positive', 'balance']
+
+## Implementation:
+
+1.	The meaning of the DataFrame Columns are:
+
+-	'line' : The Bet Number
+-	'outcome': The Outcome of the Roulette Spin read from the list of Numbers sequentially
+-	'win': If it was a Win 'W'  or a Loss 'L' 
+-	'a' , 'b' and 'c':  are sequence codes ( see 'sequence codes' section)
+-	'actual bet': The Amount ( in chips ) bet
+-	'negative' and 'positive': have an integer value of 0 at this stage 
+-	'balance': cumulative profit or loss ( in chips )
+
+## Sequence Codes
+
+-   The Sequence Codes are represented by the variables 'a', 'b' & 'c'
+-   The Sequence Codes are calculated AFTER the 'outcome' and applied to the next bet.
+-   The Initial Sequence Code has the value 3 4 2 ie: 'a' = 3, 'b' = 4 and 'c' = 2
+-   Depending on a Win or a Loss the value of the variables are as follows:
+    
+    1. In the Case of a Win:
+
+        -   if a > 13 then a = 10
+        -   if 10 < a < 14 then a = a-4
+        -   if 7 < a < 11 then a = a-3
+        -   if a < 8 then a = a-2
+        -   if a win occurs when a<4 then the sequence is completed
+        -   b=b-c
+        -   c = (int(b/a))*2
+
+    2. In the Case of a Loss:
+
+        -   a = a+1
+        -   b = b+c
+        -   c = (int(b/a))*2
+
+    3. If B > 89 then B = (Int(B+1)) / 2
+
+## Example DataFrame
+
+   line  outcome win    a    b    c actual bet negative positive balance
+     1        0   L  NaN  NaN  NaN        NaN      NaN      NaN     NaN
+    2       15   L  NaN  NaN  NaN        NaN      NaN      NaN     NaN
+     3       27   L  NaN  NaN  NaN        NaN      NaN      NaN     NaN
+     4       33   L  NaN  NaN  NaN        NaN      NaN      NaN     NaN
+     5       26   W  NaN  NaN  NaN        NaN      NaN      NaN     NaN
+     6       14   L    3    4    2        5      NaN      NaN       1
+     7       36   L    4    6    2        5      NaN      NaN       2
+     8        2   W    5    8    2        5     NaN        NaN      3
+     9       16   L    3    6    4        NaN      NaN      NaN     NaN
+    10       22   L    4   10    4        NaN      NaN      NaN     NaN
+   11        7   L    5   14    4        NaN      NaN      NaN     NaN
+   12       17   W    6   18    6        5      NaN      NaN       4
+   13       30   L    4   12    6        NaN      NaN      NaN     NaN
+   14       22   L    5   18    6        NaN      NaN      NaN     NaN
+   15       28   W    6   24    8        NaN      NaN      NaN     NaN
+   16        9   L    4   16    8        NaN      NaN      NaN     NaN
+   17       10   L    5   24    8        NaN      NaN      NaN     NaN
+   18       11   L    6   32   10        NaN      NaN      NaN     NaN
+   19        6   W    7   42   12        5      NaN      NaN       5
+   20        1   L    5   30   12        NaN      NaN      NaN     NaN
+   21       33   L    6   42   14        NaN      NaN      NaN     NaN
+   22       10   L    7   56   16        NaN      NaN      NaN     NaN
+   23       15   L    8   72   18        5      NaN      NaN       6
+   24       18   W                         5    NaN      NaN         7
+   25       11   L    9   45   10        NaN      NaN      NaN     NaN
+   26        9   L   10   55   10        NaN      NaN      NaN     NaN
+   27        1   L   11   65   10        NaN      NaN      NaN     NaN
+   28        7   L   12   75   12        5                 NaN     2
+   29       30   L   13   87   12        4             NaN        -3
+   30       30   L   13   87   12        8             NaN        -13        
+
+
+
+
+
+
+
+
+
+
+

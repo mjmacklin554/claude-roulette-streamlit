@@ -1,0 +1,135 @@
+# Roulette Betting System - Program Flowchart
+Date: 2025-10-02
+
+## Main Program Flow
+
+START
+  ↓
+Initialize System
+├─ Set outcomes = [0,15,27,33,26,14,36,2,16,22,7,17,30,22,28,9,10,11,6,1,33,10,15,18,11,9,1,7,30,30,36,36]
+├─ Set A1 = [2,3,5,6,17,18,20,21,25,26,28,29,31,32,34,35]
+├─ Set A2 = [1-6,13-18,19-24,25-30,31-36]
+├─ sequence_code = {a:3, b:4, c:2}
+├─ recording = False
+├─ balance = 0
+├─ current_bet_type = 1
+├─ waiting_for_a1_losses = False
+├─ four_corner_rule_active = False
+└─ All counters = 0
+  ↓
+FOR EACH OUTCOME in outcomes:
+  ↓
+┌─────────────────────────────────────┐
+│ Determine Win/Loss                  │
+│ win = 'W' if outcome in A1 else 'L' │
+└─────────────────────────────────────┘
+  ↓
+┌──────────────────────┐    ┌─────────────────────────────────┐
+│ Is recording active? │NO  │ Check for first A1 win         │
+│                      ├───→│ If win=='W': recording = True   │
+│                      │    │ Continue to next outcome        │
+└──────┬───────────────┘    └─────────────────────────────────┘
+       │YES
+       ↓
+┌─────────────────────────────────────────────────────────────┐
+│ SEQUENCE CODE MANAGEMENT                                    │
+├─ Check if pending_sequence_codes exist (from 4-corner rule) │
+├─ If four_corner_rule_active: suppress code display         │
+├─ Else: show current sequence codes in DataFrame            │
+└─────────────────────────────────────────────────────────────┘
+  ↓
+┌─────────────────────────────────────────────────────────────┐
+│ BETTING LOGIC                                               │
+├─ Call place_bet(outcome)                                   │
+│   ├─ Check A1 wait rule                                    │
+│   │   ├─ If waiting_for_a1_losses: return 0 (no bet)      │
+│   │   └─ Track non_a1_count, end wait after 3 non-A1     │
+│   ├─ Determine bet based on current_bet_type               │
+│   │   ├─ Bet1: 5 chips on A2 (+1/-5)                     │
+│   │   ├─ Bet2: 4 chips on A1 (+5/-4)                     │
+│   │   └─ Bet3: 8 chips on A1 (+10/-8)                    │
+│   ├─ Check win/loss against bet_numbers                    │
+│   ├─ Update balance                                        │
+│   ├─ Update current_bet_type (win→1, loss→next)           │
+│   └─ If A1 win: start A1 wait rule                        │
+└─ Record bet_amount and balance in DataFrame                │
+└─────────────────────────────────────────────────────────────┘
+  ↓
+┌─────────────────────────────────────────────────────────────┐
+│ FOUR CORNER LOSS RULE TRACKING                             │
+├─ Track consecutive_non_a1 counter                          │
+├─ If outcome in A1: reset counter, end rule if active      │
+├─ If outcome not in A1: increment counter                  │
+├─ If counter == 4: activate four_corner_rule               │
+└─────────────────────────────────────────────────────────────┘
+  ↓
+┌─────────────────────────────────────────────────────────────┐
+│ SEQUENCE CODE UPDATE (ALWAYS EXECUTED)                     │
+├─ is_a1_win = outcome in A1                                │
+├─ Call update_sequence_codes(is_a1_win)                     │
+│   ├─ If A1 win: apply win formula                         │
+│   │   ├─ Calculate new 'a' based on ranges               │
+│   │   ├─ b = b - c                                        │
+│   │   └─ c = (int(b/a)) * 2                              │
+│   └─ If A1 loss: apply loss formula                       │
+│       ├─ a = a + 1                                        │
+│       ├─ b = b + c                                        │
+│       ├─ If b > 89: b = int((b+1)/2)                     │
+│       └─ c = (int(b/a)) * 2                              │
+├─ If four_corner_rule just triggered:                      │
+│   ├─ Save calculated codes as pending_sequence_codes      │
+│   └─ Will be applied after A1 outcome ends rule          │
+└─────────────────────────────────────────────────────────────┘
+  ↓
+┌─────────────────────────────────────────────────────────────┐
+│ END CONDITIONS CHECK                                        │
+├─ If current_bet_type > 3: Stage 1 ends (Bet3 lost)       │
+├─ Continue to next outcome                                  │
+└─────────────────────────────────────────────────────────────┘
+  ↓
+END FOR EACH OUTCOME
+  ↓
+Display Final DataFrame
+  ↓
+END PROGRAM
+
+## Rule Interaction Matrix
+
+┌─────────────────┬──────────────┬────────────────┬─────────────────┐
+│ State           │ Betting      │ Sequence Codes │ Display Codes   │
+├─────────────────┼──────────────┼────────────────┼─────────────────┤
+│ Normal          │ Active       │ Update & Show  │ Yes             │
+│ A1 Wait         │ STOPPED      │ Update & Show  │ Yes             │
+│ 4-Corner Active │ Active       │ Update Only    │ NO (suppressed) │
+│ 4-Corner Ended  │ Active       │ Apply Pending  │ Yes (delayed)   │
+└─────────────────┴──────────────┴────────────────┴─────────────────┘
+
+## Key Decision Points
+
+1. **Recording Started?**
+   - NO: Wait for first A1 win
+   - YES: Process full logic
+
+2. **A1 Wait Rule Active?**
+   - YES: No betting, but continue sequence codes
+   - NO: Normal betting
+
+3. **Four Corner Rule Active?**
+   - YES: Suppress sequence code display
+   - NO: Show current codes
+
+4. **Pending Sequence Codes?**
+   - YES: Apply and display delayed codes
+   - NO: Display current codes
+
+5. **Bet Result?**
+   - Win: Reset to Bet1, check A1 wait trigger
+   - Loss: Progress to next bet type
+
+## Critical Timing Notes
+
+- Sequence codes calculated AFTER outcome, applied to CURRENT line display
+- A1 wait rule affects NEXT line onwards
+- Four corner rule suppresses NEXT line display
+- Betting progression affects NEXT outcome
+- All rules can be active simultaneously

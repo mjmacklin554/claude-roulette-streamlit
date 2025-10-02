@@ -1,0 +1,79 @@
+﻿# Project: Roulette Betting System
+# File: mb_roulette_v1.txt
+
+## Overview:
+Create a command-line Roulette Betting System which displays the results in a Pandas DataFrame. The System consists of 2 Stages. Stage 1 is a Betting Stage and Stage 2 is the Recovery Stage. The System uses 2 Lists of User-Defined Numbers, A1 and A2 as numbers that have been Bet on and a predefined list of Roulette Outcomes. In this Game 1 Chip = $1 and the Starting Bank is $1000. The System consists of many Sequences. Each Sequence ends when a profit is made or the bank is lost. For a Sequence to begin a Set of Rules must be satisfied.
+
+## Betting Logic:
+
+### Betting begins with Stage 1
+
+#### Stage 1: Sequential Betting System - Only ONE bet per outcome
+
+The system places only ONE bet per roulette outcome, following this progression:
+
+1.	**Bet1**: Uses numbers in the A2 list. Bet of 5 Chips. Win = +1 chip profit, Lose = -5 chips
+   - If Bet1 WINS: Move to next outcome, start with Bet1 again
+   - If Bet1 LOSES: Move to next outcome, try Bet2
+
+2.	**Bet2**: Uses numbers in the A1 list. Bet of 4 chips. Win = +5 chips profit, Lose = -4 chips
+   - If Bet2 WINS: Move to next outcome, start with Bet1 again
+   - If Bet2 LOSES: Move to next outcome, try Bet3
+
+3.  **Bet3**: Uses numbers in the A1 list. Bet of 8 chips. Win = +10 chips profit, Lose = -8 chips
+   - If Bet3 WINS: Move to next outcome, start with Bet1 again
+   - If Bet3 LOSES: **Stage 1 ends, proceed to Stage 2**
+
+**Example Flow:**
+- Outcome 6: Try Bet1 → Loses → Move to Outcome 31
+- Outcome 31: Try Bet2 → Wins → Move to Outcome 11
+- Outcome 11: Try Bet1 → Loses → Move to Outcome 6
+- Outcome 6: Try Bet2 → Loses → Move to Outcome 9
+- Outcome 9: Try Bet3 → Loses → **Stage 1 ends, proceed to Stage 2**
+
+
+
+
+## Specific Rules:
+
+- These rules will be specified later. Don't worry about them now!
+
+- Don't worry about Stage 2 yet!
+
+
+
+
+
+
+
+## Technical Requirements:
+
+-	Outcome of Roulette Wheel Spins = [6,31,11,6,9,34,15,22,26,25,16,6,2,22,12,3,21,29,36,8,9,4,13,31,24,35,
+                   17,32,35,24,26,29,7,19,19,30]
+-	A1 consisting of 16 numbers ( which are 4 x Corner Bets) are [2, 3, 5, 6, 17, 18, 20, 21, 25, 26, 28, 29, 31, 32, 34, 35]
+
+-	A2 consisting of 30 numbers (which are 5 x Six-Line Bets) are 1-6, 13-18, 19-24, 25-30 and 31-36 
+
+-   The DataFrame has the columns ['line', 'outcome', 'win', 'a', 'b', 'c', 'actual bet', 'negative', 'positive', 'balance']
+
+## Implementation:
+
+1.	The meaning of the DataFrame Columns are:
+
+-	'line' : The Bet Number
+-	'outcome': The Outcome of the Roulette Spin read from the list of Numbers sequentially
+-	'win': If it was a Win 'W'  or a Loss 'L' 
+-	'a' , 'b' and 'c':  are sequence codes ( see sequence code value section)
+-	'actual bet': The Amount ( in chips ) bet
+-	'negative' and 'positive': have an integer value of 0 at this stage 
+-	'balance': cumulative profit or loss ( in chips )
+
+
+
+
+
+
+
+
+
+

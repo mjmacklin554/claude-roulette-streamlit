@@ -1,0 +1,72 @@
+# Claude Roulette Development Session Summary
+Date: 2025-10-01
+
+## Final Working Implementation: roulette_fresh.py
+
+### What We Accomplished
+
+#### 1. Correct System Logic
+- **A1 vs A2 Usage Clarified**:
+  - A1: Used for Bet2, Bet3, sequence codes, A1 wait rule, win/loss determination
+  - A2: Used ONLY for Bet1
+- **Bet Progression**: Bet1(5chips,A2) → Bet2(4chips,A1) → Bet3(8chips,A1)
+- **Win/Loss**: 'W' if outcome in A1, 'L' otherwise
+
+#### 2. A1 Wait Rule (Key Discovery)
+- **Trigger**: After A1 win (outcome in A1 AND bet wins)
+- **Wait Logic**: System waits for 3 consecutive non-A1 outcomes
+- **Reset Rule**: Any A1 outcome during wait resets counter to 0
+- **Resume**: Betting resumes on line AFTER 3rd consecutive non-A1 outcome
+- **Example**: Line 8 A1 win → Lines 9-11 no bets → Line 12 resume betting
+
+#### 3. Sequence Codes
+- **Start**: a=3, b=4, c=2 (triggered by first A1 win)
+- **Win Logic**: Calculate new 'a', b=b-c, c=(int(b/a))*2
+- **Loss Logic**: a=a+1, b=b+c, c=(int(b/a))*2
+- **No Restart Rule**: Sequence codes continue evolving (removed a<4 restart)
+
+#### 4. Technical Specifications
+- **Outcomes**: [0,15,27,33,26,14,36,2,16,22,7,17,30,22,28,9,10,11,6,1,33,10,15,18,11,9,1,7,30,30,36,36]
+- **A1**: [2,3,5,6,17,18,20,21,25,26,28,29,31,32,34,35] (16 corner bets)
+- **A2**: [1-6,13-18,19-24,25-30,31-36] (30 six-line bets)
+
+### Key Fixes Made
+
+1. **Corrected A1 Wait Rule**: Changed from "3 A1 losses" to "3 consecutive non-A1 outcomes"
+2. **Fixed Betting Resume Logic**: No bet on line that ends wait, betting resumes next line
+3. **Proper A1/A2 Usage**: A1 for sequence logic, A2 only for Bet1
+4. **Clean Implementation**: Removed complex state machines from old versions
+
+### Final Working Logic Flow
+
+1. **Lines 1-4**: No bets (waiting for first A1 win)
+2. **Line 5**: First A1 win (outcome 26) → Start sequence codes for next line
+3. **Line 6**: Begin betting with codes (3,4,2)
+4. **Line 8**: A1 win → Trigger A1 wait rule
+5. **Lines 9-11**: No bets (3 consecutive non-A1: 16,22,7)
+6. **Line 12**: Resume betting (wait period ended)
+7. **Continue**: Bet progression and sequence code evolution
+
+### Files Status
+
+#### Keep:
+- **roulette_fresh.py**: Final working implementation
+- **mb_roulette_v1.txt**: Updated with correct logic
+- **session_summary_final.txt**: This summary
+
+#### Remove:
+- roulette_system.py (original failed attempts)
+- roulette_system_clean.py (incorrect hybrid approach)
+- roulette_system_clean_original.py (overcomplicated)
+- roulette_clean_procedural.py (incorrect A1 wait logic)
+
+### Next Steps
+1. Test roulette_fresh.py to ensure all DataFrame matches expected results
+2. Implement Stage 2 when requirements are defined
+3. Add any additional specific rules as needed
+
+## Important Notes for Future Sessions
+- A1 wait rule is critical: waits for 3 consecutive NON-A1 outcomes, not A1 losses
+- Betting resumes AFTER the line that completes the wait period
+- Sequence codes never restart (removed a<4 rule)
+- Keep A1/A2 usage clear: A1 for logic, A2 only for Bet1
