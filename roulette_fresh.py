@@ -23,6 +23,9 @@ recording = False
 balance = 0
 current_bet_type = 1  # 1=Bet1, 2=Bet2, 3=Bet3
 
+# Mixed numbers tracking
+cumulative_negative = {'integer': 0, 'decimal': 0}
+
 # A1 wait rule variables
 waiting_for_a1_losses = False
 non_a1_count = 0
@@ -43,6 +46,63 @@ def calculate_new_a(a):
     elif a < 8:
         return a - 2
     return a
+
+def chips_to_mixed_number(chips):
+    """Convert chip loss to mixed number format"""
+    if chips == 0:
+        return {'integer': 0, 'decimal': 0}
+
+    # For losses, chips will be negative
+    abs_chips = abs(chips)
+    units_of_4 = abs_chips // 4
+    remainder = abs_chips % 4
+
+    if chips < 0:
+        # For negative chips, we need to handle the remainder correctly
+        if remainder == 0:
+            return {'integer': -units_of_4, 'decimal': 0}
+        else:
+            # Adjust for proper mixed number representation
+            # e.g., 5 chips = -2.3 where -2*4 + 3 = -8+3 = -5
+            return {'integer': -(units_of_4 + 1), 'decimal': 4 - remainder}
+    else:
+        return {'integer': units_of_4, 'decimal': remainder}
+
+def add_mixed_numbers(mixed1, mixed2):
+    """Add two mixed numbers together"""
+    if mixed1['integer'] == 0 and mixed1['decimal'] == 0:
+        return mixed2
+    if mixed2['integer'] == 0 and mixed2['decimal'] == 0:
+        return mixed1
+
+    # Simply add the integer parts (the decimal part is handled separately)
+    return {'integer': mixed1['integer'] + mixed2['integer'], 'decimal': mixed1['decimal']}
+
+def mixed_to_chips(mixed_num):
+    """Convert mixed number back to chips"""
+    if mixed_num == 0:
+        return 0
+
+    if mixed_num < 0:
+        # Handle negative mixed numbers
+        str_mixed = str(mixed_num)
+        if '.' in str_mixed:
+            parts = str_mixed.split('.')
+            units = int(parts[0])  # Already negative
+            decimal = int(parts[1])
+            return (units * 4) + decimal  # units*4 is negative, decimal positive
+        else:
+            return int(mixed_num) * 4
+    else:
+        # Handle positive mixed numbers
+        str_mixed = str(mixed_num)
+        if '.' in str_mixed:
+            parts = str_mixed.split('.')
+            units = int(parts[0])
+            decimal = int(parts[1])
+            return (units * 4) + decimal
+        else:
+            return int(mixed_num) * 4
 
 def update_sequence_codes(is_a1_win):
     """Update sequence codes based on A1 win/loss"""
@@ -68,13 +128,14 @@ def place_bet(outcome):
     """Place bet according to Bet1/Bet2/Bet3 progression from mb_roulette_v1.txt"""
     global balance, current_bet_type, waiting_for_a1_losses, non_a1_count
     global four_corner_rule_active, consecutive_non_a1, pending_sequence_codes
+    global cumulative_negative
 
     # Check A1 wait rule first
     if waiting_for_a1_losses:
         if outcome in A1:
             # A1 outcome resets the counter
             non_a1_count = 0
-            return 0  # No bet during wait period
+            return {'bet_amount': 0, 'loss_mixed': {'integer': 0, 'decimal': 0}}  # No bet during wait period
         else:
             # Non-A1 outcome increments counter
             non_a1_count += 1
@@ -82,9 +143,9 @@ def place_bet(outcome):
                 waiting_for_a1_losses = False
                 non_a1_count = 0
                 print(f"A1 wait period ended after 3 non-A1 outcomes")
-                return 0  # No bet on the line that ends the wait
+                return {'bet_amount': 0, 'loss_mixed': {'integer': 0, 'decimal': 0}}  # No bet on the line that ends the wait
             else:
-                return 0  # No bet during wait period
+                return {'bet_amount': 0, 'loss_mixed': {'integer': 0, 'decimal': 0}}  # No bet during wait period
 
     # Four corner rule logic moved to main loop
 
@@ -105,7 +166,7 @@ def place_bet(outcome):
         bet_numbers = A1
         win_profit = 10
     else:
-        return 0  # No more bets after Bet3 loss
+        return {'bet_amount': 0, 'loss_mixed': {'integer': 0, 'decimal': 0}}  # No more bets after Bet3 loss
 
     # Check if it's a win
     is_win = outcome in bet_numbers
@@ -120,14 +181,19 @@ def place_bet(outcome):
             non_a1_count = 0
             print(f"A1 win detected - starting wait for 3 consecutive non-A1 outcomes")
 
+        return {'bet_amount': bet_amount, 'loss_mixed': {'integer': 0, 'decimal': 0}}
+
     else:
-        balance -= bet_amount
+        # Handle loss with mixed numbers
+        loss_mixed_number = chips_to_mixed_number(-bet_amount)
+        cumulative_negative = add_mixed_numbers(cumulative_negative, loss_mixed_number)
+
         current_bet_type += 1  # Progress to next bet type
         if current_bet_type > 3:
             print(f"Bet3 lost. Stage 1 ends.")
-            return bet_amount
+            return {'bet_amount': bet_amount, 'loss_mixed': loss_mixed_number}
 
-    return bet_amount
+        return {'bet_amount': bet_amount, 'loss_mixed': loss_mixed_number}
 
 # Create DataFrame
 results = []
@@ -189,10 +255,29 @@ for i, outcome in enumerate(outcomes):
             row['c'] = sequence_code['c']
 
         # Place bet (independent of sequence code logic)
-        bet_amount = place_bet(outcome)
-        if bet_amount > 0:
-            row['actual bet'] = bet_amount
-            row['balance'] = balance
+        bet_result = place_bet(outcome)
+        if bet_result['bet_amount'] > 0:
+            # Display bet type instead of chip amount
+            if bet_result['bet_amount'] == 5:
+                row['actual bet'] = 'Bet 1'
+            elif bet_result['bet_amount'] == 4:
+                row['actual bet'] = 'Bet 2'
+            elif bet_result['bet_amount'] == 8:
+                row['actual bet'] = 'Bet 3'
+
+            # Handle mixed numbers for losses
+            if bet_result['loss_mixed']['integer'] != 0 or bet_result['loss_mixed']['decimal'] != 0:
+                # Display cumulative negative mixed number
+                row['negative'] = cumulative_negative['integer']
+
+                # Show decimal part in positive column only if there's a remainder
+                if cumulative_negative['decimal'] > 0:
+                    row['positive'] = f".{cumulative_negative['decimal']}"
+
+                # No balance shown for losses during Stage 1
+            else:
+                # Win case
+                row['balance'] = balance
 
         # Track consecutive non-A1 outcomes for four corner rule (always track)
         if outcome in A1:

@@ -109,6 +109,36 @@ The system places only ONE bet per roulette outcome, following this progression:
 
     3. If B > 89 then B = (Int(B+1)) / 2
 
+## Mixed Numbers
+
+- When a bet has been made and there has been a loss, this is recorded in the negative and positive columns of the
+dataframe as shown in ## example dataframe. A loss is recorded as a Mixed Number for example in Line 28 the loss is 5 chips which is recorded as a Mixed Number of -2.3 with the Integer value -2 representing 2 units of 4 chips which is 8 chips. The decimal part of this mixed number is a number of positive chips, in this case 3 so we have (-8) chips plus 3 which is equal to 5 chips.
+
+- On Line 29 Bet 2 is a 1unit bet ( 4chips) and as it is a loss it just gets add to the existing amount in the negative column ie: -2 + (-1). 
+
+- Line 30 Bet 3 is a 2 unit bet (8 chips) and a loss so the new value in the negative column is now -3 + (-2)
+
+- As Bet 3 has lost this is the end of Stage 1 and in the last 3 bets 17 chips have been lost which is represented by the mixed Number -5.3
+
+- When there is a loss there is no need to record any value in the Balance column at this stage. In Stage 2 we will attempt to recover this 17 chip loss and then the Balance can be updated accordingly.
+
+- Here is an example of some Mixed Numbers and their Base 10 Value ( Chips )
+
+Mixed Number          Base 10 Chips
+
+2.0                      8                       
+-2.3                    -5
+-6.1                    -23
+-5.3                    -17
+-15.2                   -58
+12.1                    49
+
+## Wins on Mixed Numbers
+
+-               
+
+
+
 ## Example DataFrame
 
    line  outcome win    a    b    c actual bet negative positive balance
@@ -139,10 +169,14 @@ The system places only ONE bet per roulette outcome, following this progression:
    25       11   L    9   45   10        NaN      NaN      NaN     NaN
    26        9   L   10   55   10        NaN      NaN      NaN     NaN
    27        1   L   11   65   10        NaN      NaN      NaN     NaN
-   28        7   L   12   75   12        5                 NaN     2
-   29       30   L   13   87   12        4             NaN        -3
-   30       30   L   13   87   12        8             NaN        -13        
+   28        7   L   12   75   12        5          -2       .3     
+   29       30   L   13   87   12        4          -3       
+   30       30   L   13   87   12        8          -5   NaN            
 
+
+
+
+   
 
 
 
