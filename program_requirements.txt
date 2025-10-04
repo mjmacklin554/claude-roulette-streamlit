@@ -2,14 +2,14 @@
 Date: 2025-10-02
 
 ## System Overview
-A command-line roulette betting system that implements a complex Stage 1 betting strategy with sequence codes, A1 wait rules, and four corner loss rules.
+A command-line roulette betting system that implements a complex Stage 1 betting strategy with sequence codes, A1 wait rules, four corner loss rules, and mixed numbers for loss/recovery tracking.
 
 ## Core Components
 
 ### 1. Lists and Numbers
 - **A1**: [2,3,5,6,17,18,20,21,25,26,28,29,31,32,34,35] (16 corner bet numbers)
 - **A2**: [1-6,13-18,19-24,25-30,31-36] (30 six-line bet numbers)
-- **Outcomes**: [0,15,27,33,26,14,36,2,16,22,7,17,30,22,28,9,10,11,6,1,33,10,15,18,11,9,1,7,30,30,36,36]
+- **Outcomes**: [0,15,27,33,26,14,36,2,16,22,7,17,30,22,28,9,10,11,6,1,33,10,15,18,11,9,1,7,29,29,36,36]
 
 ### 2. Win/Loss Determination
 - **Win ('W')**: If outcome is in A1 list
@@ -21,6 +21,7 @@ A command-line roulette betting system that implements a complex Stage 1 betting
 - **Bet3**: 8 chips on A1 numbers (+10 profit if win, -8 if lose)
 - **Progression**: After win → Reset to Bet1, After loss → Next bet type
 - **Stage End**: If Bet3 loses → Stage 1 ends
+- **Display**: Actual bet column shows "Bet 1", "Bet 2", "Bet 3"
 
 ### 4. Sequence Codes
 - **Initial**: a=3, b=4, c=2
@@ -53,6 +54,22 @@ A command-line roulette betting system that implements a complex Stage 1 betting
 - **Wait**: System waits for A1 outcome to end the rule
 - **Resume**: Pending codes are recorded on line AFTER A1 outcome
 
+### 7. Mixed Numbers System
+- **Purpose**: Track losses and recoveries using base-4 chip system
+- **Format**: integer.decimal where integer = units of 4 chips, decimal = individual chips
+- **Loss Recording**:
+  - 5 chips loss = -2.3 mixed number (-2×4 + 3 = -8+3 = -5)
+  - 4 chips loss = -1.0 mixed number (-1×4 = -4)
+  - 8 chips loss = -2.0 mixed number (-2×4 = -8)
+- **Win Recovery** (Bet2/Bet3 on A1):
+  - Reduce negative by bet units: Bet2 (+1), Bet3 (+2)
+  - Add Built-in Profit (BIP): 1 unit = 1 chip, 2 units = 2 chips
+  - Display: negative column shows integer part, positive shows mixed number
+  - Recovery: When negative + positive ≥ 0, add net profit to balance
+- **Display Rules**:
+  - Losses: Show cumulative negative integer, decimal in positive (first loss only)
+  - Wins: Show final negative/positive mixed numbers, then reset after display
+
 ## Program Flow
 
 ### Phase 1: Initialization
@@ -77,6 +94,7 @@ For each outcome:
 3. **Place Bet** (if not in A1 wait)
    - Use current bet progression (Bet1/Bet2/Bet3)
    - Update balance and bet progression
+   - Handle mixed numbers for losses and wins
 
 4. **Track Four Corner Rule**
    - Count consecutive non-A1 outcomes
@@ -88,7 +106,12 @@ For each outcome:
    - Based on A1 win/loss, not bet win/loss
    - Apply special b > 89 rule if needed
 
-6. **Check A1 Wait Trigger**
+6. **Handle Mixed Numbers**
+   - Record losses in negative/positive columns
+   - Process recovery for Bet2/Bet3 wins
+   - Reset mixed numbers after recovery
+
+7. **Check A1 Wait Trigger**
    - If A1 win occurred, start A1 wait rule
 
 ### Phase 4: End Conditions
@@ -102,6 +125,7 @@ For each outcome:
 2. **Sequence Codes**: Always update, even during A1 wait
 3. **A1 Wait Rule**: Affects betting only, not sequence codes
 4. **Four Corner Rule**: Affects sequence code display timing only
+5. **Mixed Numbers**: Track losses/recovery separately from normal balance
 
 ### Timing Rules
 - Sequence codes calculated AFTER outcome, applied to NEXT line
@@ -111,13 +135,28 @@ For each outcome:
 
 ### DataFrame Output
 - Empty values shown as empty strings (not NaN)
-- Balance only shown when bets are placed
+- Balance only shown when bets are placed (wins or recovery)
 - Sequence codes continue during A1 wait periods
 - Four corner rule creates gaps in sequence code display
+- Mixed numbers display in negative/positive columns during loss sequences
+- Actual bet column shows "Bet 1", "Bet 2", "Bet 3" format
 
 ## Technical Specifications
 - Language: Python with pandas
 - Starting bank: $1000 (1 chip = $1)
 - DataFrame columns: ['line', 'outcome', 'win', 'a', 'b', 'c', 'actual bet', 'negative', 'positive', 'balance']
 - All calculations use integer arithmetic
+- Mixed numbers use base-4 system for loss/recovery tracking
 - No external dependencies beyond pandas
+
+## Stage 1 Status
+✅ **COMPLETED** - All Stage 1 functionality implemented and working:
+- Sequence codes with win/loss formulas
+- A1 wait rule with 3 consecutive non-A1 trigger
+- Four corner loss rule with delayed sequence code display
+- Mixed numbers system for loss tracking and recovery
+- Bet progression (Bet1 → Bet2 → Bet3)
+- All timing and display rules
+- Complete DataFrame output with proper formatting
+
+**Ready for Stage 2 implementation**
