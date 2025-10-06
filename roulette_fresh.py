@@ -1,7 +1,8 @@
 import pandas as pd
 
 # From mb_roulette_v1.txt - Technical Requirements
-outcomes = [0, 15, 27, 33, 26, 14, 36, 2, 16, 22, 7, 17, 30, 22, 28, 9, 10, 11, 6, 1, 33, 10, 15, 18, 11, 9, 1, 7, 29, 29, 36, 36]
+outcomes = [0, 15, 27, 33, 26, 14, 36, 2, 16, 22, 7, 17, 30, 22, 28, 9, 10, 11, 6, 1, 33, 10, 15, 18, 11, 9, 1, 7, 30, 30, 36, 36,4,4,
+32,28,6,10,22,24,33,36,15,34,9,0,0,1,18,19,20,8,17,11,27,16,26,4,29,2,2]
 
 # A1 consisting of 16 numbers (4 x Corner Bets)
 A1 = [2, 3, 5, 6, 17, 18, 20, 21, 25, 26, 28, 29, 31, 32, 34, 35]
@@ -23,11 +24,20 @@ recording = False
 balance = 0
 current_bet_type = 1  # 1=Bet1, 2=Bet2, 3=Bet3
 
+# Stage tracking
+stage = 1  # 1=Stage1, 2=Stage2
+stage1_complete = False
+stage2_recovery_target = 0  # Will be set when Stage 1 ends
+
+# Stage 2 variables
+stage2_divisor = 8  # Initial divisor, user configurable
+stage2_betting_active = False
+
 # Mixed numbers tracking
 cumulative_negative = {'integer': 0, 'decimal': 0}
 cumulative_positive_chips = 0  # Track positive column in chips
 
-# A1 wait rule variables
+# A1 wait rule variables (Stage 1 only)
 waiting_for_a1_losses = False
 non_a1_count = 0
 
@@ -135,7 +145,7 @@ def mixed_to_chips(mixed_num):
 
 def update_sequence_codes(is_a1_win):
     """Update sequence codes based on A1 win/loss"""
-    global sequence_code
+    global sequence_code, stage, stage2_divisor
 
     if is_a1_win:
         # Win logic from mb_roulette_v1.txt
@@ -150,6 +160,10 @@ def update_sequence_codes(is_a1_win):
         # Special rule: If B > 89 then B = (Int(B+1)) / 2
         if sequence_code['b'] > 89:
             sequence_code['b'] = int((sequence_code['b'] + 1) / 2)
+            # In Stage 2, halve the divisor when b > 89 rule applies AND we're actively betting
+            if stage == 2 and stage2_divisor > 1 and recording and not four_corner_rule_active:
+                stage2_divisor = stage2_divisor // 2
+                print(f"b > 89 rule applied in Stage 2 - divisor reduced to {stage2_divisor}")
 
         sequence_code['c'] = (int(sequence_code['b'] / sequence_code['a'])) * 2
 
@@ -255,10 +269,79 @@ def place_bet(outcome):
 
         current_bet_type += 1  # Progress to next bet type
         if current_bet_type > 3:
-            print(f"Bet3 lost. Stage 1 ends.")
+            print(f"Bet3 lost. Stage 1 ends, Stage 2 begins.")
+            global stage1_complete, stage, stage2_recovery_target
+            stage1_complete = True
+            stage = 2
+            # Calculate recovery target from current mixed numbers
+            negative_chips = mixed_to_chips_from_dict(cumulative_negative)
+            stage2_recovery_target = negative_chips  # This will be negative
+            # Initialize Stage 2 positive chips with the decimal part from Stage 1
+            cumulative_positive_chips = cumulative_negative['decimal']
             return {'bet_amount': bet_amount, 'loss_mixed': loss_mixed_number, 'win_mixed': False}
 
         return {'bet_amount': bet_amount, 'loss_mixed': loss_mixed_number, 'win_mixed': False}
+
+def place_stage2_bet(outcome, codes_displayed):
+    """Place Stage 2 recovery bet based on c value and divisor"""
+    global balance, stage2_divisor, cumulative_negative, cumulative_positive_chips
+    global stage2_recovery_target, stage, sequence_code
+
+    # In Stage 2, no betting when sequence codes are not displayed
+    if not codes_displayed:
+        return {'bet_amount': 0, 'units': 0, 'loss_mixed': {'integer': 0, 'decimal': 0}, 'win_mixed': False}
+
+    # Check if a > 10 (no betting if true), UNLESS negative > 20 units
+    negative_units = abs(cumulative_negative['integer'])
+    if sequence_code['a'] > 10 and negative_units <= 20:
+        return {'bet_amount': 0, 'units': 0, 'loss_mixed': {'integer': 0, 'decimal': 0}, 'win_mixed': False}
+
+    # Calculate bet units: c / divisor
+    bet_units = int(sequence_code['c'] / stage2_divisor)
+    if bet_units == 0:
+        bet_units = 1  # Minimum bet
+
+    bet_chips = bet_units * 4  # Convert units to chips
+
+    # Check if it's a win (A1 numbers only in Stage 2)
+    is_win = outcome in A1
+
+    if is_win:
+        # Stage 2 win - apply mixed number recovery logic
+        # Reduce negative by bet units
+        cumulative_negative['integer'] += bet_units
+
+        # Add Built-in Profit (BIP) to existing positive
+        bip_chips = bet_units  # 1 unit = 1 chip BIP
+        cumulative_positive_chips += bip_chips  # Simply add BIP to existing positive
+
+        # Check for complete recovery
+        negative_chips = mixed_to_chips_from_dict(cumulative_negative)
+        total_recovery = negative_chips + cumulative_positive_chips
+
+        # Check for complete recovery (when total becomes positive)
+        if total_recovery >= 0:
+            # Full recovery achieved!
+            balance += total_recovery  # Add profit to balance
+            print(f"Stage 2 recovery successful! Recovered 17 chips plus {total_recovery} profit.")
+            print(f"Sequence completed successfully.")
+            # Don't reset mixed numbers yet - show them on this line first
+            stage = 3  # Mark as completed
+
+        return {'bet_amount': bet_chips, 'units': bet_units, 'loss_mixed': {'integer': 0, 'decimal': 0}, 'win_mixed': True}
+
+    else:
+        # Stage 2 loss
+        loss_mixed_number = chips_to_mixed_number(-bet_chips)
+        cumulative_negative = add_mixed_numbers(cumulative_negative, loss_mixed_number)
+
+        # Check if bank is lost (1000 chips = 250 units)
+        total_negative_chips = abs(mixed_to_chips_from_dict(cumulative_negative))
+        if total_negative_chips >= 1000:
+            print(f"Bank lost! Stage 2 recovery failed.")
+            stage = 4  # Mark as failed
+
+        return {'bet_amount': bet_chips, 'units': bet_units, 'loss_mixed': loss_mixed_number, 'win_mixed': False}
 
 # Create DataFrame
 results = []
@@ -319,16 +402,40 @@ for i, outcome in enumerate(outcomes):
             row['b'] = sequence_code['b']
             row['c'] = sequence_code['c']
 
-        # Place bet (independent of sequence code logic)
-        bet_result = place_bet(outcome)
+        # Place bet (stage-dependent logic)
+        if stage == 1:
+            bet_result = place_bet(outcome)
+        elif stage == 2:
+            # In Stage 2, check if sequence codes are being displayed
+            codes_displayed = not (four_corner_rule_active or (pending_sequence_codes and not four_corner_rule_active))
+            if four_corner_rule_active:
+                codes_displayed = False
+            elif row['a'] != '':  # If sequence codes are shown in this row
+                codes_displayed = True
+            else:
+                codes_displayed = False
+            bet_result = place_stage2_bet(outcome, codes_displayed)
+        else:
+            # Stage completed, no more betting
+            bet_result = {'bet_amount': 0, 'loss_mixed': {'integer': 0, 'decimal': 0}, 'win_mixed': False}
+            # Show STOP message on line after recovery
+            if stage == 3:
+                row['actual bet'] = 'STOP'
+                print(f"Recovery in Stage 2 has now been successfully completed.")
+
         if bet_result['bet_amount'] > 0:
-            # Display bet type instead of chip amount
-            if bet_result['bet_amount'] == 5:
-                row['actual bet'] = 'Bet 1'
-            elif bet_result['bet_amount'] == 4:
-                row['actual bet'] = 'Bet 2'
-            elif bet_result['bet_amount'] == 8:
-                row['actual bet'] = 'Bet 3'
+            # Display bet type based on stage
+            if stage == 1:
+                # Stage 1 bet display
+                if bet_result['bet_amount'] == 5:
+                    row['actual bet'] = 'Bet 1'
+                elif bet_result['bet_amount'] == 4:
+                    row['actual bet'] = 'Bet 2'
+                elif bet_result['bet_amount'] == 8:
+                    row['actual bet'] = 'Bet 3'
+            elif (stage == 2 or (stage == 3 and 'units' in bet_result)) and 'units' in bet_result:
+                # Stage 2 bet display - show units (including recovery line)
+                row['actual bet'] = f"{bet_result['units']} units"
 
             # Handle mixed numbers for losses
             if bet_result['loss_mixed']['integer'] != 0 or bet_result['loss_mixed']['decimal'] != 0:
@@ -341,7 +448,7 @@ for i, outcome in enumerate(outcomes):
 
                 # No balance shown for losses during Stage 1
             elif bet_result['win_mixed']:
-                # Bet2 or Bet3 win with mixed number logic
+                # Bet2 or Bet3 win with mixed number logic (Stage 1) or Stage 2 win
                 row['negative'] = cumulative_negative['integer']
 
                 # Display positive column with mixed number format
@@ -351,15 +458,16 @@ for i, outcome in enumerate(outcomes):
                         if positive_mixed['decimal'] > 0:
                             row['positive'] = f"{positive_mixed['integer']}.{positive_mixed['decimal']}"
                         else:
-                            row['positive'] = f"{positive_mixed['integer']}.0"
+                            row['positive'] = f"{positive_mixed['integer']}"  # Show just integer, not .0
                     else:
                         row['positive'] = f".{positive_mixed['decimal']}"
 
-                # Show balance
-                row['balance'] = balance
+                # Show balance only if recovery is complete (Stage 3) or normal Stage 1 win
+                if stage == 3 or stage == 1:
+                    row['balance'] = balance
 
-                # Reset mixed numbers after recovery (if balance was updated)
-                if balance > 0:
+                # Reset mixed numbers after recovery (if stage is completed)
+                if stage == 3:
                     cumulative_negative = {'integer': 0, 'decimal': 0}
                     cumulative_positive_chips = 0
             else:

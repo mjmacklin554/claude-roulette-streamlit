@@ -2,14 +2,14 @@
 Date: 2025-10-02
 
 ## System Overview
-A command-line roulette betting system that implements a complex Stage 1 betting strategy with sequence codes, A1 wait rules, four corner loss rules, and mixed numbers for loss/recovery tracking.
+A command-line roulette betting system that implements a complete 2-stage betting and recovery strategy with sequence codes, A1 wait rules, four corner loss rules, and mixed numbers for loss/recovery tracking. Stage 1 focuses on betting progression, while Stage 2 provides unit-based recovery betting.
 
 ## Core Components
 
 ### 1. Lists and Numbers
 - **A1**: [2,3,5,6,17,18,20,21,25,26,28,29,31,32,34,35] (16 corner bet numbers)
 - **A2**: [1-6,13-18,19-24,25-30,31-36] (30 six-line bet numbers)
-- **Outcomes**: [0,15,27,33,26,14,36,2,16,22,7,17,30,22,28,9,10,11,6,1,33,10,15,18,11,9,1,7,29,29,36,36]
+- **Outcomes**: [0,15,27,33,26,14,36,2,16,22,7,17,30,22,28,9,10,11,6,1,33,10,15,18,11,9,1,7,30,30,36,36,4,4,32,28,6,10,22,24,33,36,15,34,9,0,0,1,18,19,20,8,17,11,27,16,26,4,29,2,2] (Extended for testing)
 
 ### 2. Win/Loss Determination
 - **Win ('W')**: If outcome is in A1 list
@@ -61,14 +61,35 @@ A command-line roulette betting system that implements a complex Stage 1 betting
   - 5 chips loss = -2.3 mixed number (-2×4 + 3 = -8+3 = -5)
   - 4 chips loss = -1.0 mixed number (-1×4 = -4)
   - 8 chips loss = -2.0 mixed number (-2×4 = -8)
-- **Win Recovery** (Bet2/Bet3 on A1):
-  - Reduce negative by bet units: Bet2 (+1), Bet3 (+2)
-  - Add Built-in Profit (BIP): 1 unit = 1 chip, 2 units = 2 chips
+- **Win Recovery** (Bet2/Bet3 Stage 1, All Stage 2 wins):
+  - Reduce negative by bet units: Bet2 (+1), Bet3 (+2), Stage 2 (+bet units)
+  - Add Built-in Profit (BIP): 1 unit = 1 chip BIP
   - Display: negative column shows integer part, positive shows mixed number
   - Recovery: When negative + positive ≥ 0, add net profit to balance
 - **Display Rules**:
   - Losses: Show cumulative negative integer, decimal in positive (first loss only)
-  - Wins: Show final negative/positive mixed numbers, then reset after display
+  - Wins: Show final negative/positive mixed numbers
+  - Stage 2 complete: Show final mixed numbers, then reset after display
+
+### 8. Stage 2 Recovery System
+- **Trigger**: After Bet3 loss in Stage 1 (when -5.3 mixed number deficit exists)
+- **Entry Condition**: Wait for a ≤ 10 AND sequence codes being displayed
+- **Special Rule**: When negative > 20 units, bypass a ≤ 10 rule and continue betting
+- **Betting Logic**:
+  - Always bet on A1 numbers only
+  - Units = c ÷ divisor (minimum 1 unit)
+  - Initial divisor = 8 (user configurable)
+  - Divisor halves when b > 89 rule applies during active betting: 8→4→2→1
+- **Betting Restrictions**:
+  - No betting when sequence codes are suppressed (Four Corner Loss Rule)
+  - No betting when a > 10 (unless negative > 20 units)
+- **Recovery Completion**:
+  - Calculate: negative chips + positive chips
+  - When total ≥ 0: full recovery achieved
+  - Display final mixed numbers on recovery line
+  - Add any excess profit to balance
+  - Next line shows "STOP" with success message
+- **Failure Condition**: Bank lost (1000 chips = 250 units)
 
 ## Program Flow
 
@@ -114,32 +135,63 @@ For each outcome:
 7. **Check A1 Wait Trigger**
    - If A1 win occurred, start A1 wait rule
 
-### Phase 4: End Conditions
-- Bet3 loss → Stage 1 ends
+### Phase 4: Stage 2 Recovery Phase (if Bet3 loses)
+For each outcome:
+1. **Check Entry Conditions**
+   - Wait for a ≤ 10 AND sequence codes displayed
+   - Override a ≤ 10 rule if negative > 20 units
+
+2. **Place Stage 2 Bet** (if conditions met)
+   - Calculate units: c ÷ divisor
+   - Bet on A1 numbers only
+   - Update mixed numbers for wins/losses
+
+3. **Check Recovery Status**
+   - Calculate total recovery: negative chips + positive chips
+   - If ≥ 0: complete recovery, update balance, show "STOP"
+   - If < 0: continue Stage 2 betting
+
+4. **Update Divisor**
+   - Halve divisor when b > 89 rule applies during active betting
+
+### Phase 5: End Conditions
+- Stage 1: Bet3 loss → Stage 2 begins
+- Stage 2: Full recovery → Sequence ends successfully
+- Stage 2: Bank lost (1000 chips) → Sequence ends in failure
 - All outcomes processed → Display results
 
 ## Key Implementation Notes
 
 ### Critical Logic Separations
-1. **Betting Logic**: Independent of sequence codes
-2. **Sequence Codes**: Always update, even during A1 wait
-3. **A1 Wait Rule**: Affects betting only, not sequence codes
-4. **Four Corner Rule**: Affects sequence code display timing only
-5. **Mixed Numbers**: Track losses/recovery separately from normal balance
+1. **Stage 1 Betting Logic**: Independent of sequence codes, uses Bet1/2/3 progression
+2. **Stage 2 Betting Logic**: Dependent on sequence codes display, uses unit-based betting
+3. **Sequence Codes**: Always update regardless of stage or betting status
+4. **A1 Wait Rule**: Stage 1 only - affects betting but not sequence codes
+5. **Four Corner Rule**: Both stages - affects sequence code display timing
+6. **Mixed Numbers**: Track losses/recovery across both stages separately from balance
+7. **Divisor Logic**: Stage 2 only - changes during active betting when b > 89
 
 ### Timing Rules
 - Sequence codes calculated AFTER outcome, applied to NEXT line
-- A1 wait rule stops betting but continues sequence codes
-- Four corner rule delays sequence code recording by 2 lines
+- Stage 1: A1 wait rule stops betting but continues sequence codes
+- Stage 1: Four corner rule delays sequence code recording but allows betting
+- Stage 2: Four corner rule delays sequence codes AND stops betting
+- Stage 2: Betting only when sequence codes are displayed
+- Stage 2: Divisor changes only during active betting periods
 - Betting resumes line AFTER wait periods end
 
 ### DataFrame Output
 - Empty values shown as empty strings (not NaN)
-- Balance only shown when bets are placed (wins or recovery)
-- Sequence codes continue during A1 wait periods
-- Four corner rule creates gaps in sequence code display
+- Balance shown for: Stage 1 wins, Stage 2 recovery completion
+- Sequence codes continue during Stage 1 A1 wait periods
+- Four corner rule creates gaps in sequence code display (both stages)
 - Mixed numbers display in negative/positive columns during loss sequences
-- Actual bet column shows "Bet 1", "Bet 2", "Bet 3" format
+- Actual bet column formats:
+  - Stage 1: "Bet 1", "Bet 2", "Bet 3"
+  - Stage 2: "X units" (where X = c ÷ divisor)
+  - Post-recovery: "STOP"
+- Recovery line shows final mixed numbers before reset
+- Success message displayed when Stage 2 completes
 
 ## Technical Specifications
 - Language: Python with pandas
@@ -149,14 +201,32 @@ For each outcome:
 - Mixed numbers use base-4 system for loss/recovery tracking
 - No external dependencies beyond pandas
 
-## Stage 1 Status
-✅ **COMPLETED** - All Stage 1 functionality implemented and working:
-- Sequence codes with win/loss formulas
+## System Status
+✅ **FULLY COMPLETED** - Complete 2-stage roulette system implemented and working:
+
+### Stage 1 Features:
+- Sequence codes with win/loss formulas and special rules
 - A1 wait rule with 3 consecutive non-A1 trigger
 - Four corner loss rule with delayed sequence code display
-- Mixed numbers system for loss tracking and recovery
-- Bet progression (Bet1 → Bet2 → Bet3)
-- All timing and display rules
-- Complete DataFrame output with proper formatting
+- Mixed numbers system for loss tracking (-5.3 = 17 chips deficit)
+- Bet progression (Bet1 → Bet2 → Bet3) with proper display
+- All timing and interaction rules between systems
 
-**Ready for Stage 2 implementation**
+### Stage 2 Features:
+- Unit-based recovery betting (c ÷ divisor)
+- Initial divisor = 8, configurable by user
+- Divisor progression (8→4→2→1) when b > 89 during active betting
+- Entry condition: a ≤ 10 AND sequence codes displayed
+- Special bypass rule: continue betting when negative > 20 units
+- Betting restrictions during Four Corner Loss Rule
+- Complete mixed numbers recovery system
+- Proper final display with recovery line and "STOP" message
+
+### Complete System Integration:
+- All complex rule interactions working correctly
+- Mixed numbers carry forward from Stage 1 to Stage 2
+- Proper balance calculations and final profit display
+- Comprehensive error handling and edge cases
+- Full DataFrame output with all formatting requirements
+
+**System ready for production use and testing with extended outcome sequences**

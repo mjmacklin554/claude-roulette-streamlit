@@ -1,18 +1,20 @@
-# Roulette Betting System - Program Flowchart
-Date: 2025-10-02
+# Roulette Betting System - Complete Program Flowchart
+Date: 2025-10-06
+Updated: Complete 2-Stage System with Recovery
 
 ## Main Program Flow
 
 START
   ↓
 Initialize System
-├─ Set outcomes = [0,15,27,33,26,14,36,2,16,22,7,17,30,22,28,9,10,11,6,1,33,10,15,18,11,9,1,7,30,30,36,36]
+├─ Set outcomes = [0,15,27,33,26,14,36,2,16,22,7,17,30,22,28,9,10,11,6,1,33,10,15,18,11,9,1,7,30,30,36,36,4,4,32,28,6,10,22,24,33,36,15,34,9,0,0,1,18,19,20,8,17,11,27,16,26,4,29,2,2]
 ├─ Set A1 = [2,3,5,6,17,18,20,21,25,26,28,29,31,32,34,35]
 ├─ Set A2 = [1-6,13-18,19-24,25-30,31-36]
 ├─ sequence_code = {a:3, b:4, c:2}
-├─ recording = False
-├─ balance = 0
-├─ current_bet_type = 1
+├─ recording = False, balance = 0, current_bet_type = 1
+├─ stage = 1, stage2_divisor = 8
+├─ cumulative_negative = {integer:0, decimal:0}
+├─ cumulative_positive_chips = 0
 ├─ waiting_for_a1_losses = False
 ├─ four_corner_rule_active = False
 └─ All counters = 0
@@ -39,8 +41,8 @@ FOR EACH OUTCOME in outcomes:
 └─────────────────────────────────────────────────────────────┘
   ↓
 ┌─────────────────────────────────────────────────────────────┐
-│ BETTING LOGIC                                               │
-├─ Call place_bet(outcome)                                   │
+│ STAGE-DEPENDENT BETTING LOGIC                              │
+├─ If stage == 1: Call place_bet(outcome) [STAGE 1]         │
 │   ├─ Check A1 wait rule                                    │
 │   │   ├─ If waiting_for_a1_losses: return 0 (no bet)      │
 │   │   └─ Track non_a1_count, end wait after 3 non-A1     │
@@ -48,11 +50,21 @@ FOR EACH OUTCOME in outcomes:
 │   │   ├─ Bet1: 5 chips on A2 (+1/-5)                     │
 │   │   ├─ Bet2: 4 chips on A1 (+5/-4)                     │
 │   │   └─ Bet3: 8 chips on A1 (+10/-8)                    │
-│   ├─ Check win/loss against bet_numbers                    │
-│   ├─ Update balance                                        │
-│   ├─ Update current_bet_type (win→1, loss→next)           │
-│   └─ If A1 win: start A1 wait rule                        │
-└─ Record bet_amount and balance in DataFrame                │
+│   ├─ Handle mixed numbers for losses/wins                  │
+│   ├─ Update balance and current_bet_type                   │
+│   ├─ If A1 win: start A1 wait rule                        │
+│   └─ If Bet3 lost: stage = 2, initialize Stage 2          │
+├─ If stage == 2: Call place_stage2_bet() [STAGE 2]         │
+│   ├─ Check if sequence codes displayed (no bet if not)     │
+│   ├─ Check a ≤ 10 rule (bypass if negative > 20 units)    │
+│   ├─ Calculate units: c ÷ divisor (minimum 1 unit)        │
+│   ├─ Bet on A1 numbers only                               │
+│   ├─ Handle mixed numbers with BIP for wins               │
+│   ├─ Update divisor if b > 89 rule applies                │
+│   ├─ Check recovery: negative + positive ≥ 0              │
+│   └─ If recovered: stage = 3, display final mixed numbers │
+├─ If stage == 3: Show "STOP" and success message           │
+└─ Record bet and mixed numbers in DataFrame                 │
 └─────────────────────────────────────────────────────────────┘
   ↓
 ┌─────────────────────────────────────────────────────────────┐
@@ -79,12 +91,16 @@ FOR EACH OUTCOME in outcomes:
 ├─ If four_corner_rule just triggered:                      │
 │   ├─ Save calculated codes as pending_sequence_codes      │
 │   └─ Will be applied after A1 outcome ends rule          │
+├─ Update divisor if in Stage 2 and b > 89 during betting  │
+│   └─ Divisor progression: 8→4→2→1 (only during betting)  │
 └─────────────────────────────────────────────────────────────┘
   ↓
 ┌─────────────────────────────────────────────────────────────┐
 │ END CONDITIONS CHECK                                        │
-├─ If current_bet_type > 3: Stage 1 ends (Bet3 lost)       │
-├─ Continue to next outcome                                  │
+├─ Stage 1: If current_bet_type > 3: Stage 1 ends (Bet3 lost)│
+├─ Stage 2: If full recovery achieved: Stage 2 ends          │
+├─ Stage 2: If bank lost (1000 chips): Sequence ends in fail │
+├─ Continue to next outcome if sequence not ended            │
 └─────────────────────────────────────────────────────────────┘
   ↓
 END FOR EACH OUTCOME
@@ -95,14 +111,18 @@ END PROGRAM
 
 ## Rule Interaction Matrix
 
-┌─────────────────┬──────────────┬────────────────┬─────────────────┐
-│ State           │ Betting      │ Sequence Codes │ Display Codes   │
-├─────────────────┼──────────────┼────────────────┼─────────────────┤
-│ Normal          │ Active       │ Update & Show  │ Yes             │
-│ A1 Wait         │ STOPPED      │ Update & Show  │ Yes             │
-│ 4-Corner Active │ Active       │ Update Only    │ NO (suppressed) │
-│ 4-Corner Ended  │ Active       │ Apply Pending  │ Yes (delayed)   │
-└─────────────────┴──────────────┴────────────────┴─────────────────┘
+┌──────────────────┬─────────┬────────────────┬────────────────┬─────────────────┐
+│ State            │ Stage   │ Betting        │ Sequence Codes │ Display Codes   │
+├──────────────────┼─────────┼────────────────┼────────────────┼─────────────────┤
+│ Normal           │ 1 & 2   │ Active         │ Update & Show  │ Yes             │
+│ A1 Wait          │ 1 only  │ STOPPED        │ Update & Show  │ Yes             │
+│ 4-Corner Active  │ 1       │ Active         │ Update Only    │ NO (suppressed) │
+│ 4-Corner Active  │ 2       │ STOPPED        │ Update Only    │ NO (suppressed) │
+│ 4-Corner Ended   │ 1 & 2   │ Active         │ Apply Pending  │ Yes (delayed)   │
+│ a > 10           │ 2 only  │ STOPPED*       │ Update & Show  │ Yes             │
+│ Stage 2 Complete │ 3       │ None           │ Final Codes    │ Yes + "STOP"    │
+└──────────────────┴─────────┴────────────────┴────────────────┴─────────────────┘
+* Unless negative > 20 units, then betting continues
 
 ## Key Decision Points
 
@@ -122,14 +142,31 @@ END PROGRAM
    - YES: Apply and display delayed codes
    - NO: Display current codes
 
-5. **Bet Result?**
+5. **Stage 1 Bet Result?**
    - Win: Reset to Bet1, check A1 wait trigger
    - Loss: Progress to next bet type
+
+6. **Stage 2 Entry Conditions?**
+   - a ≤ 10 AND sequence codes displayed
+   - OR negative > 20 units (bypass a ≤ 10 rule)
+
+7. **Stage 2 Recovery Status?**
+   - negative + positive ≥ 0: Complete recovery → Stage 3
+   - negative + positive < 0: Continue Stage 2
+
+8. **Divisor Update Needed?**
+   - During Stage 2 active betting only
+   - When b > 89 rule applies: divisor ÷ 2
 
 ## Critical Timing Notes
 
 - Sequence codes calculated AFTER outcome, applied to CURRENT line display
-- A1 wait rule affects NEXT line onwards
-- Four corner rule suppresses NEXT line display
-- Betting progression affects NEXT outcome
-- All rules can be active simultaneously
+- Stage 1: A1 wait rule affects NEXT line onwards (betting only)
+- Stage 1: Four corner rule suppresses NEXT line display but allows betting
+- Stage 2: Four corner rule suppresses NEXT line display AND stops betting
+- Stage 2: Betting only when sequence codes are displayed
+- Stage 2: Divisor changes only during active betting periods
+- Betting resumes line AFTER wait periods end
+- Mixed numbers carry forward from Stage 1 to Stage 2
+- Recovery completion triggers Stage 3 with "STOP" display
+- All rules can be active simultaneously with stage-specific behaviors
