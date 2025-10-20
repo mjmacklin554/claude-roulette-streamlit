@@ -1,23 +1,36 @@
-# Roulette Betting System - Complete Program Flowchart
-Date: 2025-10-06
-Updated: Complete 2-Stage System with Recovery
+# Roulette Betting System - Streamlit Application Flowchart
+Date: 2025-10-20
+Updated: Streamlit Web Application with File Input and User Configuration
 
 ## Main Program Flow
 
-START
+START (Streamlit App)
   ↓
-Initialize System
-├─ Set outcomes = [0,15,27,33,26,14,36,2,16,22,7,17,30,22,28,9,10,11,6,1,33,10,15,18,11,9,1,7,30,30,36,36,4,4,32,28,6,10,22,24,33,36,15,34,9,0,0,1,18,19,20,8,17,11,27,16,26,4,29,2,2]
-├─ Set A1 = [2,3,5,6,17,18,20,21,25,26,28,29,31,32,34,35]
-├─ Set A2 = [1-6,13-18,19-24,25-30,31-36]
-├─ sequence_code = {a:3, b:4, c:2}
+Streamlit UI Configuration
+├─ Title: "Michael's Roulette System Configuration"
+├─ File Input Section:
+│  ├─ Checkbox: "Load outcomes from file"
+│  ├─ File Selector: Excel/CSV files from 'numbers' folder
+│  └─ File Loading: Read outcomes from selected file or use defaults
+├─ Sequence Code Selection:
+│  ├─ Option 1: "Standard (3, 4, 2)"
+│  └─ Option 2: "Alternative (8, 44, 10)"
+├─ Stage 2 Divisor Input: Default 8, range 1-32
+└─ Run Button: "Run Simulation"
+  ↓
+Initialize System Variables (when Run button pressed)
+├─ Load outcomes from file OR use defaults
+├─ Set A1 = [2,3,5,6,17,18,20,21,25,26,28,29,31,32,34,35] (16 corner bets)
+├─ Set A2 = [1-6,13-18,19-24,25-30,31-36] (30 six-line bets)
+├─ sequence_code = selected sequence codes
 ├─ recording = False, balance = 0, current_bet_type = 1
-├─ stage = 1, stage2_divisor = 8
+├─ stage = 1, stage2_divisor = user input
 ├─ cumulative_negative = {integer:0, decimal:0}
 ├─ cumulative_positive_chips = 0
 ├─ waiting_for_a1_losses = False
 ├─ four_corner_rule_active = False
-└─ All counters = 0
+├─ starting_bank = 250 units
+└─ All counters and tracking variables = 0
   ↓
 FOR EACH OUTCOME in outcomes:
   ↓
@@ -105,7 +118,24 @@ FOR EACH OUTCOME in outcomes:
   ↓
 END FOR EACH OUTCOME
   ↓
-Display Final DataFrame
+Streamlit Output Display
+├─ Display Results DataFrame with columns:
+│  ├─ line, outcome, win, a, b, c
+│  ├─ actual bet, negative, positive, balance
+├─ Balance Progression Graph:
+│  ├─ Matplotlib line chart
+│  ├─ X-axis: Spin Number
+│  ├─ Y-axis: Balance
+│  └─ Break-even line at y=0
+├─ System Messages:
+│  └─ Debug messages and system events
+└─ Final Results Summary:
+   ├─ Starting Sequence Codes
+   ├─ Total Sequences Completed
+   ├─ Final Balance (chips)
+   ├─ Final Bank (units)
+   ├─ Session Status (ACTIVE/ENDED)
+   └─ Outcomes Processed
   ↓
 END PROGRAM
 

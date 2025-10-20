@@ -1,21 +1,54 @@
-# Roulette Betting System - Complete Requirements
-Date: 2025-10-02
+# Roulette Betting System - Streamlit Web Application Requirements
+Date: 2025-10-20
 
 ## System Overview
-A command-line roulette betting system that implements a complete 2-stage betting and recovery strategy with sequence codes, A1 wait rules, four corner loss rules, and mixed numbers for loss/recovery tracking. Stage 1 focuses on betting progression, while Stage 2 provides unit-based recovery betting.
+A Streamlit web application implementing a complete 2-stage roulette betting and recovery strategy with sequence codes, A1 wait rules, four corner loss rules, and mixed numbers for loss/recovery tracking. The application provides a user-friendly interface with file input capabilities, configurable parameters, and comprehensive visualization of results.
 
-## Core Components
+## Streamlit User Interface
 
-### 1. Lists and Numbers
+### 1. Configuration Panel
+- **Application Title**: "Michael's Roulette System Configuration"
+- **File Input Section**:
+  - Checkbox: "Load outcomes from file" (default: False)
+  - File selector: Excel (.xls/.xlsx) or CSV files from 'numbers' folder
+  - File validation: Shows warning if no files found
+  - Dynamic loading: Reads first column from selected file
+- **Sequence Code Selection**:
+  - Dropdown with options:
+    - "Standard (3, 4, 2)" → {a: 3, b: 4, c: 2}
+    - "Alternative (8, 44, 10)" → {a: 8, b: 44, c: 10}
+- **Stage 2 Configuration**:
+  - Number input: "Stage 2 Starting Divisor"
+  - Range: 1-32, Default: 8, Step: 1
+- **Run Button**: "Run Simulation" (triggers main processing)
+
+### 2. Results Display
+- **Results Table**: Interactive DataFrame display via st.dataframe()
+- **Balance Graph**:
+  - Matplotlib line chart showing balance progression
+  - X-axis: Spin Number, Y-axis: Balance
+  - Break-even line at y=0, Grid enabled
+- **System Messages**: Debug output and system events
+- **Final Summary**:
+  - Starting sequence codes used
+  - Total sequences completed
+  - Final balance (chips) and bank (units)
+  - Session status (ACTIVE/ENDED)
+  - Outcomes processed count
+
+## Core Game Components
+
+### 3. Lists and Numbers
 - **A1**: [2,3,5,6,17,18,20,21,25,26,28,29,31,32,34,35] (16 corner bet numbers)
 - **A2**: [1-6,13-18,19-24,25-30,31-36] (30 six-line bet numbers)
-- **Outcomes**: [0,15,27,33,26,14,36,2,16,22,7,17,30,22,28,9,10,11,6,1,33,10,15,18,11,9,1,7,30,30,36,36,4,4,32,28,6,10,22,24,33,36,15,34,9,0,0,1,18,19,20,8,17,11,27,16,26,4,29,2,2] (Extended for testing)
+- **Default Outcomes**: [0,15,27,33,26,14,36,2,16,22,7,17,30,22,28,9,10,11,6,1,33,10,15,18,11,9,1,7,30,30,36,36,4,4,32,28,6,10,22,24,33,36,15,34,9,0,0,1,18,19,20,8,17,11,27,16,26,4,29,2,2]
+- **File Outcomes**: Loaded dynamically from user-selected Excel/CSV files
 
-### 2. Win/Loss Determination
+### 4. Win/Loss Determination
 - **Win ('W')**: If outcome is in A1 list
 - **Loss ('L')**: If outcome is NOT in A1 list
 
-### 3. Bet Progression System
+### 5. Bet Progression System
 - **Bet1**: 5 chips on A2 numbers (+1 profit if win, -5 if lose)
 - **Bet2**: 4 chips on A1 numbers (+5 profit if win, -4 if lose)
 - **Bet3**: 8 chips on A1 numbers (+10 profit if win, -8 if lose)
@@ -23,8 +56,8 @@ A command-line roulette betting system that implements a complete 2-stage bettin
 - **Stage End**: If Bet3 loses → Stage 1 ends
 - **Display**: Actual bet column shows "Bet 1", "Bet 2", "Bet 3"
 
-### 4. Sequence Codes
-- **Initial**: a=3, b=4, c=2
+### 6. Sequence Codes
+- **Initial**: User-configurable (Standard: a=3, b=4, c=2 OR Alternative: a=8, b=44, c=10)
 - **Trigger**: Start recording after first A1 win
 - **Win Formula**:
   - if a > 13 then a = 10
@@ -39,7 +72,7 @@ A command-line roulette betting system that implements a complete 2-stage bettin
   - c = (int(b/a)) * 2
 - **Special Rule**: If b > 89 then b = int((b+1)/2)
 
-### 5. A1 Wait Rule
+### 7. A1 Wait Rule
 - **Trigger**: After any A1 win (outcome in A1 AND bet wins)
 - **Effect**:
   - Betting STOPS (no actual bets placed)
@@ -48,13 +81,13 @@ A command-line roulette betting system that implements a complete 2-stage bettin
 - **Reset**: Any A1 outcome during wait resets counter to 0
 - **Resume**: Betting resumes on line AFTER 3rd consecutive non-A1 outcome
 
-### 6. Four Corner Loss Rule
+### 8. Four Corner Loss Rule
 - **Trigger**: After 4 consecutive non-A1 outcomes
 - **Effect**: Calculate new sequence codes but don't record them on next line
 - **Wait**: System waits for A1 outcome to end the rule
 - **Resume**: Pending codes are recorded on line AFTER A1 outcome
 
-### 7. Mixed Numbers System
+### 9. Mixed Numbers System
 - **Purpose**: Track losses and recoveries using base-4 chip system
 - **Format**: integer.decimal where integer = units of 4 chips, decimal = individual chips
 - **Loss Recording**:
@@ -71,14 +104,14 @@ A command-line roulette betting system that implements a complete 2-stage bettin
   - Wins: Show final negative/positive mixed numbers
   - Stage 2 complete: Show final mixed numbers, then reset after display
 
-### 8. Stage 2 Recovery System
+### 10. Stage 2 Recovery System
 - **Trigger**: After Bet3 loss in Stage 1 (when -5.3 mixed number deficit exists)
 - **Entry Condition**: Wait for a ≤ 10 AND sequence codes being displayed
 - **Special Rule**: When negative > 20 units, bypass a ≤ 10 rule and continue betting
 - **Betting Logic**:
   - Always bet on A1 numbers only
   - Units = c ÷ divisor (minimum 1 unit)
-  - Initial divisor = 8 (user configurable)
+  - Initial divisor = User configurable (default: 8, range: 1-32)
   - Divisor halves when b > 89 rule applies during active betting: 8→4→2→1
 - **Betting Restrictions**:
   - No betting when sequence codes are suppressed (Four Corner Loss Rule)
@@ -194,15 +227,30 @@ For each outcome:
 - Success message displayed when Stage 2 completes
 
 ## Technical Specifications
-- Language: Python with pandas
-- Starting bank: $1000 (1 chip = $1)
-- DataFrame columns: ['line', 'outcome', 'win', 'a', 'b', 'c', 'actual bet', 'negative', 'positive', 'balance']
-- All calculations use integer arithmetic
-- Mixed numbers use base-4 system for loss/recovery tracking
-- No external dependencies beyond pandas
+- **Framework**: Streamlit web application
+- **Language**: Python with pandas, streamlit, matplotlib
+- **File Support**: Excel (.xls/.xlsx) and CSV file reading
+- **Starting Bank**: 250 units (1000 chips = 250 units, 1 chip = $1)
+- **DataFrame Columns**: ['line', 'outcome', 'win', 'a', 'b', 'c', 'actual bet', 'negative', 'positive', 'balance']
+- **Data Storage**: Results stored in pandas DataFrame, displayed via st.dataframe()
+- **Visualization**: Matplotlib integration for balance progression charts
+- **File Management**: 'numbers' folder for input files, automatic file discovery
+- **Error Handling**: Try-catch for file loading, fallback to default outcomes
+- **All calculations use integer arithmetic**
+- **Mixed numbers use base-4 system for loss/recovery tracking**
 
 ## System Status
-✅ **FULLY COMPLETED** - Complete 2-stage roulette system implemented and working:
+✅ **FULLY COMPLETED** - Streamlit Web Application with complete 2-stage roulette system:
+
+### Streamlit Features:
+- Interactive web interface with configuration panel
+- File input system supporting Excel (.xls/.xlsx) and CSV files
+- User-configurable sequence codes (Standard vs Alternative)
+- Adjustable Stage 2 starting divisor (1-32 range)
+- Real-time results display with interactive DataFrame
+- Balance progression visualization with matplotlib
+- Comprehensive system messages and debug output
+- Final summary with session statistics
 
 ### Stage 1 Features:
 - Sequence codes with win/loss formulas and special rules
@@ -214,7 +262,7 @@ For each outcome:
 
 ### Stage 2 Features:
 - Unit-based recovery betting (c ÷ divisor)
-- Initial divisor = 8, configurable by user
+- User-configurable initial divisor (default: 8, range: 1-32)
 - Divisor progression (8→4→2→1) when b > 89 during active betting
 - Entry condition: a ≤ 10 AND sequence codes displayed
 - Special bypass rule: continue betting when negative > 20 units
@@ -223,10 +271,14 @@ For each outcome:
 - Proper final display with recovery line and "STOP" message
 
 ### Complete System Integration:
+- Streamlit framework with pandas and matplotlib integration
+- File management system with automatic discovery
+- Robust error handling for file operations
 - All complex rule interactions working correctly
 - Mixed numbers carry forward from Stage 1 to Stage 2
 - Proper balance calculations and final profit display
-- Comprehensive error handling and edge cases
 - Full DataFrame output with all formatting requirements
+- Visual balance progression tracking
+- Session management with bank tracking (250 unit starting bank)
 
-**System ready for production use and testing with extended outcome sequences**
+**Web application ready for production use with comprehensive UI and file support**

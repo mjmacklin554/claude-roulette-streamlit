@@ -1,72 +1,152 @@
 # Claude Roulette Development Session Summary
-Date: 2025-10-01
+Date: 2025-10-20
+Updated: Complete Streamlit Web Application
 
 ## Final Working Implementation: roulette_fresh.py
 
 ### What We Accomplished
 
-#### 1. Correct System Logic
-- **A1 vs A2 Usage Clarified**:
-  - A1: Used for Bet2, Bet3, sequence codes, A1 wait rule, win/loss determination
+#### 1. Complete Streamlit Web Application
+- **Framework**: Full Streamlit web interface with interactive controls
+- **File Input System**: Excel (.xls/.xlsx) and CSV file support from 'numbers' folder
+- **User Configuration**:
+  - Configurable sequence codes: Standard (3,4,2) or Alternative (8,44,10)
+  - Adjustable Stage 2 starting divisor (1-32 range, default: 8)
+- **Visual Output**:
+  - Interactive DataFrame display
+  - Balance progression charts with matplotlib
+  - System messages and debug output
+  - Comprehensive final summary
+
+#### 2. Complete 2-Stage Betting System
+- **Stage 1**: Bet progression with A1 wait rule and four corner loss rule
+- **Stage 2**: Unit-based recovery betting with mixed numbers system
+- **A1 vs A2 Usage**:
+  - A1: Used for Bet2, Bet3, Stage 2 betting, sequence codes, win/loss determination
   - A2: Used ONLY for Bet1
-- **Bet Progression**: Bet1(5chips,A2) → Bet2(4chips,A1) → Bet3(8chips,A1)
+- **Bet Progression**: Bet1(5chips,A2) → Bet2(4chips,A1) → Bet3(8chips,A1) → Stage 2
 - **Win/Loss**: 'W' if outcome in A1, 'L' otherwise
 
-#### 2. A1 Wait Rule (Key Discovery)
+#### 3. A1 Wait Rule (Stage 1)
 - **Trigger**: After A1 win (outcome in A1 AND bet wins)
 - **Wait Logic**: System waits for 3 consecutive non-A1 outcomes
 - **Reset Rule**: Any A1 outcome during wait resets counter to 0
 - **Resume**: Betting resumes on line AFTER 3rd consecutive non-A1 outcome
-- **Example**: Line 8 A1 win → Lines 9-11 no bets → Line 12 resume betting
+- **Stage Scope**: Only active in Stage 1
 
-#### 3. Sequence Codes
-- **Start**: a=3, b=4, c=2 (triggered by first A1 win)
+#### 4. Four Corner Loss Rule
+- **Trigger**: After 4 consecutive non-A1 outcomes
+- **Effect**: Suppresses sequence code display on next line
+- **Stage 1**: Betting continues but codes hidden
+- **Stage 2**: Both betting and code display stopped
+- **Resume**: After A1 outcome, pending codes applied
+
+#### 5. Sequence Codes
+- **Start**: User-configurable (Standard: a=3,b=4,c=2 OR Alternative: a=8,b=44,c=10)
+- **Trigger**: Recording starts after first A1 win
 - **Win Logic**: Calculate new 'a', b=b-c, c=(int(b/a))*2
 - **Loss Logic**: a=a+1, b=b+c, c=(int(b/a))*2
-- **No Restart Rule**: Sequence codes continue evolving (removed a<4 restart)
+- **Special Rule**: If b > 89 then b = int((b+1)/2)
+- **Sequence End**: When a < 3 after first bet placed
 
-#### 4. Technical Specifications
-- **Outcomes**: [0,15,27,33,26,14,36,2,16,22,7,17,30,22,28,9,10,11,6,1,33,10,15,18,11,9,1,7,30,30,36,36]
+#### 6. Mixed Numbers System
+- **Purpose**: Track losses and recoveries using base-4 chip system
+- **Format**: integer.decimal (integer = units of 4 chips, decimal = individual chips)
+- **Stage 1**: Track Bet2/Bet3 losses and wins
+- **Stage 2**: Complete recovery system with BIP (Built-in Profit)
+- **Recovery**: When negative + positive ≥ 0, profit added to balance
+
+#### 7. Stage 2 Recovery System
+- **Trigger**: After Bet3 loss in Stage 1
+- **Entry Condition**: a ≤ 10 AND sequence codes displayed
+- **Special Rule**: Continue betting when negative > 20 units (bypasses a ≤ 10)
+- **Betting**: Units = c ÷ divisor, bet on A1 numbers only
+- **Divisor**: User-configurable start, halves when b > 89 during active betting
+- **Success**: Complete recovery shows "STOP", adds profit to balance
+- **Failure**: Bank lost at 1000 chips (250 units)
+
+#### 8. Technical Specifications
+- **Framework**: Streamlit web application with pandas and matplotlib
+- **File Support**: Excel (.xls/.xlsx) and CSV files from 'numbers' folder
+- **Default Outcomes**: [0,15,27,33,26,14,36,2,16,22,7,17,30,22,28,9,10,11,6,1,33,10,15,18,11,9,1,7,30,30,36,36,4,4,32,28,6,10,22,24,33,36,15,34,9,0,0,1,18,19,20,8,17,11,27,16,26,4,29,2,2]
 - **A1**: [2,3,5,6,17,18,20,21,25,26,28,29,31,32,34,35] (16 corner bets)
 - **A2**: [1-6,13-18,19-24,25-30,31-36] (30 six-line bets)
+- **Starting Bank**: 250 units (1000 chips = 250 units)
 
-### Key Fixes Made
+### Development Evolution
 
+#### Key Breakthroughs Made:
 1. **Corrected A1 Wait Rule**: Changed from "3 A1 losses" to "3 consecutive non-A1 outcomes"
-2. **Fixed Betting Resume Logic**: No bet on line that ends wait, betting resumes next line
-3. **Proper A1/A2 Usage**: A1 for sequence logic, A2 only for Bet1
-4. **Clean Implementation**: Removed complex state machines from old versions
+2. **Four Corner Loss Rule**: Implemented delayed sequence code display system
+3. **Mixed Numbers System**: Complete base-4 loss/recovery tracking
+4. **Stage 2 Implementation**: Full unit-based recovery betting with divisor progression
+5. **Streamlit Integration**: Complete web application with file input and visualization
+6. **Rule Interactions**: Complex timing between A1 wait, four corner rule, and betting stages
 
-### Final Working Logic Flow
+#### System Logic Flow
 
+**Stage 1 Example:**
 1. **Lines 1-4**: No bets (waiting for first A1 win)
-2. **Line 5**: First A1 win (outcome 26) → Start sequence codes for next line
-3. **Line 6**: Begin betting with codes (3,4,2)
-4. **Line 8**: A1 win → Trigger A1 wait rule
-5. **Lines 9-11**: No bets (3 consecutive non-A1: 16,22,7)
-6. **Line 12**: Resume betting (wait period ended)
-7. **Continue**: Bet progression and sequence code evolution
+2. **Line 5**: First A1 win → Start sequence codes for next line
+3. **Line 6**: Begin betting with codes
+4. **A1 Win**: Triggers A1 wait rule (3 consecutive non-A1 wait)
+5. **Bet3 Loss**: Triggers Stage 2 with mixed number deficit
 
-### Files Status
+**Stage 2 Example:**
+1. **Entry**: Wait for a ≤ 10 AND codes displayed
+2. **Betting**: Units = c ÷ divisor on A1 numbers
+3. **Recovery**: Track mixed numbers until negative + positive ≥ 0
+4. **Success**: Display "STOP", add profit to balance, reset for new sequence
 
-#### Keep:
-- **roulette_fresh.py**: Final working implementation
-- **mb_roulette_v1.txt**: Updated with correct logic
-- **session_summary_final.txt**: This summary
+### Current Project Status
 
-#### Remove:
-- roulette_system.py (original failed attempts)
-- roulette_system_clean.py (incorrect hybrid approach)
-- roulette_system_clean_original.py (overcomplicated)
-- roulette_clean_procedural.py (incorrect A1 wait logic)
+#### Active Files:
+- **roulette_fresh.py**: Complete Streamlit web application with full 2-stage system
+- **program_flowchart.txt**: Updated system flowchart reflecting Streamlit implementation
+- **program_requirements.txt**: Complete requirements document for web application
+- **session_summary_final.txt**: This comprehensive development summary
+- **mb_roulette_v1.txt**: Original requirements reference
+- **numbers/**: Folder for user input files (Excel/CSV)
 
-### Next Steps
-1. Test roulette_fresh.py to ensure all DataFrame matches expected results
-2. Implement Stage 2 when requirements are defined
-3. Add any additional specific rules as needed
+#### Development Complete:
+✅ **Stage 1**: Complete with A1 wait rule, four corner rule, mixed numbers
+✅ **Stage 2**: Complete unit-based recovery with configurable divisor
+✅ **Streamlit UI**: Full web interface with file input and visualization
+✅ **File System**: Excel/CSV file support with error handling
+✅ **Visualization**: Balance charts and comprehensive output display
+✅ **Configuration**: User-selectable sequence codes and divisor settings
 
-## Important Notes for Future Sessions
-- A1 wait rule is critical: waits for 3 consecutive NON-A1 outcomes, not A1 losses
-- Betting resumes AFTER the line that completes the wait period
-- Sequence codes never restart (removed a<4 rule)
-- Keep A1/A2 usage clear: A1 for logic, A2 only for Bet1
+### Current Capabilities
+
+**User Interface:**
+- Web-based configuration panel
+- File upload from 'numbers' folder
+- Real-time results display
+- Interactive balance charts
+- Comprehensive system messages
+
+**Betting System:**
+- Complete 2-stage progression
+- Mixed numbers loss/recovery tracking
+- All rule interactions working correctly
+- Bank management (250 unit starting bank)
+- Sequence completion detection and reset
+
+**File Support:**
+- Excel (.xls/.xlsx) and CSV files
+- Automatic file discovery
+- Error handling with fallback to defaults
+- First column data extraction
+
+## System Ready for Production Use
+
+**The roulette system is now a complete, production-ready Streamlit web application with:**
+- Full 2-stage betting implementation
+- All advanced rules (A1 wait, four corner loss, mixed numbers)
+- User-friendly web interface
+- File input capabilities
+- Visual results display
+- Comprehensive error handling
+- Complete documentation
+
+**No further development required - system is fully functional and ready for use.**
