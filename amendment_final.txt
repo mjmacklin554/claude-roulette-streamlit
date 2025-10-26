@@ -1,0 +1,18 @@
+# Roulette Betting System - Amendments to Final
+
+##	end of sequence recovery
+
+If I load the file and run '2011-09-02_203.xls' using Alternative 8,44,10 and divisor=16 you will see on line 86 the following:
+
+4 52 26 1 units -4 1.3
+
+now clearly as this results in a 'W' the sequence correctly ends BUT negative + positive is not >= 0
+
+as there is a potential for this sequence to end if a 'W' occurs we MUST make sure that negative + positive >=0
+
+so in this case 1 unit is not sufficient and neither is 2 units. a bet of 3 units must occur in this case:
+
+the result would then be: 
+
+4 52 26 3 units -2 2.1 and therefore a profit of 1 chip to be added to the balance before the sequence ends.
+

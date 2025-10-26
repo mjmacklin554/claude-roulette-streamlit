@@ -70,12 +70,17 @@ FOR EACH OUTCOME in outcomes:
 ├─ If stage == 2: Call place_stage2_bet() [STAGE 2]         │
 │   ├─ Check if sequence codes displayed (no bet if not)     │
 │   ├─ Check a ≤ 10 rule (bypass if negative > 20 units)    │
-│   ├─ Calculate units: c ÷ divisor (minimum 1 unit)        │
+│   ├─ Calculate base units: c ÷ divisor (minimum 1 unit)   │
+│   ├─ Sequence Ending Check (a ≤ 4):                       │
+│   │   ├─ Calculate chip deficit: -(neg_chips + pos_chips) │
+│   │   ├─ Min recovery units = ceiling(deficit ÷ 5)        │
+│   │   └─ Bet exactly min_recovery_units (conservative)    │
 │   ├─ Bet on A1 numbers only                               │
 │   ├─ Handle mixed numbers with BIP for wins               │
 │   ├─ Update divisor if b > 89 rule applies                │
 │   ├─ Check recovery: negative + positive ≥ 0              │
-│   └─ If recovered: stage = 3, display final mixed numbers │
+│   ├─ If recovered: stage = 3, set flag for immediate reset│
+│   └─ Recovery can occur at any value of 'a'               │
 ├─ If stage == 3: Show "STOP" and success message           │
 └─ Record bet and mixed numbers in DataFrame                 │
 └─────────────────────────────────────────────────────────────┘
@@ -105,15 +110,22 @@ FOR EACH OUTCOME in outcomes:
 │   ├─ Save calculated codes as pending_sequence_codes      │
 │   └─ Will be applied after A1 outcome ends rule          │
 ├─ Update divisor if in Stage 2 and b > 89 during betting  │
-│   └─ Divisor progression: 8→4→2→1 (only during betting)  │
+│   └─ Divisor progression: 8→4→2→1, 16→8→4→2→1, or 32→...  │
 └─────────────────────────────────────────────────────────────┘
   ↓
 ┌─────────────────────────────────────────────────────────────┐
-│ END CONDITIONS CHECK                                        │
-├─ Stage 1: If current_bet_type > 3: Stage 1 ends (Bet3 lost)│
-├─ Stage 2: If full recovery achieved: Stage 2 ends          │
-├─ Stage 2: If bank lost (1000 chips): Sequence ends in fail │
-├─ Continue to next outcome if sequence not ended            │
+│ SEQUENCE COMPLETION CHECK                                   │
+├─ Check if (a < 3 AND first_bet_placed) OR stage == 3       │
+├─ If sequence complete:                                      │
+│   ├─ Reset sequence_code to initial values                  │
+│   ├─ Reset stage to 1                                       │
+│   ├─ Reset divisor to initial user-selected value           │
+│   ├─ Reset mixed numbers to zero                            │
+│   ├─ Reset all flags (recording, waiting, four_corner, etc) │
+│   └─ Check bank status, end session if depleted             │
+├─ Stage 1 Bet2/Bet3 recovery: Reset mixed numbers only      │
+├─ Stage 2 recovery: Full sequence reset (regardless of 'a') │
+└─ Continue to next outcome if sequence not ended             │
 └─────────────────────────────────────────────────────────────┘
   ↓
 END FOR EACH OUTCOME
@@ -128,7 +140,8 @@ Streamlit Output Display
 │  ├─ Y-axis: Balance
 │  └─ Break-even line at y=0
 ├─ System Messages:
-│  └─ Debug messages and system events
+│  ├─ Line-numbered debug messages (format: "Line X: message")
+│  └─ Correlated to DataFrame line numbers for easy debugging
 └─ Final Results Summary:
    ├─ Starting Sequence Codes
    ├─ Total Sequences Completed
@@ -136,6 +149,11 @@ Streamlit Output Display
    ├─ Final Bank (units)
    ├─ Session Status (ACTIVE/ENDED)
    └─ Outcomes Processed
+└─ Debug Output File (if enabled):
+   ├─ Configuration settings
+   ├─ Complete DataFrame
+   ├─ Line-numbered system messages
+   └─ Final summary statistics
   ↓
 END PROGRAM
 
@@ -180,13 +198,23 @@ END PROGRAM
    - a ≤ 10 AND sequence codes displayed
    - OR negative > 20 units (bypass a ≤ 10 rule)
 
-7. **Stage 2 Recovery Status?**
+7. **Stage 2 Bet Calculation?**
+   - If a > 4: Use min(base_units, risk_managed_units)
+   - If a ≤ 4: Bet exactly min_recovery_units (conservative)
+   - min_recovery_units = ceiling(chip_deficit ÷ 5)
+   - Ensures full recovery when sequence is ending
+
+8. **Stage 2 Recovery Status?**
    - negative + positive ≥ 0: Complete recovery → Stage 3
+   - Can occur at any value of 'a' (not just when a ≤ 4)
+   - Sequence resets immediately on next line
    - negative + positive < 0: Continue Stage 2
 
-8. **Divisor Update Needed?**
-   - During Stage 2 active betting only
-   - When b > 89 rule applies: divisor ÷ 2
+9. **Divisor Management?**
+   - Initial: User selects 8, 16, or 32
+   - During Stage 2: Halves when b > 89 during active betting
+   - On sequence completion: Resets to initial value
+   - Progression examples: 16→8→4→2→1, then reset to 16
 
 ## Critical Timing Notes
 
@@ -195,8 +223,12 @@ END PROGRAM
 - Stage 1: Four corner rule suppresses NEXT line display but allows betting
 - Stage 2: Four corner rule suppresses NEXT line display AND stops betting
 - Stage 2: Betting only when sequence codes are displayed
-- Stage 2: Divisor changes only during active betting periods
+- Stage 2: Divisor changes only during active betting periods, resets on sequence completion
 - Betting resumes line AFTER wait periods end
 - Mixed numbers carry forward from Stage 1 to Stage 2
-- Recovery completion triggers Stage 3 with "STOP" display
+- Stage 1 Bet2/Bet3 recovery: Resets mixed numbers only, sequence continues
+- Stage 2 recovery: Triggers immediate sequence reset (regardless of 'a' value)
+- Stage 2 recovery: Shows "STOP" once, then resets all variables for new sequence
 - All rules can be active simultaneously with stage-specific behaviors
+- System messages numbered by DataFrame line for debugging
+- File list automatically sorted by date (YYYY-MM-DD prefix)

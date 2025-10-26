@@ -60,14 +60,29 @@ Updated: Complete Streamlit Web Application
 - **Trigger**: After Bet3 loss in Stage 1
 - **Entry Condition**: a ≤ 10 AND sequence codes displayed
 - **Special Rule**: Continue betting when negative > 20 units (bypasses a ≤ 10)
-- **Betting**: Units = c ÷ divisor, bet on A1 numbers only
-- **Divisor**: User-configurable start, halves when b > 89 during active betting
-- **Success**: Complete recovery shows "STOP", adds profit to balance
+- **Betting**: Base units = c ÷ divisor, bet on A1 numbers only
+- **Divisor Options**: User-configurable (8, 16, or 32; default: 8)
+- **Divisor Progression**: Halves when b > 89 during active betting
+- **Divisor Reset**: Resets to initial value when sequence completes
+- **Sequence Ending Recovery (a ≤ 4)**:
+  - Calculates actual chip deficit: -(negative_chips + positive_chips)
+  - Minimum recovery units = ceiling(deficit ÷ 5)
+  - Bets exactly min_recovery_units (conservative approach)
+  - Guarantees negative + positive ≥ 0 if win occurs when sequence is ending
+- **Success**: Complete recovery at any 'a' value, sequence resets immediately
 - **Failure**: Bank lost at 1000 chips (250 units)
 
-#### 8. Technical Specifications
+#### 8. Debug and Monitoring
+- **Debug Mode**: Optional checkbox to enable debug output
+- **Debug Output File**: debug_output.txt with comprehensive session data
+- **Line-Numbered Messages**: All system messages correlated to DataFrame line numbers
+- **Output Format**: "Line X: message" for easy troubleshooting
+- **File Contents**: Configuration, DataFrame, system messages, final summary
+
+#### 9. Technical Specifications
 - **Framework**: Streamlit web application with pandas and matplotlib
 - **File Support**: Excel (.xls/.xlsx) and CSV files from 'numbers' folder
+- **File Sorting**: Automatic date-based sorting (YYYY-MM-DD prefix)
 - **Default Outcomes**: [0,15,27,33,26,14,36,2,16,22,7,17,30,22,28,9,10,11,6,1,33,10,15,18,11,9,1,7,30,30,36,36,4,4,32,28,6,10,22,24,33,36,15,34,9,0,0,1,18,19,20,8,17,11,27,16,26,4,29,2,2]
 - **A1**: [2,3,5,6,17,18,20,21,25,26,28,29,31,32,34,35] (16 corner bets)
 - **A2**: [1-6,13-18,19-24,25-30,31-36] (30 six-line bets)
@@ -78,10 +93,16 @@ Updated: Complete Streamlit Web Application
 #### Key Breakthroughs Made:
 1. **Corrected A1 Wait Rule**: Changed from "3 A1 losses" to "3 consecutive non-A1 outcomes"
 2. **Four Corner Loss Rule**: Implemented delayed sequence code display system
-3. **Mixed Numbers System**: Complete base-4 loss/recovery tracking
+3. **Mixed Numbers System**: Complete base-4 loss/recovery tracking with proper reset
 4. **Stage 2 Implementation**: Full unit-based recovery betting with divisor progression
-5. **Streamlit Integration**: Complete web application with file input and visualization
-6. **Rule Interactions**: Complex timing between A1 wait, four corner rule, and betting stages
+5. **Sequence Ending Recovery (a ≤ 4)**: Conservative bet calculation ensures full recovery
+6. **Bet Display Fix**: Corrected "Bet 3" display and Stage 2 units display logic
+7. **Divisor Reset**: Resets to initial value after sequence completion
+8. **Stage 2 Immediate Reset**: Sequence resets immediately after recovery (any 'a' value)
+9. **Debug Mode**: Line-numbered system messages correlated to DataFrame rows
+10. **Date-Sorted Files**: Files automatically sorted by date for easy navigation
+11. **Streamlit Integration**: Complete web application with file input and visualization
+12. **Rule Interactions**: Complex timing between A1 wait, four corner rule, and betting stages
 
 #### System Logic Flow
 
@@ -94,9 +115,12 @@ Updated: Complete Streamlit Web Application
 
 **Stage 2 Example:**
 1. **Entry**: Wait for a ≤ 10 AND codes displayed
-2. **Betting**: Units = c ÷ divisor on A1 numbers
-3. **Recovery**: Track mixed numbers until negative + positive ≥ 0
-4. **Success**: Display "STOP", add profit to balance, reset for new sequence
+2. **Betting**: Base units = c ÷ divisor on A1 numbers
+3. **Sequence Ending (a ≤ 4)**: Bet exactly minimum units needed for full recovery
+4. **Divisor Management**: Halves when b > 89, resets when sequence completes
+5. **Recovery**: Track mixed numbers until negative + positive ≥ 0
+6. **Success**: Recovery can occur at any 'a' value, sequence resets immediately
+7. **Reset**: Display "STOP" once, then start new sequence with fresh codes and divisor
 
 ### Current Project Status
 

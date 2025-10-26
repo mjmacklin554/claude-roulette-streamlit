@@ -10,16 +10,21 @@ A Streamlit web application implementing a complete 2-stage roulette betting and
 - **Application Title**: "Michael's Roulette System Configuration"
 - **File Input Section**:
   - Checkbox: "Load outcomes from file" (default: False)
-  - File selector: Excel (.xls/.xlsx) or CSV files from 'numbers' folder
+  - File selector: Excel (.xls/.xlsx) or CSV files from 'numbers' folder (sorted by date)
   - File validation: Shows warning if no files found
   - Dynamic loading: Reads first column from selected file
+  - Date-sorted file list: Files sorted by YYYY-MM-DD prefix
 - **Sequence Code Selection**:
   - Dropdown with options:
     - "Standard (3, 4, 2)" → {a: 3, b: 4, c: 2}
     - "Alternative (8, 44, 10)" → {a: 8, b: 44, c: 10}
 - **Stage 2 Configuration**:
-  - Number input: "Stage 2 Starting Divisor"
-  - Range: 1-32, Default: 8, Step: 1
+  - Dropdown: "Stage 2 Starting Divisor"
+  - Options: 8, 16, 32 (default: 8)
+  - Divisor halves during Stage 2 when b > 89 rule applies
+- **Debug Mode**:
+  - Checkbox: "Enable Debug Output" (default: False)
+  - Outputs DataFrame and system messages to debug_output.txt
 - **Run Button**: "Run Simulation" (triggers main processing)
 
 ### 2. Results Display
@@ -28,13 +33,21 @@ A Streamlit web application implementing a complete 2-stage roulette betting and
   - Matplotlib line chart showing balance progression
   - X-axis: Spin Number, Y-axis: Balance
   - Break-even line at y=0, Grid enabled
-- **System Messages**: Debug output and system events
+- **System Messages**:
+  - Line-numbered debug output and system events
+  - Format: "Line X: message"
+  - Shows events correlated to DataFrame line numbers
 - **Final Summary**:
   - Starting sequence codes used
   - Total sequences completed
   - Final balance (chips) and bank (units)
   - Session status (ACTIVE/ENDED)
   - Outcomes processed count
+- **Debug Output File** (when enabled):
+  - Configuration settings
+  - Complete DataFrame
+  - Line-numbered system messages
+  - Final summary statistics
 
 ## Core Game Components
 
@@ -110,18 +123,26 @@ A Streamlit web application implementing a complete 2-stage roulette betting and
 - **Special Rule**: When negative > 20 units, bypass a ≤ 10 rule and continue betting
 - **Betting Logic**:
   - Always bet on A1 numbers only
-  - Units = c ÷ divisor (minimum 1 unit)
-  - Initial divisor = User configurable (default: 8, range: 1-32)
-  - Divisor halves when b > 89 rule applies during active betting: 8→4→2→1
+  - Base calculation: Units = c ÷ divisor (minimum 1 unit)
+  - Initial divisor = User configurable (options: 8, 16, 32; default: 8)
+  - Divisor halves when b > 89 rule applies during active betting: 8→4→2→1 or 16→8→4→2→1 or 32→16→8→4→2→1
+  - Divisor resets to initial value when sequence completes
+  - **Sequence Ending Recovery (a ≤ 4)**:
+    - Calculate actual chip deficit: -(negative_chips + positive_chips)
+    - Calculate minimum recovery units: ceiling(deficit ÷ 5)
+    - Bet exactly min_recovery_units (conservative approach)
+    - Guarantees negative + positive ≥ 0 if win occurs when sequence is ending
 - **Betting Restrictions**:
   - No betting when sequence codes are suppressed (Four Corner Loss Rule)
   - No betting when a > 10 (unless negative > 20 units)
 - **Recovery Completion**:
   - Calculate: negative chips + positive chips
-  - When total ≥ 0: full recovery achieved
+  - When total ≥ 0: full recovery achieved at any value of 'a'
   - Display final mixed numbers on recovery line
   - Add any excess profit to balance
-  - Next line shows "STOP" with success message
+  - Sequence resets immediately on next line (regardless of 'a' value)
+  - Mixed numbers reset to zero
+  - Divisor resets to initial user-selected value
 - **Failure Condition**: Bank lost (1000 chips = 250 units)
 
 ## Program Flow
@@ -220,11 +241,13 @@ For each outcome:
 - Four corner rule creates gaps in sequence code display (both stages)
 - Mixed numbers display in negative/positive columns during loss sequences
 - Actual bet column formats:
-  - Stage 1: "Bet 1", "Bet 2", "Bet 3"
-  - Stage 2: "X units" (where X = c ÷ divisor)
-  - Post-recovery: "STOP"
+  - Stage 1: "Bet 1", "Bet 2", "Bet 3" (displays correctly even when transitioning to Stage 2)
+  - Stage 2: "X units" (where X = calculated bet units)
+  - Post-recovery: "STOP" (shown once on line after recovery, then sequence resets)
 - Recovery line shows final mixed numbers before reset
 - Success message displayed when Stage 2 completes
+- Stage 1 Bet2/Bet3 recovery: Resets mixed numbers only, sequence continues
+- Stage 2 recovery: Entire sequence resets immediately (regardless of 'a' value)
 
 ## Technical Specifications
 - **Framework**: Streamlit web application

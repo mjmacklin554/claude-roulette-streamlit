@@ -22,7 +22,10 @@ import os
 numbers_folder = "numbers"
 available_files = []
 if os.path.exists(numbers_folder):
-    available_files = [f for f in os.listdir(numbers_folder) if f.endswith(('.xls', '.xlsx', '.csv'))]
+    files = [f for f in os.listdir(numbers_folder) if f.endswith(('.xls', '.xlsx', '.csv'))]
+    # Sort files by date (format: YYYY-MM-DD_nnn)
+    # Extract date portion before underscore for sorting
+    available_files = sorted(files, key=lambda x: x.split('_')[0] if '_' in x else x)
 
 use_file = st.checkbox("Load outcomes from file", value=False)
 selected_file = None
@@ -44,8 +47,14 @@ selected_sequence_option = st.selectbox("Starting Sequence Codes:",
                                        list(sequence_code_options.keys()),
                                        help="Choose the initial sequence codes (a, b, c) for the system")
 
-stage2_divisor = st.number_input("Stage 2 Starting Divisor", min_value=1, max_value=32, value=8, step=1,
-                                help="Initial divisor for Stage 2 betting calculations (default: 8)")
+stage2_divisor = st.selectbox("Stage 2 Starting Divisor",
+                             options=[8, 16, 32],
+                             index=0,
+                             help="Initial divisor for Stage 2 betting calculations (halves when b > 89 rule applies)")
+
+# Debug checkbox
+debug_mode = st.checkbox("Enable Debug Output", value=False,
+                        help="When enabled, outputs DataFrame and system messages to debug_output.txt")
 
 # Add a run button
 if st.button("Run Simulation"):
@@ -97,7 +106,8 @@ if st.button("Run Simulation"):
     stage1_complete = False
     stage2_recovery_target = 0  # Will be set when Stage 1 ends
 
-    # Stage 2 variables - will be set by user input
+    # Stage 2 variables - save initial divisor for reset
+    initial_stage2_divisor = stage2_divisor  # Save user's initial choice
     stage2_betting_active = False
 
     # Mixed numbers tracking
@@ -247,7 +257,7 @@ if st.button("Run Simulation"):
         if win_status == 'W' and not recording and session_active:
             recording = True
             sequence_number += 1
-            debug_messages.append(f"Sequence {sequence_number} started! First A1 win at line {line_num} - sequence codes will start next line")
+            debug_messages.append((line_num, f"Sequence {sequence_number} started! First A1 win - sequence codes will start next line"))
             results.append(row)
             balance_history.append(balance)  # Track balance
             continue
@@ -257,7 +267,7 @@ if st.button("Run Simulation"):
             # Check if we have pending sequence codes to apply (from four corner rule)
             if pending_sequence_codes and not four_corner_rule_active:
                 sequence_code.update(pending_sequence_codes)
-                debug_messages.append(f"Applying pending sequence codes: {pending_sequence_codes}")
+                debug_messages.append((line_num, f"Applying pending sequence codes: {pending_sequence_codes}"))
                 pending_sequence_codes = None
 
             # Handle sequence code display with four corner rule
@@ -266,14 +276,14 @@ if st.button("Run Simulation"):
                 row['a'] = ''
                 row['b'] = ''
                 row['c'] = ''
-                debug_messages.append(f"Four corner rule: suppressing sequence codes on line {line_num}")
+                debug_messages.append((line_num, f"Four corner rule: suppressing sequence codes"))
             elif pending_sequence_codes:
                 # Apply pending codes from four corner rule
                 sequence_code.update(pending_sequence_codes)
                 row['a'] = sequence_code['a']
                 row['b'] = sequence_code['b']
                 row['c'] = sequence_code['c']
-                debug_messages.append(f"Applying delayed four corner codes: {pending_sequence_codes}")
+                debug_messages.append((line_num, f"Applying delayed four corner codes: {pending_sequence_codes}"))
                 pending_sequence_codes = None
             else:
                 # Normal sequence code display
@@ -298,7 +308,7 @@ if st.button("Run Simulation"):
                         if non_a1_count >= 3:
                             waiting_for_a1_losses = False
                             non_a1_count = 0
-                            debug_messages.append(f"A1 wait period ended after 3 non-A1 outcomes")
+                            debug_messages.append((line_num, f"A1 wait period ended after 3 non-A1 outcomes"))
                         bet_result = {'bet_amount': 0, 'loss_mixed': {'integer': 0, 'decimal': 0}, 'win_mixed': False}
                 else:
                     # Determine bet parameters based on current bet type
@@ -332,7 +342,7 @@ if st.button("Run Simulation"):
                                 if outcome in A1:
                                     waiting_for_a1_losses = True
                                     non_a1_count = 0
-                                    debug_messages.append(f"A1 win detected - starting wait for 3 consecutive non-A1 outcomes")
+                                    debug_messages.append((line_num, f"A1 win detected - starting wait for 3 consecutive non-A1 outcomes"))
                                 bet_result = {'bet_amount': bet_amount, 'loss_mixed': {'integer': 0, 'decimal': 0}, 'win_mixed': False}
                             else:
                                 # Bet2 or Bet3 win on A1 - mixed number logic
@@ -342,21 +352,23 @@ if st.button("Run Simulation"):
                                 cumulative_positive_chips = existing_decimal_chips + bip_chips
                                 negative_chips = mixed_to_chips_from_dict(cumulative_negative)
                                 total_recovery = negative_chips + cumulative_positive_chips
+                                recovery_achieved = False
                                 if total_recovery >= 0:
                                     balance += total_recovery
+                                    recovery_achieved = True
                                 current_bet_type = 1
                                 if outcome in A1:
                                     waiting_for_a1_losses = True
                                     non_a1_count = 0
-                                    debug_messages.append(f"A1 win detected - starting wait for 3 consecutive non-A1 outcomes")
-                                bet_result = {'bet_amount': bet_amount, 'loss_mixed': {'integer': 0, 'decimal': 0}, 'win_mixed': True}
+                                    debug_messages.append((line_num, f"A1 win detected - starting wait for 3 consecutive non-A1 outcomes"))
+                                bet_result = {'bet_amount': bet_amount, 'loss_mixed': {'integer': 0, 'decimal': 0}, 'win_mixed': True, 'recovery_achieved': recovery_achieved}
                         else:
                             # Handle loss with mixed numbers
                             loss_mixed_number = chips_to_mixed_number(-bet_amount)
                             cumulative_negative = add_mixed_numbers(cumulative_negative, loss_mixed_number)
                             current_bet_type += 1
                             if current_bet_type > 3:
-                                debug_messages.append(f"Bet3 lost. Stage 1 ends, Stage 2 begins.")
+                                debug_messages.append((line_num, f"Bet3 lost. Stage 1 ends, Stage 2 begins."))
                                 stage1_complete = True
                                 stage = 2
                                 negative_chips = mixed_to_chips_from_dict(cumulative_negative)
@@ -382,29 +394,43 @@ if st.button("Run Simulation"):
                         # Calculate bet units: c / divisor
                         if stage2_divisor == 0:
                             stage2_divisor = 1
-                            debug_messages.append(f"Warning: stage2_divisor was 0, reset to 1")
+                            debug_messages.append((line_num, f"Warning: stage2_divisor was 0, reset to 1"))
                         normal_bet_units = int(sequence_code['c'] / stage2_divisor)
                         if normal_bet_units == 0:
                             normal_bet_units = 1  # Minimum bet
 
-                        # Risk management: Calculate minimum recovery bet for final bet
-                        # Only considering integer/whole numbers for recovery calculation
+                        # Risk management: Calculate risk-managed bet to avoid over-betting
                         negative_integer = abs(cumulative_negative['integer'])
                         positive_integer = 0
                         if cumulative_positive_chips > 0:
                             positive_mixed = chips_to_mixed_number(cumulative_positive_chips)
                             positive_integer = positive_mixed['integer']
 
-                        # Recovery calculation: (negative + positive) * 0.8
                         recovery_shortfall = negative_integer - positive_integer
-                        risk_managed_bet_units = int(abs(recovery_shortfall) * 0.8)
-                        if risk_managed_bet_units == 0:
-                            risk_managed_bet_units = 1  # Minimum bet
 
-                        # Use the smaller of normal bet or risk-managed bet
-                        bet_units = min(normal_bet_units, risk_managed_bet_units)
+                        # Check if sequence is close to ending (a <= 4)
+                        # If so, calculate based on actual chip deficit to ensure full recovery
+                        if sequence_code['a'] <= 4:
+                            # Calculate actual deficit in chips
+                            negative_chips = mixed_to_chips_from_dict(cumulative_negative)
+                            current_deficit_chips = -(negative_chips + cumulative_positive_chips)
+                            # Each unit recovers 5 chips (4 to negative + 1 BIP)
+                            # Need to round up to ensure full recovery
+                            import math
+                            min_recovery_bet_units = math.ceil(current_deficit_chips / 5)
+                            if min_recovery_bet_units == 0:
+                                min_recovery_bet_units = 1  # Minimum bet
+                            # When a <= 4, bet exactly the minimum needed for recovery
+                            bet_units = min_recovery_bet_units
+                            risk_managed_bet_units = min_recovery_bet_units  # For debug display
+                        else:
+                            risk_managed_bet_units = int(abs(recovery_shortfall) * 0.8)
+                            if risk_managed_bet_units == 0:
+                                risk_managed_bet_units = 1  # Minimum bet
+                            # Normal betting: use the smaller of normal bet or risk-managed bet
+                            bet_units = min(normal_bet_units, risk_managed_bet_units)
 
-                        debug_messages.append(f"Stage 2 bet calculation: Normal={normal_bet_units}, Risk-managed={risk_managed_bet_units}, Using={bet_units} units")
+                        debug_messages.append((line_num, f"Stage 2 bet calculation: a={sequence_code['a']}, Normal={normal_bet_units}, Risk-managed={risk_managed_bet_units}, Using={bet_units} units"))
                         bet_chips = bet_units * 4  # Convert units to chips
 
                         # Check if it's a win (A1 numbers only in Stage 2)
@@ -423,8 +449,8 @@ if st.button("Run Simulation"):
                             if total_recovery >= 0:
                                 # Full recovery achieved!
                                 balance += total_recovery
-                                debug_messages.append(f"Stage 2 recovery successful! Recovered 17 chips plus {total_recovery} profit.")
-                                debug_messages.append(f"Sequence completed successfully.")
+                                debug_messages.append((line_num, f"Stage 2 recovery successful! Recovered 17 chips plus {total_recovery} profit."))
+                                debug_messages.append((line_num, f"Sequence completed successfully."))
                                 stage = 3  # Mark as completed
 
                             bet_result = {'bet_amount': bet_chips, 'units': bet_units, 'loss_mixed': {'integer': 0, 'decimal': 0}, 'win_mixed': True}
@@ -436,7 +462,7 @@ if st.button("Run Simulation"):
                             # Check if bank is lost (1000 chips = 250 units)
                             total_negative_chips = abs(mixed_to_chips_from_dict(cumulative_negative))
                             if total_negative_chips >= 1000:
-                                debug_messages.append(f"Bank lost! Stage 2 recovery failed.")
+                                debug_messages.append((line_num, f"Bank lost! Stage 2 recovery failed."))
                                 stage = 4  # Mark as failed
 
                             bet_result = {'bet_amount': bet_chips, 'units': bet_units, 'loss_mixed': loss_mixed_number, 'win_mixed': False}
@@ -446,24 +472,22 @@ if st.button("Run Simulation"):
                 # Show STOP message on line after recovery
                 if stage == 3:
                     row['actual bet'] = 'STOP'
-                    debug_messages.append(f"Recovery in Stage 2 has now been successfully completed.")
+                    debug_messages.append((line_num, f"Recovery in Stage 2 has now been successfully completed."))
 
             if bet_result['bet_amount'] > 0:
                 # Mark that first bet has been placed
                 if not first_bet_placed:
                     first_bet_placed = True
-                # Display bet type based on stage
-                if stage == 1:
-                    # Stage 1 bet display
-                    if bet_result['bet_amount'] == 5:
-                        row['actual bet'] = 'Bet 1'
-                    elif bet_result['bet_amount'] == 4:
-                        row['actual bet'] = 'Bet 2'
-                    elif bet_result['bet_amount'] == 8:
-                        row['actual bet'] = 'Bet 3'
-                elif (stage == 2 or (stage == 3 and 'units' in bet_result)) and 'units' in bet_result:
-                    # Stage 2 bet display - show units (including recovery line)
+                # Display bet type - check if it's a Stage 2 bet first (has 'units' key)
+                if 'units' in bet_result and bet_result['units'] > 0:
+                    # Stage 2 bet display - show units
                     row['actual bet'] = f"{bet_result['units']} units"
+                elif bet_result['bet_amount'] == 5:
+                    row['actual bet'] = 'Bet 1'
+                elif bet_result['bet_amount'] == 4:
+                    row['actual bet'] = 'Bet 2'
+                elif bet_result['bet_amount'] == 8:
+                    row['actual bet'] = 'Bet 3'
 
                 # Handle mixed numbers for losses
                 if bet_result['loss_mixed']['integer'] != 0 or bet_result['loss_mixed']['decimal'] != 0:
@@ -494,8 +518,13 @@ if st.button("Run Simulation"):
                     if stage == 3 or stage == 1:
                         row['balance'] = balance
 
-                    # Reset mixed numbers after recovery (if stage is completed)
+                    # Reset mixed numbers after recovery
                     if stage == 3:
+                        # Stage 2/3 recovery complete
+                        cumulative_negative = {'integer': 0, 'decimal': 0}
+                        cumulative_positive_chips = 0
+                    elif stage == 1 and 'recovery_achieved' in bet_result and bet_result['recovery_achieved']:
+                        # Stage 1 Bet2/Bet3 recovery complete
                         cumulative_negative = {'integer': 0, 'decimal': 0}
                         cumulative_positive_chips = 0
                 else:
@@ -507,11 +536,11 @@ if st.button("Run Simulation"):
                 consecutive_non_a1 = 0  # Reset counter on A1 outcome
                 if four_corner_rule_active:
                     # A1 outcome ends four corner rule
-                    debug_messages.append(f"Four corner loss rule ended - A1 outcome detected")
+                    debug_messages.append((line_num, f"Four corner loss rule ended - A1 outcome detected"))
                     four_corner_rule_active = False
             else:
                 consecutive_non_a1 += 1
-                debug_messages.append(f"Consecutive non-A1 count: {consecutive_non_a1}")
+                debug_messages.append((line_num, f"Consecutive non-A1 count: {consecutive_non_a1}"))
 
             # Update sequence codes for next line (ALWAYS update, even during A1 wait)
             is_a1_win = outcome in A1
@@ -524,7 +553,7 @@ if st.button("Run Simulation"):
                 # Prevent division by zero
                 if sequence_code['a'] == 0:
                     sequence_code['a'] = 1
-                    debug_messages.append(f"Warning: sequence_code['a'] was 0, reset to 1")
+                    debug_messages.append((line_num, f"Warning: sequence_code['a'] was 0, reset to 1"))
                 sequence_code['c'] = (int(sequence_code['b'] / sequence_code['a'])) * 2
             else:
                 # Loss logic from mb_roulette_v1.txt
@@ -537,23 +566,24 @@ if st.button("Run Simulation"):
                     # In Stage 2, halve the divisor when b > 89 rule applies AND we're actively betting
                     if stage == 2 and stage2_divisor > 1 and recording and not four_corner_rule_active:
                         stage2_divisor = stage2_divisor // 2
-                        debug_messages.append(f"b > 89 rule applied in Stage 2 - divisor reduced to {stage2_divisor}")
+                        debug_messages.append((line_num, f"b > 89 rule applied in Stage 2 - divisor reduced to {stage2_divisor}"))
 
                 # Prevent division by zero
                 if sequence_code['a'] == 0:
                     sequence_code['a'] = 1
-                    debug_messages.append(f"Warning: sequence_code['a'] was 0, reset to 1")
+                    debug_messages.append((line_num, f"Warning: sequence_code['a'] was 0, reset to 1"))
                 sequence_code['c'] = (int(sequence_code['b'] / sequence_code['a'])) * 2
 
-            # Check for sequence completion (a < 3 after first bet)
-            if first_bet_placed and sequence_code['a'] < 3:
-                debug_messages.append(f"Sequence {sequence_number} completed! (a={sequence_code['a']} < 3)")
+            # Check for sequence completion (a < 3 after first bet OR stage 3 after Stage 2 recovery)
+            if (first_bet_placed and sequence_code['a'] < 3) or stage == 3:
+                debug_messages.append((line_num, f"Sequence {sequence_number} completed! (a={sequence_code['a']} < 3)"))
                 # Reset for new sequence
                 sequence_code = initial_sequence_codes.copy()
                 recording = False  # Will restart on next A1 win
                 current_bet_type = 1
                 stage = 1
                 stage1_complete = False
+                stage2_divisor = initial_stage2_divisor  # Reset divisor to initial value
                 waiting_for_a1_losses = False
                 non_a1_count = 0
                 four_corner_rule_active = False
@@ -565,14 +595,14 @@ if st.button("Run Simulation"):
                 # Check bank status
                 current_bank_units = starting_bank + (balance // 4)  # Convert balance back to units
                 if current_bank_units <= 0:
-                    debug_messages.append(f"Bank depleted! Session ends.")
+                    debug_messages.append((line_num, f"Bank depleted! Session ends."))
                     session_active = False
 
             # Check if we just hit 4 consecutive non-A1 (triggers four corner rule)
             if consecutive_non_a1 == 4:
                 four_corner_rule_active = True
                 pending_sequence_codes = sequence_code.copy()
-                debug_messages.append(f"Four corner rule triggered! Calculated codes {pending_sequence_codes} will be delayed")
+                debug_messages.append((line_num, f"Four corner rule triggered! Calculated codes {pending_sequence_codes} will be delayed"))
 
         results.append(row)
         balance_history.append(balance)  # Track balance after each spin
@@ -600,10 +630,55 @@ if st.button("Run Simulation"):
     # Display debug messages
     st.subheader("System Messages")
     if debug_messages:
-        for message in debug_messages:
-            st.write(message)
+        for line_num, message in debug_messages:
+            st.write(f"Line {line_num}: {message}")
     else:
         st.write("No system messages generated")
+
+    # Write debug output to file if enabled
+    if debug_mode:
+        try:
+            with open('debug_output.txt', 'w') as f:
+                f.write("="*80 + "\n")
+                f.write("ROULETTE SYSTEM DEBUG OUTPUT\n")
+                f.write("="*80 + "\n\n")
+
+                # Write configuration
+                f.write("CONFIGURATION:\n")
+                f.write(f"- File: {selected_file if use_file and selected_file else 'Default outcomes'}\n")
+                f.write(f"- Sequence Codes: {selected_sequence_option}\n")
+                f.write(f"- Stage 2 Divisor: {stage2_divisor}\n")
+                f.write(f"- Total Outcomes: {len(outcomes)}\n\n")
+
+                # Write DataFrame
+                f.write("="*80 + "\n")
+                f.write("BETTING RESULTS:\n")
+                f.write("="*80 + "\n\n")
+                f.write(df.to_string(index=False))
+                f.write("\n\n")
+
+                # Write system messages
+                f.write("="*80 + "\n")
+                f.write("SYSTEM MESSAGES:\n")
+                f.write("="*80 + "\n\n")
+                for line_num, message in debug_messages:
+                    f.write(f"Line {line_num}: {message}\n")
+                f.write("\n")
+
+                # Write final summary
+                f.write("="*80 + "\n")
+                f.write("FINAL SUMMARY:\n")
+                f.write("="*80 + "\n\n")
+                f.write(f"Total Sequences Completed: {sequence_number}\n")
+                f.write(f"Final Balance: {balance} chips\n")
+                final_bank_units = starting_bank + (balance // 4)
+                f.write(f"Final Bank: {final_bank_units} units (started with {starting_bank} units)\n")
+                f.write(f"Session Status: {'ENDED' if not session_active else 'ACTIVE'}\n")
+                f.write(f"Outcomes Processed: {len(results)}/{len(outcomes)}\n")
+
+            st.success("Debug output written to debug_output.txt")
+        except Exception as e:
+            st.error(f"Error writing debug output: {str(e)}")
 
     # Display final balance and session summary
     st.subheader("Final Results")
