@@ -3,419 +3,60 @@ ROULETTE SYSTEM DEBUG OUTPUT
 ================================================================================
 
 CONFIGURATION:
-- File: 2011-09-05_163.xls
+- File: live_play_2025-11-01_064839.txt
 - Sequence Codes: Alternative (8, 44, 10)
-- Stage 2 Divisor: 16
-- Total Outcomes: 163
+- Stage 2 Divisor: 32
+- Bypass a>10 Rule (negative>20): Disabled
+- Total Outcomes: 15
 
 ================================================================================
 BETTING RESULTS:
 ================================================================================
 
  line  outcome win  a  b  c actual bet negative positive balance
-    1       35   W                                              
-    2       21   W  8 44 10      Bet 1                         1
-    3       11   L  5 34 12                                     
-    4        5   W  6 46 14                                     
-    5       28   W  4 32 16                                     
-    6       33   L                                              
-    7       32   W                                              
-    8       14   L  8 44 10      Bet 1                         2
-    9       15   L  9 54 12      Bet 1                         3
-   10       29   W 10 66 12      Bet 1                         4
-   11       31   W  7 54 14                                     
-   12        0   L  5 40 16                                     
-   13       32   W  6 56 18                                     
-   14        0   L  4 38 18                                     
-   15       18   W  5 56 22                                     
-   16       26   W  3 34 22                                     
-   17       28   W                                              
-   18       11   L  8 44 10      Bet 1       -2       .3        
-   19       26   W  9 54 12      Bet 2       -1        1       4
-   20        8   L  6 42 14                                     
-   21        0   L  7 56 16                                     
-   22       13   L  8 72 18                                     
-   23       23   L  9 45 10      Bet 1                         5
-   24        3   W               Bet 1                         6
-   25       18   W 10 55 10                                     
-   26       35   W  7 45 12                                     
-   27        9   L  5 33 12                                     
-   28        1   L  6 45 14                                     
-   29        7   L  7 59 16                                     
-   30       23   L  8 75 18      Bet 1                         7
-   31       17   W               Bet 1                         8
-   32       11   L  9 47 10                                     
-   33       11   L 10 57 10                                     
-   34       22   L 11 67 12                                     
-   35        5   W 12 79 12      Bet 1                         9
-   36        1   L  8 67 16                                     
-   37       24   L  9 83 18                                     
-   38       23   L 10 51 10                                     
-   39       13   L 11 61 10      Bet 1                        10
-   40        0   L               Bet 1       -2       .3        
-   41       14   L               Bet 2       -3                 
-   42       36   L               Bet 3       -5                 
-   43       11   L                                              
-   44        1   L                                              
-   45        1   L                                              
-   46       12   L                                              
-   47       34   W                                              
-   48       23   L 12 71 10                                     
-   49        8   L 13 81 12                                     
-   50        2   W 14 47  6                                     
-   51       34   W 10 41  8    1 units       -4        1        
-   52       19   L  7 33  8    1 units       -5                 
-   53       29   W  8 41 10    1 units       -4      1.1        
-   54       24   L  5 31 12    1 units       -5                 
-   55       22   L  6 43 14    1 units       -6                 
-   56        3   W  7 57 16    2 units       -4      1.3        
-   57       15   L  5 41 16    2 units       -6                 
-   58       33   L  6 57 18    2 units       -8                 
-   59       18   W  7 75 20    2 units       -6      2.1        
-   60       13   L  5 55 22    2 units       -8                 
-   61       13   L  6 77 24    3 units      -11                 
-   62       11   L  7 51 14    3 units      -14                 
-   63       17   W  8 65 16    4 units      -10      3.1        
-   64       27   L  5 49 18    4 units      -14                 
-   65       30   L  6 67 22    5 units      -19                 
-   66       31   W  7 89 24    6 units      -13      4.3        
-   67       22   L  5 65 26    6 units      -19                 
-   68       22   L  6 46 14    7 units      -26                 
-   69       33   L  7 60 16    8 units      -34                 
-   70       15   L  8 76 18    9 units      -43                 
-   71        6   W                                              
-   72       16   L  9 47 10   10 units      -53                 
-   73        9   L 10 57 10   10 units      -63                 
-   74       17   W 11 67 12   12 units      -51      7.3        
-   75       27   L  7 55 14   14 units      -65                 
-   76       11   L  8 69 16   16 units      -81                 
-   77       28   W  9 85 18   18 units      -63     12.1        
-   78       35   W  6 67 22   22 units      -41     17.3        
-   79       13   L  4 45 22   19 units      -60                 
-   80       24   L  5 67 26   26 units      -86                 
-   81       15   L  6 47 14   14 units     -100                 
-   82        0   L  7 61 16   16 units     -116                 
-   83        7   L                                              
-   84       10   L                                              
-   85       15   L                                              
-   86       20   W                                              
-   87        2   W  8 77 18   18 units      -98     22.1        
-   88        6   W  5 59 22   22 units      -76     27.3        
-   89       24   L  3 37 24   39 units     -115                 
-   90       21   W  4 61 30   70 units      -45     45.1      11
-   91       31   W                                              
-   92       21   W  8 44 10      Bet 1                        12
-   93        1   L  5 34 12                                     
-   94       26   W  6 46 14                                     
-   95       23   L  4 32 16                                     
-   96       10   L  5 48 18                                     
-   97       23   L  6 66 22                                     
-   98       35   W  7 88 24      Bet 1                        13
-   99       16   L  5 64 24                                     
-  100       25   W  6 88 28                                     
-  101       18   W  4 60 30                                     
-  102       11   L                                              
-  103       24   L                                              
-  104        2   W                                              
-  105       26   W  8 44 10      Bet 1                        14
-  106        7   L  5 34 12                                     
-  107       15   L  6 46 14                                     
-  108       11   L  7 60 16                                     
-  109       13   L  8 76 18      Bet 1                        15
-  110       28   W               Bet 1                        16
-  111        9   L  9 47 10                                     
-  112       19   L 10 57 10                                     
-  113       23   L 11 67 12                                     
-  114        5   W 12 79 12      Bet 1                        17
-  115       23   L  8 67 16                                     
-  116       21   W  9 83 18                                     
-  117        3   W  6 65 20                                     
-  118       15   L  4 45 22                                     
-  119       33   L  5 67 26                                     
-  120       28   W  6 47 14                                     
-  121        3   W  4 33 16                                     
-  122        9   L                                              
-  123       29   W                                              
-  124       23   L  8 44 10      Bet 1                        18
-  125       20   W  9 54 12      Bet 1                        19
-  126       20   W  6 42 14                                     
-  127        3   W  4 28 14                                     
-  128       23   L                                              
-  129       10   L                                              
-  130        7   L                                              
-  131        4   L                                              
-  132       28   W                                              
-  133        8   L  8 44 10      Bet 1       -2       .3        
-  134       31   W  9 54 12      Bet 2       -1        1      19
-  135       17   W  6 42 14                                     
-  136        8   L  4 28 14                                     
-  137       34   W  5 42 16                                     
-  138       19   L  3 26 16                                     
-  139       11   L  4 42 20                                     
-  140       29   W  5 62 24                                     
-  141        9   L  3 38 24                                     
-  142        4   L  4 62 30                                     
-  143       13   L  5 46 18                                     
-  144       10   L  6 64 20      Bet 1       -2       .3        
-  145       27   L               Bet 2       -3                 
-  146        7   L               Bet 3       -5                 
-  147       20   W                                              
-  148       24   L  7 84 24    1 units       -6                 
-  149       33   L  8 54 12    1 units       -7                 
-  150       15   L  9 66 14    1 units       -8                 
-  151        5   W 10 80 16    2 units       -6      1.1        
-  152       14   L  7 64 18    2 units       -8                 
-  153       13   L  8 82 20    2 units      -10                 
-  154       18   W  9 51 10    2 units       -8      1.3        
-  155       17   W  6 41 12    3 units       -5      2.2        
-  156       27   L  4 29 14    2 units       -7                 
-  157       16   L  5 43 16    4 units      -11                 
-  158       21   W  6 59 18    4 units       -7      3.2        
-  159       23   L  4 41 20    3 units      -10                 
-  160       31   W  5 61 24    5 units       -5      4.3        
-  161       22   L  3 37 24    1 units       -6                 
-  162       21   W  4 61 30    1 units       -5        5      19
-  163       15   L                                              
+    1       30   L                                              
+    2        0   L                                              
+    3       13   L                                              
+    4       36   L                                              
+    5       33   L                                              
+    6       28   W                                              
+    7        4   L  8 44 10      Bet 1                         1
+    8       30   L  9 54 12      Bet 1                         2
+    9       16   L 10 66 12      Bet 1                         3
+   10       22   L 11 78 14      Bet 1                         4
+   11        2   W               Bet 1                         5
+   12        4   L 12 46  6                                     
+   13        0   L 13 52  8                                     
+   14        7   L 14 60  8                                     
+   15        4   L 15 68  8      Bet 1                         6
 
 ================================================================================
 SYSTEM MESSAGES:
 ================================================================================
 
-Line 1: Sequence 1 started! First A1 win - sequence codes will start next line
-Line 2: A1 win detected - starting wait for 3 consecutive non-A1 outcomes
-Line 3: Consecutive non-A1 count: 1
-Line 5: Sequence 1 completed! (a=2 < 3)
-Line 7: Sequence 2 started! First A1 win - sequence codes will start next line
-Line 8: Consecutive non-A1 count: 1
-Line 9: Consecutive non-A1 count: 2
-Line 10: A1 win detected - starting wait for 3 consecutive non-A1 outcomes
+Line 6: Sequence 1 started! First A1 win - sequence codes will start next line
+Line 7: Consecutive non-A1 count: 1
+Line 8: Consecutive non-A1 count: 2
+Line 9: Consecutive non-A1 count: 3
+Line 10: Consecutive non-A1 count: 4
+Line 10: Four corner rule triggered! Calculated codes {'a': 12, 'b': 46, 'c': 6} will be delayed
+Line 11: Four corner rule: suppressing sequence codes
+Line 11: A1 win detected - starting wait for 3 consecutive non-A1 outcomes
+Line 11: Four corner loss rule ended - A1 outcome detected
+Line 12: Applying pending sequence codes: {'a': 12, 'b': 46, 'c': 6}
 Line 12: Consecutive non-A1 count: 1
-Line 14: Consecutive non-A1 count: 1
-Line 16: Sequence 2 completed! (a=1 < 3)
-Line 17: Sequence 3 started! First A1 win - sequence codes will start next line
-Line 18: Consecutive non-A1 count: 1
-Line 19: A1 win detected - starting wait for 3 consecutive non-A1 outcomes
-Line 20: Consecutive non-A1 count: 1
-Line 21: Consecutive non-A1 count: 2
-Line 22: A1 wait period ended after 3 non-A1 outcomes
-Line 22: Consecutive non-A1 count: 3
-Line 23: Consecutive non-A1 count: 4
-Line 23: Four corner rule triggered! Calculated codes {'a': 10, 'b': 55, 'c': 10} will be delayed
-Line 24: Four corner rule: suppressing sequence codes
-Line 24: A1 win detected - starting wait for 3 consecutive non-A1 outcomes
-Line 24: Four corner loss rule ended - A1 outcome detected
-Line 25: Applying pending sequence codes: {'a': 10, 'b': 55, 'c': 10}
-Line 27: Consecutive non-A1 count: 1
-Line 28: Consecutive non-A1 count: 2
-Line 29: A1 wait period ended after 3 non-A1 outcomes
-Line 29: Consecutive non-A1 count: 3
-Line 30: Consecutive non-A1 count: 4
-Line 30: Four corner rule triggered! Calculated codes {'a': 9, 'b': 47, 'c': 10} will be delayed
-Line 31: Four corner rule: suppressing sequence codes
-Line 31: A1 win detected - starting wait for 3 consecutive non-A1 outcomes
-Line 31: Four corner loss rule ended - A1 outcome detected
-Line 32: Applying pending sequence codes: {'a': 9, 'b': 47, 'c': 10}
-Line 32: Consecutive non-A1 count: 1
-Line 33: Consecutive non-A1 count: 2
-Line 34: A1 wait period ended after 3 non-A1 outcomes
-Line 34: Consecutive non-A1 count: 3
-Line 35: A1 win detected - starting wait for 3 consecutive non-A1 outcomes
-Line 36: Consecutive non-A1 count: 1
-Line 37: Consecutive non-A1 count: 2
-Line 38: A1 wait period ended after 3 non-A1 outcomes
-Line 38: Consecutive non-A1 count: 3
-Line 39: Consecutive non-A1 count: 4
-Line 39: Four corner rule triggered! Calculated codes {'a': 12, 'b': 71, 'c': 10} will be delayed
-Line 40: Four corner rule: suppressing sequence codes
-Line 40: Consecutive non-A1 count: 5
-Line 41: Four corner rule: suppressing sequence codes
-Line 41: Consecutive non-A1 count: 6
-Line 42: Four corner rule: suppressing sequence codes
-Line 42: Bet3 lost. Stage 1 ends, Stage 2 begins.
-Line 42: Consecutive non-A1 count: 7
-Line 43: Four corner rule: suppressing sequence codes
-Line 43: Consecutive non-A1 count: 8
-Line 44: Four corner rule: suppressing sequence codes
-Line 44: Consecutive non-A1 count: 9
-Line 45: Four corner rule: suppressing sequence codes
-Line 45: Consecutive non-A1 count: 10
-Line 46: Four corner rule: suppressing sequence codes
-Line 46: Consecutive non-A1 count: 11
-Line 47: Four corner rule: suppressing sequence codes
-Line 47: Four corner loss rule ended - A1 outcome detected
-Line 48: Applying pending sequence codes: {'a': 12, 'b': 71, 'c': 10}
-Line 48: Consecutive non-A1 count: 1
-Line 49: Consecutive non-A1 count: 2
-Line 49: b > 89 rule applied in Stage 2 - divisor reduced to 8
-Line 51: Stage 2 bet calculation: a=10, Normal=1, Risk-managed=4, Using=1 units
-Line 52: Stage 2 bet calculation: a=7, Normal=1, Risk-managed=2, Using=1 units
-Line 52: Consecutive non-A1 count: 1
-Line 53: Stage 2 bet calculation: a=8, Normal=1, Risk-managed=3, Using=1 units
-Line 54: Stage 2 bet calculation: a=5, Normal=1, Risk-managed=2, Using=1 units
-Line 54: Consecutive non-A1 count: 1
-Line 55: Stage 2 bet calculation: a=6, Normal=1, Risk-managed=3, Using=1 units
-Line 55: Consecutive non-A1 count: 2
-Line 56: Stage 2 bet calculation: a=7, Normal=2, Risk-managed=4, Using=2 units
-Line 57: Stage 2 bet calculation: a=5, Normal=2, Risk-managed=2, Using=2 units
-Line 57: Consecutive non-A1 count: 1
-Line 58: Stage 2 bet calculation: a=6, Normal=2, Risk-managed=4, Using=2 units
-Line 58: Consecutive non-A1 count: 2
-Line 59: Stage 2 bet calculation: a=7, Normal=2, Risk-managed=5, Using=2 units
-Line 60: Stage 2 bet calculation: a=5, Normal=2, Risk-managed=3, Using=2 units
-Line 60: Consecutive non-A1 count: 1
-Line 61: Stage 2 bet calculation: a=6, Normal=3, Risk-managed=4, Using=3 units
-Line 61: Consecutive non-A1 count: 2
-Line 61: b > 89 rule applied in Stage 2 - divisor reduced to 4
-Line 62: Stage 2 bet calculation: a=7, Normal=3, Risk-managed=7, Using=3 units
-Line 62: Consecutive non-A1 count: 3
-Line 63: Stage 2 bet calculation: a=8, Normal=4, Risk-managed=9, Using=4 units
-Line 64: Stage 2 bet calculation: a=5, Normal=4, Risk-managed=5, Using=4 units
-Line 64: Consecutive non-A1 count: 1
-Line 65: Stage 2 bet calculation: a=6, Normal=5, Risk-managed=8, Using=5 units
-Line 65: Consecutive non-A1 count: 2
-Line 66: Stage 2 bet calculation: a=7, Normal=6, Risk-managed=12, Using=6 units
-Line 67: Stage 2 bet calculation: a=5, Normal=6, Risk-managed=7, Using=6 units
-Line 67: Consecutive non-A1 count: 1
-Line 67: b > 89 rule applied in Stage 2 - divisor reduced to 2
-Line 68: Stage 2 bet calculation: a=6, Normal=7, Risk-managed=12, Using=7 units
-Line 68: Consecutive non-A1 count: 2
-Line 69: Stage 2 bet calculation: a=7, Normal=8, Risk-managed=17, Using=8 units
-Line 69: Consecutive non-A1 count: 3
-Line 70: Stage 2 bet calculation: a=8, Normal=9, Risk-managed=24, Using=9 units
-Line 70: Consecutive non-A1 count: 4
-Line 70: b > 89 rule applied in Stage 2 - divisor reduced to 1
-Line 70: Four corner rule triggered! Calculated codes {'a': 9, 'b': 47, 'c': 10} will be delayed
-Line 71: Four corner rule: suppressing sequence codes
-Line 71: Four corner loss rule ended - A1 outcome detected
-Line 72: Applying pending sequence codes: {'a': 9, 'b': 47, 'c': 10}
-Line 72: Stage 2 bet calculation: a=9, Normal=10, Risk-managed=31, Using=10 units
-Line 72: Consecutive non-A1 count: 1
-Line 73: Stage 2 bet calculation: a=10, Normal=10, Risk-managed=39, Using=10 units
-Line 73: Consecutive non-A1 count: 2
-Line 74: Stage 2 bet calculation: a=11, Normal=12, Risk-managed=47, Using=12 units
-Line 75: Stage 2 bet calculation: a=7, Normal=14, Risk-managed=35, Using=14 units
-Line 75: Consecutive non-A1 count: 1
-Line 76: Stage 2 bet calculation: a=8, Normal=16, Risk-managed=46, Using=16 units
-Line 76: Consecutive non-A1 count: 2
-Line 77: Stage 2 bet calculation: a=9, Normal=18, Risk-managed=59, Using=18 units
-Line 78: Stage 2 bet calculation: a=6, Normal=22, Risk-managed=40, Using=22 units
-Line 79: Stage 2 bet calculation: a=4, Normal=22, Risk-managed=19, Using=19 units
-Line 79: Consecutive non-A1 count: 1
-Line 80: Stage 2 bet calculation: a=5, Normal=26, Risk-managed=34, Using=26 units
-Line 80: Consecutive non-A1 count: 2
-Line 81: Stage 2 bet calculation: a=6, Normal=14, Risk-managed=55, Using=14 units
-Line 81: Consecutive non-A1 count: 3
-Line 82: Stage 2 bet calculation: a=7, Normal=16, Risk-managed=66, Using=16 units
-Line 82: Consecutive non-A1 count: 4
-Line 82: Four corner rule triggered! Calculated codes {'a': 8, 'b': 77, 'c': 18} will be delayed
-Line 83: Four corner rule: suppressing sequence codes
-Line 83: Consecutive non-A1 count: 5
-Line 84: Four corner rule: suppressing sequence codes
-Line 84: Consecutive non-A1 count: 6
-Line 85: Four corner rule: suppressing sequence codes
-Line 85: Consecutive non-A1 count: 7
-Line 86: Four corner rule: suppressing sequence codes
-Line 86: Four corner loss rule ended - A1 outcome detected
-Line 87: Applying pending sequence codes: {'a': 8, 'b': 77, 'c': 18}
-Line 87: Stage 2 bet calculation: a=8, Normal=18, Risk-managed=79, Using=18 units
-Line 88: Stage 2 bet calculation: a=5, Normal=22, Risk-managed=60, Using=22 units
-Line 89: Stage 2 bet calculation: a=3, Normal=24, Risk-managed=39, Using=39 units
-Line 89: Consecutive non-A1 count: 1
-Line 90: Stage 2 bet calculation: a=4, Normal=30, Risk-managed=70, Using=70 units
-Line 90: Stage 2 recovery successful! Recovered 17 chips plus 1 profit.
-Line 90: Sequence completed successfully.
-Line 90: Sequence 3 completed! (a=2 < 3)
-Line 91: Sequence 4 started! First A1 win - sequence codes will start next line
-Line 92: A1 win detected - starting wait for 3 consecutive non-A1 outcomes
-Line 93: Consecutive non-A1 count: 1
-Line 95: Consecutive non-A1 count: 1
-Line 96: Consecutive non-A1 count: 2
-Line 97: A1 wait period ended after 3 non-A1 outcomes
-Line 97: Consecutive non-A1 count: 3
-Line 98: A1 win detected - starting wait for 3 consecutive non-A1 outcomes
-Line 99: Consecutive non-A1 count: 1
-Line 101: Sequence 4 completed! (a=2 < 3)
-Line 104: Sequence 5 started! First A1 win - sequence codes will start next line
-Line 105: A1 win detected - starting wait for 3 consecutive non-A1 outcomes
-Line 106: Consecutive non-A1 count: 1
-Line 107: Consecutive non-A1 count: 2
-Line 108: A1 wait period ended after 3 non-A1 outcomes
-Line 108: Consecutive non-A1 count: 3
-Line 109: Consecutive non-A1 count: 4
-Line 109: Four corner rule triggered! Calculated codes {'a': 9, 'b': 47, 'c': 10} will be delayed
-Line 110: Four corner rule: suppressing sequence codes
-Line 110: A1 win detected - starting wait for 3 consecutive non-A1 outcomes
-Line 110: Four corner loss rule ended - A1 outcome detected
-Line 111: Applying pending sequence codes: {'a': 9, 'b': 47, 'c': 10}
-Line 111: Consecutive non-A1 count: 1
-Line 112: Consecutive non-A1 count: 2
-Line 113: A1 wait period ended after 3 non-A1 outcomes
-Line 113: Consecutive non-A1 count: 3
-Line 114: A1 win detected - starting wait for 3 consecutive non-A1 outcomes
-Line 115: Consecutive non-A1 count: 1
-Line 118: Consecutive non-A1 count: 1
-Line 119: Consecutive non-A1 count: 2
-Line 121: Sequence 5 completed! (a=2 < 3)
-Line 123: Sequence 6 started! First A1 win - sequence codes will start next line
-Line 124: Consecutive non-A1 count: 1
-Line 125: A1 win detected - starting wait for 3 consecutive non-A1 outcomes
-Line 127: Sequence 6 completed! (a=2 < 3)
-Line 132: Sequence 7 started! First A1 win - sequence codes will start next line
-Line 133: Consecutive non-A1 count: 1
-Line 134: A1 win detected - starting wait for 3 consecutive non-A1 outcomes
-Line 136: Consecutive non-A1 count: 1
-Line 138: Consecutive non-A1 count: 1
-Line 139: Consecutive non-A1 count: 2
-Line 141: Consecutive non-A1 count: 1
-Line 142: Consecutive non-A1 count: 2
-Line 143: A1 wait period ended after 3 non-A1 outcomes
-Line 143: Consecutive non-A1 count: 3
-Line 144: Consecutive non-A1 count: 4
-Line 144: Four corner rule triggered! Calculated codes {'a': 7, 'b': 84, 'c': 24} will be delayed
-Line 145: Four corner rule: suppressing sequence codes
-Line 145: Consecutive non-A1 count: 5
-Line 146: Four corner rule: suppressing sequence codes
-Line 146: Bet3 lost. Stage 1 ends, Stage 2 begins.
-Line 146: Consecutive non-A1 count: 6
-Line 147: Four corner rule: suppressing sequence codes
-Line 147: Four corner loss rule ended - A1 outcome detected
-Line 148: Applying pending sequence codes: {'a': 7, 'b': 84, 'c': 24}
-Line 148: Stage 2 bet calculation: a=7, Normal=1, Risk-managed=4, Using=1 units
-Line 148: Consecutive non-A1 count: 1
-Line 148: b > 89 rule applied in Stage 2 - divisor reduced to 8
-Line 149: Stage 2 bet calculation: a=8, Normal=1, Risk-managed=4, Using=1 units
-Line 149: Consecutive non-A1 count: 2
-Line 150: Stage 2 bet calculation: a=9, Normal=1, Risk-managed=5, Using=1 units
-Line 150: Consecutive non-A1 count: 3
-Line 151: Stage 2 bet calculation: a=10, Normal=2, Risk-managed=6, Using=2 units
-Line 152: Stage 2 bet calculation: a=7, Normal=2, Risk-managed=4, Using=2 units
-Line 152: Consecutive non-A1 count: 1
-Line 153: Stage 2 bet calculation: a=8, Normal=2, Risk-managed=5, Using=2 units
-Line 153: Consecutive non-A1 count: 2
-Line 153: b > 89 rule applied in Stage 2 - divisor reduced to 4
-Line 154: Stage 2 bet calculation: a=9, Normal=2, Risk-managed=7, Using=2 units
-Line 155: Stage 2 bet calculation: a=6, Normal=3, Risk-managed=5, Using=3 units
-Line 156: Stage 2 bet calculation: a=4, Normal=3, Risk-managed=2, Using=2 units
-Line 156: Consecutive non-A1 count: 1
-Line 157: Stage 2 bet calculation: a=5, Normal=4, Risk-managed=4, Using=4 units
-Line 157: Consecutive non-A1 count: 2
-Line 158: Stage 2 bet calculation: a=6, Normal=4, Risk-managed=7, Using=4 units
-Line 159: Stage 2 bet calculation: a=4, Normal=5, Risk-managed=3, Using=3 units
-Line 159: Consecutive non-A1 count: 1
-Line 160: Stage 2 bet calculation: a=5, Normal=6, Risk-managed=5, Using=5 units
-Line 161: Stage 2 bet calculation: a=3, Normal=6, Risk-managed=1, Using=1 units
-Line 161: Consecutive non-A1 count: 1
-Line 162: Stage 2 bet calculation: a=4, Normal=7, Risk-managed=1, Using=1 units
-Line 162: Stage 2 recovery successful! Recovered 17 chips plus 0 profit.
-Line 162: Sequence completed successfully.
-Line 162: Sequence 7 completed! (a=2 < 3)
+Line 13: Consecutive non-A1 count: 2
+Line 14: A1 wait period ended after 3 non-A1 outcomes
+Line 14: Consecutive non-A1 count: 3
+Line 15: Consecutive non-A1 count: 4
+Line 15: Four corner rule triggered! Calculated codes {'a': 16, 'b': 76, 'c': 8} will be delayed
 
 ================================================================================
 FINAL SUMMARY:
 ================================================================================
 
-Total Sequences Completed: 7
-Final Balance: 19 chips
-Final Bank: 254 units (started with 250 units)
+Total Sequences Completed: 1
+Final Balance: 6 chips
+Final Bank: 251 units (started with 250 units)
 Session Status: ACTIVE
-Outcomes Processed: 163/163
+Outcomes Processed: 15/15

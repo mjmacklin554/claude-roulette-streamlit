@@ -1,25 +1,35 @@
 # Roulette Betting System - Streamlit Application Flowchart
-Date: 2025-10-20
-Updated: Streamlit Web Application with File Input and User Configuration
+Date: 2025-11-01
+Updated: Three-Tab Interface with Run Simulation, Live Play Mode, and Session History
 
 ## Main Program Flow
 
 START (Streamlit App)
   ↓
+Three-Tab Interface
+├─ Tab 1: Run Simulation
+├─ Tab 2: Live Play Mode
+└─ Tab 3: View History
+
+## TAB 1: RUN SIMULATION
+
 Streamlit UI Configuration
 ├─ Title: "Michael's Roulette System Configuration"
 ├─ File Input Section:
 │  ├─ Checkbox: "Load outcomes from file"
-│  ├─ File Selector: Excel/CSV files from 'numbers' folder
+│  ├─ File Selector: Excel/CSV/TXT files from 'numbers' folder
 │  └─ File Loading: Read outcomes from selected file or use defaults
 ├─ Sequence Code Selection:
 │  ├─ Option 1: "Standard (3, 4, 2)"
 │  └─ Option 2: "Alternative (8, 44, 10)"
-├─ Stage 2 Divisor Input: Default 8, range 1-32
+├─ Stage 2 Divisor: Default 8, options [8, 16, 32]
+├─ Bypass a>10 Rule Checkbox: Enable/disable negative > 20 bypass
+├─ Debug Output Checkbox: Enable/disable debug_output.txt generation
+├─ Save Session Checkbox: Enable/disable session history saving
 └─ Run Button: "Run Simulation"
   ↓
 Initialize System Variables (when Run button pressed)
-├─ Load outcomes from file OR use defaults
+├─ Load outcomes from file (.txt/.csv/.xls/.xlsx) OR use defaults
 ├─ Set A1 = [2,3,5,6,17,18,20,21,25,26,28,29,31,32,34,35] (16 corner bets)
 ├─ Set A2 = [1-6,13-18,19-24,25-30,31-36] (30 six-line bets)
 ├─ sequence_code = selected sequence codes
@@ -30,6 +40,9 @@ Initialize System Variables (when Run button pressed)
 ├─ waiting_for_a1_losses = False
 ├─ four_corner_rule_active = False
 ├─ starting_bank = 250 units
+├─ total_turnover = 0 (track all bets placed)
+├─ stage2_recovery_successful = False
+├─ worst_drawdown_state = {} (track worst loss point)
 └─ All counters and tracking variables = 0
   ↓
 FOR EACH OUTCOME in outcomes:
@@ -65,11 +78,16 @@ FOR EACH OUTCOME in outcomes:
 │   │   └─ Bet3: 8 chips on A1 (+10/-8)                    │
 │   ├─ Handle mixed numbers for losses/wins                  │
 │   ├─ Update balance and current_bet_type                   │
+│   ├─ Accumulate turnover for each bet placed               │
 │   ├─ If A1 win: start A1 wait rule                        │
 │   └─ If Bet3 lost: stage = 2, initialize Stage 2          │
 ├─ If stage == 2: Call place_stage2_bet() [STAGE 2]         │
 │   ├─ Check if sequence codes displayed (no bet if not)     │
-│   ├─ Check a ≤ 10 rule (bypass if negative > 20 units)    │
+│   ├─ Check a ≤ 10 rule:                                    │
+│   │   ├─ If bypass_a10_rule enabled AND negative > 20:    │
+│   │   │   └─ Continue betting (bypass a ≤ 10 rule)        │
+│   │   └─ If bypass disabled OR negative ≤ 20:             │
+│   │       └─ Enforce strict a ≤ 10 rule (no betting)      │
 │   ├─ Calculate base units: c ÷ divisor (minimum 1 unit)   │
 │   ├─ Sequence Ending Check (a ≤ 4):                       │
 │   │   ├─ Calculate chip deficit: -(neg_chips + pos_chips) │
@@ -77,12 +95,31 @@ FOR EACH OUTCOME in outcomes:
 │   │   └─ Bet exactly min_recovery_units (conservative)    │
 │   ├─ Bet on A1 numbers only                               │
 │   ├─ Handle mixed numbers with BIP for wins               │
+│   ├─ Accumulate turnover for each bet placed               │
 │   ├─ Update divisor if b > 89 rule applies                │
 │   ├─ Check recovery: negative + positive ≥ 0              │
-│   ├─ If recovered: stage = 3, set flag for immediate reset│
+│   ├─ If recovered:                                         │
+│   │   ├─ stage = 3 (marks as recovered)                   │
+│   │   ├─ Set stage2_recovery_successful = True            │
+│   │   └─ Set flag for immediate reset                     │
 │   └─ Recovery can occur at any value of 'a'               │
 ├─ If stage == 3: Show "STOP" and success message           │
-└─ Record bet and mixed numbers in DataFrame                 │
+├─ Record bet and mixed numbers in DataFrame                 │
+└─ Accumulate total_turnover += bet_amount                   │
+└─────────────────────────────────────────────────────────────┘
+  ↓
+┌─────────────────────────────────────────────────────────────┐
+│ WORST DRAWDOWN TRACKING                                     │
+├─ Calculate current drawdown at each line:                  │
+│   ├─ negative_chips = cumulative_negative × 4              │
+│   ├─ positive_chips = cumulative_positive_chips            │
+│   ├─ chip_loss = negative_chips + positive_chips           │
+│   ├─ total_loss = chip_loss + balance                      │
+│   └─ If total_loss < worst_drawdown: update worst state   │
+├─ Store worst drawdown point details:                       │
+│   ├─ line, bet, negative, positive, balance                │
+│   ├─ chip_loss, total_loss calculations                    │
+│   └─ Used for session history statistics                   │
 └─────────────────────────────────────────────────────────────┘
   ↓
 ┌─────────────────────────────────────────────────────────────┐
@@ -130,6 +167,11 @@ FOR EACH OUTCOME in outcomes:
   ↓
 END FOR EACH OUTCOME
   ↓
+Calculate Session Success Status
+├─ session_successful = (stage != 2)
+├─ True if ended in Stage 1 or recovered from Stage 2
+└─ False if stuck in unfinished Stage 2
+  ↓
 Streamlit Output Display
 ├─ Display Results DataFrame with columns:
 │  ├─ line, outcome, win, a, b, c
@@ -147,15 +189,133 @@ Streamlit Output Display
    ├─ Total Sequences Completed
    ├─ Final Balance (chips)
    ├─ Final Bank (units)
+   ├─ Total Turnover (sum of all bets placed)
    ├─ Session Status (ACTIVE/ENDED)
+   ├─ Session Success (✓/✗ - not stuck in Stage 2)
    └─ Outcomes Processed
-└─ Debug Output File (if enabled):
-   ├─ Configuration settings
-   ├─ Complete DataFrame
-   ├─ Line-numbered system messages
-   └─ Final summary statistics
   ↓
-END PROGRAM
+Save Session to History (if enabled)
+├─ Save to session_history/session_YYYYMMDD_HHMMSS.json
+├─ Includes:
+│  ├─ Configuration (file, codes, divisor, bypass_a10_rule)
+│  ├─ Results (sequences, balance, bank, turnover, worst_drawdown)
+│  ├─ session_successful flag
+│  ├─ final_stage (1, 2, or 3)
+│  ├─ Complete DataFrame
+│  ├─ Balance history
+│  └─ Debug messages
+└─ Can be viewed/deleted in History tab
+  ↓
+Debug Output File (if enabled)
+├─ Save to debug_output.txt
+├─ Configuration settings (including bypass rule status)
+├─ Complete DataFrame
+├─ Line-numbered system messages
+└─ Final summary statistics
+  ↓
+END TAB 1
+
+## TAB 2: LIVE PLAY MODE
+
+Live Play Interface
+├─ Title: "Live Play Mode"
+├─ Configuration Section:
+│  ├─ Starting Sequence Codes selection
+│  ├─ Stage 2 Divisor selection
+│  └─ Bypass a>10 Rule checkbox
+├─ Session Controls:
+│  ├─ Start New Session button
+│  ├─ Stop Session button
+│  ├─ Save Numbers to File button
+│  └─ Clear All Numbers button
+├─ Number Input:
+│  ├─ Number input field (0-36)
+│  └─ Process Number button
+├─ Live Display:
+│  ├─ Next Bet recommendation (prominent)
+│  ├─ Current balance (metric)
+│  ├─ Current sequence codes (if recording)
+│  └─ Session history (all numbers with ✓/✗ markers)
+└─ File Saving:
+   ├─ Saves to numbers/live_play_YYYYMMDD_HHMMSS.txt
+   ├─ Format: one number per line
+   └─ Can be loaded in Run Simulation tab
+  ↓
+Live Session Flow
+├─ User starts session → initialize state
+├─ User enters number → system processes
+├─ Display shows:
+│  ├─ What happened (WIN/LOSS)
+│  ├─ What to bet NEXT
+│  ├─ Current balance (currently simplified)
+│  └─ Sequence codes (currently simplified)
+├─ Repeat for each number
+└─ Stop session and save numbers when done
+  ↓
+Current Implementation Status
+├─ ✅ Session state tracking
+├─ ✅ Number entry and storage
+├─ ✅ First A1 win detection
+├─ ✅ File saving (.txt format)
+├─ ⏳ Full betting system integration (simplified)
+├─ ⏳ Real-time balance calculation (simplified)
+└─ ⏳ Complete bet recommendation logic (simplified)
+  ↓
+END TAB 2
+
+## TAB 3: VIEW HISTORY
+
+Session History Interface
+├─ Title: "Session History"
+├─ Overall Statistics (6 metrics in 2 rows):
+│  ├─ Total Sessions
+│  ├─ Win Rate (% profitable)
+│  ├─ Total Profit (Chips)
+│  ├─ Total Turnover (sum across all sessions)
+│  ├─ Average Worst Loss
+│  └─ Absolute Worst Loss
+├─ Session Management Section:
+│  ├─ Select All button
+│  ├─ Deselect All button
+│  ├─ Delete Selected button (shows count)
+│  └─ Delete All button (with confirmation)
+├─ Session List (st.data_editor with checkboxes):
+│  ├─ Select column (checkbox for each session)
+│  ├─ Date, File, Seq Codes, Divisor
+│  ├─ Bypass (Yes/No)
+│  ├─ Sequences completed
+│  ├─ Success (✓/✗ - ended cleanly or stuck in Stage 2)
+│  ├─ Turnover (total bet amount)
+│  ├─ Profit (Chips), Profit (Units)
+│  ├─ Worst Loss
+│  └─ Status (ACTIVE/ENDED)
+├─ Session Detail Viewer:
+│  ├─ Dropdown to select session
+│  ├─ Configuration details (file, codes, divisor, bypass, outcomes)
+│  ├─ Results:
+│  │  ├─ Sequences completed, Final balance
+│  │  ├─ Final Stage (Stage 1/Stage 2 Unfinished/Stage 2 Recovered)
+│  │  ├─ Success status (Clean finish / Stuck in Stage 2)
+│  │  ├─ Final Bank, Profit/Loss
+│  │  ├─ Turnover
+│  │  ├─ Status, Outcomes processed
+│  ├─ Worst Drawdown Details (line, bet, negative, positive, calculations)
+│  ├─ Balance Progression Chart
+│  ├─ Betting Details DataFrame (expandable)
+│  └─ System Messages (expandable)
+└─ Session Comparison:
+   ├─ Select multiple sessions to compare
+   ├─ Side-by-side metric comparison
+   └─ Comparative chart display
+  ↓
+Session File Management
+├─ Files stored in session_history/ folder
+├─ Format: session_YYYYMMDD_HHMMSS.json
+├─ Multi-select delete with checkboxes
+├─ Delete confirmation for "Delete All"
+└─ Automatic statistics recalculation
+  ↓
+END TAB 3
 
 ## Rule Interaction Matrix
 
@@ -167,10 +327,10 @@ END PROGRAM
 │ 4-Corner Active  │ 1       │ Active         │ Update Only    │ NO (suppressed) │
 │ 4-Corner Active  │ 2       │ STOPPED        │ Update Only    │ NO (suppressed) │
 │ 4-Corner Ended   │ 1 & 2   │ Active         │ Apply Pending  │ Yes (delayed)   │
-│ a > 10           │ 2 only  │ STOPPED*       │ Update & Show  │ Yes             │
+│ a > 10 (bypass)  │ 2 only  │ CONDITIONAL*   │ Update & Show  │ Yes             │
 │ Stage 2 Complete │ 3       │ None           │ Final Codes    │ Yes + "STOP"    │
 └──────────────────┴─────────┴────────────────┴────────────────┴─────────────────┘
-* Unless negative > 20 units, then betting continues
+* Betting continues if bypass_a10_rule enabled AND negative > 20, otherwise stops
 
 ## Key Decision Points
 
@@ -195,8 +355,11 @@ END PROGRAM
    - Loss: Progress to next bet type
 
 6. **Stage 2 Entry Conditions?**
-   - a ≤ 10 AND sequence codes displayed
-   - OR negative > 20 units (bypass a ≤ 10 rule)
+   - If bypass_a10_rule enabled:
+     - Bet if: a ≤ 10 OR negative > 20 units
+   - If bypass_a10_rule disabled:
+     - Bet ONLY if: a ≤ 10 (strict enforcement)
+   - AND sequence codes must be displayed
 
 7. **Stage 2 Bet Calculation?**
    - If a > 4: Use min(base_units, risk_managed_units)
@@ -206,6 +369,7 @@ END PROGRAM
 
 8. **Stage 2 Recovery Status?**
    - negative + positive ≥ 0: Complete recovery → Stage 3
+   - Set stage2_recovery_successful = True
    - Can occur at any value of 'a' (not just when a ≤ 4)
    - Sequence resets immediately on next line
    - negative + positive < 0: Continue Stage 2
@@ -216,6 +380,16 @@ END PROGRAM
    - On sequence completion: Resets to initial value
    - Progression examples: 16→8→4→2→1, then reset to 16
 
+10. **Session Success Determination?**
+    - session_successful = True if stage != 2 when outcomes end
+    - True = Clean finish (Stage 1 or recovered from Stage 2)
+    - False = Stuck in unfinished Stage 2 recovery
+
+11. **File Format Support?**
+    - .txt files: one number per line (from Live Play Mode)
+    - .csv files: first column contains numbers
+    - .xls/.xlsx files: first column contains numbers
+
 ## Critical Timing Notes
 
 - Sequence codes calculated AFTER outcome, applied to CURRENT line display
@@ -224,6 +398,7 @@ END PROGRAM
 - Stage 2: Four corner rule suppresses NEXT line display AND stops betting
 - Stage 2: Betting only when sequence codes are displayed
 - Stage 2: Divisor changes only during active betting periods, resets on sequence completion
+- Stage 2: Bypass rule checked on each betting decision
 - Betting resumes line AFTER wait periods end
 - Mixed numbers carry forward from Stage 1 to Stage 2
 - Stage 1 Bet2/Bet3 recovery: Resets mixed numbers only, sequence continues
@@ -232,3 +407,8 @@ END PROGRAM
 - All rules can be active simultaneously with stage-specific behaviors
 - System messages numbered by DataFrame line for debugging
 - File list automatically sorted by date (YYYY-MM-DD prefix)
+- Turnover accumulates every time a bet is placed (win or loss)
+- Session success tracked based on final stage (stuck in Stage 2 = unsuccessful)
+- Live Play Mode saves numbers that can be loaded in Run Simulation
+- Session history supports multi-select delete with checkbox interface
+- Worst drawdown tracks the deepest loss point during session
