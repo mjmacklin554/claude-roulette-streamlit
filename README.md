@@ -168,7 +168,7 @@ See `CHANGELOG.md` for detailed version history.
 
 ## Credits
 
-Developed using Claude Code (Anthropic).
+Developed by Michael Macklin with some assistance from ClaudeAI
 
 ## License
 
