@@ -1382,39 +1382,322 @@ with tab2:
             if process_manual:
                 # Process the number using the shared function
                 process_outcome_live(number_input, st, A1, A2, live_bypass_a10, sequence_code_options, live_sequence_option)
+                    # Get shorthand references to session state
+                    seq_code = st.session_state.live_sequence_codes
+                    stage = st.session_state.live_stage
+                    bet_type = st.session_state.live_current_bet_type
+                    balance = st.session_state.live_balance
+                    cum_neg = st.session_state.live_cumulative_negative
+                    cum_pos = st.session_state.live_cumulative_positive_chips
+
+                    # Helper functions (same as Tab 1)
+                    def calculate_new_a_live(a):
+                        if a > 13:
+                            return 10
+                        elif 10 < a < 14:
+                            return a - 4
+                        elif 7 < a < 11:
+                            return a - 3
+                        elif a < 8:
+                            return a - 2
+                        return a
+
+                    def chips_to_mixed_number_live(chips):
+                        if chips == 0:
+                            return {'integer': 0, 'decimal': 0}
+                        abs_chips = abs(chips)
+                        units_of_4 = abs_chips // 4
+                        remainder = abs_chips % 4
+                        if chips < 0:
+                            if remainder == 0:
+                                return {'integer': -units_of_4, 'decimal': 0}
+                            else:
+                                return {'integer': -(units_of_4 + 1), 'decimal': 4 - remainder}
+                        else:
+                            return {'integer': units_of_4, 'decimal': remainder}
+
+                    def add_mixed_numbers_live(mixed1, mixed2):
+                        if mixed1['integer'] == 0 and mixed1['decimal'] == 0:
+                            return mixed2
+                        if mixed2['integer'] == 0 and mixed2['decimal'] == 0:
+                            return mixed1
+                        return {'integer': mixed1['integer'] + mixed2['integer'], 'decimal': mixed1['decimal']}
+
+                    def mixed_to_chips_from_dict_live(mixed_dict):
+                        if mixed_dict['integer'] < 0:
+                            return mixed_dict['integer'] * 4
+                        else:
+                            return (mixed_dict['integer'] * 4) + mixed_dict['decimal']
+
+                    # Apply pending sequence codes if any
+                    if st.session_state.live_pending_sequence_codes and not st.session_state.live_four_corner_rule_active:
+                        seq_code.update(st.session_state.live_pending_sequence_codes)
+                        st.session_state.live_debug_messages.append((line_num, f"Applying pending sequence codes"))
+                        st.session_state.live_pending_sequence_codes = None
+
+                    # Place bet based on current stage
+                    bet_result = {'bet_amount': 0, 'loss_mixed': {'integer': 0, 'decimal': 0}, 'win_mixed': False}
+
+                    if stage == 1:
+                        # Stage 1 betting logic
+                        if st.session_state.live_waiting_for_a1_losses:
+                            if outcome in A1:
+                                st.session_state.live_non_a1_count = 0
+                            else:
+                                st.session_state.live_non_a1_count += 1
+                                if st.session_state.live_non_a1_count >= 3:
+                                    st.session_state.live_waiting_for_a1_losses = False
+                                    st.session_state.live_non_a1_count = 0
+                                    st.session_state.live_debug_messages.append((line_num, "A1 wait period ended"))
+                        else:
+                            # Determine bet parameters
+                            if bet_type == 1:
+                                bet_amount = 5
+                                bet_numbers = A2
+                                win_profit = 1
+                                bet_units = 0
+                            elif bet_type == 2:
+                                bet_amount = 4
+                                bet_numbers = A1
+                                win_profit = 5
+                                bet_units = 1
+                            elif bet_type == 3:
+                                bet_amount = 8
+                                bet_numbers = A1
+                                win_profit = 10
+                                bet_units = 2
+                            else:
+                                bet_amount = 0
+                                bet_numbers = []
+
+                            if bet_type <= 3 and bet_amount > 0:
+                                is_win = outcome in bet_numbers
+
+                                if is_win:
+                                    # Handle win
+                                    if bet_type == 1:
+                                        balance += win_profit
+                                        st.session_state.live_current_bet_type = 1
+                                        if outcome in A1:
+                                            st.session_state.live_waiting_for_a1_losses = True
+                                            st.session_state.live_non_a1_count = 0
+                                    else:
+                                        # Bet2/Bet3 win - mixed number logic
+                                        cum_neg['integer'] += bet_units
+                                        bip_chips = bet_units
+                                        existing_decimal_chips = cum_neg['decimal']
+                                        cum_pos = existing_decimal_chips + bip_chips
+                                        negative_chips = mixed_to_chips_from_dict_live(cum_neg)
+                                        total_recovery = negative_chips + cum_pos
+                                        recovery_achieved = False
+                                        if total_recovery >= 0:
+                                            balance += total_recovery
+                                            recovery_achieved = True
+                                            cum_neg = {'integer': 0, 'decimal': 0}
+                                            cum_pos = 0
+                                        st.session_state.live_current_bet_type = 1
+                                        if outcome in A1:
+                                            st.session_state.live_waiting_for_a1_losses = True
+                                            st.session_state.live_non_a1_count = 0
+                                        bet_result['recovery_achieved'] = recovery_achieved
+                                        st.session_state.live_cumulative_negative = cum_neg
+                                        st.session_state.live_cumulative_positive_chips = cum_pos
+                                    bet_result = {'bet_amount': bet_amount, 'win_mixed': (bet_type > 1)}
+                                    st.session_state.live_balance = balance
+                                else:
+                                    # Handle loss
+                                    loss_mixed_number = chips_to_mixed_number_live(-bet_amount)
+                                    cum_neg = add_mixed_numbers_live(cum_neg, loss_mixed_number)
+                                    st.session_state.live_cumulative_negative = cum_neg
+                                    st.session_state.live_current_bet_type += 1
+                                    if st.session_state.live_current_bet_type > 3:
+                                        st.session_state.live_debug_messages.append((line_num, "Bet3 lost. Stage 2 begins."))
+                                        st.session_state.live_stage = 2
+                                        stage = 2
+                                        st.session_state.live_cumulative_positive_chips = cum_neg['decimal']
+                                    bet_result = {'bet_amount': bet_amount, 'loss_mixed': loss_mixed_number}
+
+                                if not st.session_state.live_first_bet_placed:
+                                    st.session_state.live_first_bet_placed = True
+
+                    elif stage == 2:
+                        # Stage 2 betting logic
+                        codes_displayed = not st.session_state.live_four_corner_rule_active
+
+                        if codes_displayed:
+                            negative_units = abs(cum_neg['integer'])
+                            should_bet = False
+
+                            if live_bypass_a10:
+                                should_bet = not (seq_code['a'] > 10 and negative_units <= 20)
+                                if seq_code['a'] > 10 and negative_units > 20:
+                                    st.session_state.live_debug_messages.append((line_num, f"Bypass rule activated"))
+                            else:
+                                should_bet = seq_code['a'] <= 10
+
+                            if should_bet:
+                                import math
+                                normal_bet_units = int(seq_code['c'] / st.session_state.live_stage2_divisor)
+                                if normal_bet_units == 0:
+                                    normal_bet_units = 1
+
+                                # Risk management
+                                negative_integer = abs(cum_neg['integer'])
+                                positive_integer = 0
+                                if cum_pos > 0:
+                                    positive_mixed = chips_to_mixed_number_live(cum_pos)
+                                    positive_integer = positive_mixed['integer']
+
+                                recovery_shortfall = negative_integer - positive_integer
+
+                                if seq_code['a'] <= 4:
+                                    negative_chips = mixed_to_chips_from_dict_live(cum_neg)
+                                    current_deficit_chips = -(negative_chips + cum_pos)
+                                    min_recovery_bet_units = math.ceil(current_deficit_chips / 5)
+                                    if min_recovery_bet_units == 0:
+                                        min_recovery_bet_units = 1
+                                    bet_units = min_recovery_bet_units
+                                else:
+                                    risk_managed_bet_units = int(abs(recovery_shortfall) * 0.8)
+                                    if risk_managed_bet_units == 0:
+                                        risk_managed_bet_units = 1
+                                    bet_units = min(normal_bet_units, risk_managed_bet_units)
+
+                                bet_chips = bet_units * 4
+                                is_win = outcome in A1
+
+                                if is_win:
+                                    cum_neg['integer'] += bet_units
+                                    bip_chips = bet_units
+                                    cum_pos += bip_chips
+                                    negative_chips = mixed_to_chips_from_dict_live(cum_neg)
+                                    total_recovery = negative_chips + cum_pos
+
+                                    if total_recovery >= 0:
+                                        balance += total_recovery
+                                        st.session_state.live_debug_messages.append((line_num, "Stage 2 recovery successful!"))
+                                        st.session_state.live_stage = 3
+                                        stage = 3
+
+                                    st.session_state.live_balance = balance
+                                    st.session_state.live_cumulative_negative = cum_neg
+                                    st.session_state.live_cumulative_positive_chips = cum_pos
+                                    bet_result = {'bet_amount': bet_chips, 'units': bet_units, 'win_mixed': True}
+                                else:
+                                    loss_mixed_number = chips_to_mixed_number_live(-bet_chips)
+                                    cum_neg = add_mixed_numbers_live(cum_neg, loss_mixed_number)
+                                    st.session_state.live_cumulative_negative = cum_neg
+                                    bet_result = {'bet_amount': bet_chips, 'units': bet_units, 'loss_mixed': loss_mixed_number}
+
+                    # Track consecutive non-A1 for four corner rule
+                    if outcome in A1:
+                        st.session_state.live_consecutive_non_a1 = 0
+                        if st.session_state.live_four_corner_rule_active:
+                            st.session_state.live_four_corner_rule_active = False
+                    else:
+                        st.session_state.live_consecutive_non_a1 += 1
+
+                    # Update sequence codes
+                    is_a1_win = outcome in A1
+                    if is_a1_win:
+                        seq_code['a'] = calculate_new_a_live(seq_code['a'])
+                        seq_code['b'] = seq_code['b'] - seq_code['c']
+                        if seq_code['a'] == 0:
+                            seq_code['a'] = 1
+                        seq_code['c'] = (int(seq_code['b'] / seq_code['a'])) * 2
+                    else:
+                        seq_code['a'] = seq_code['a'] + 1
+                        seq_code['b'] = seq_code['b'] + seq_code['c']
+                        if seq_code['b'] > 89:
+                            seq_code['b'] = int((seq_code['b'] + 1) / 2)
+                            if stage == 2 and st.session_state.live_stage2_divisor > 1:
+                                st.session_state.live_stage2_divisor = st.session_state.live_stage2_divisor // 2
+                        if seq_code['a'] == 0:
+                            seq_code['a'] = 1
+                        seq_code['c'] = (int(seq_code['b'] / seq_code['a'])) * 2
+
+                    # Check for sequence completion
+                    if (st.session_state.live_first_bet_placed and seq_code['a'] < 3) or stage == 3:
+                        st.session_state.live_debug_messages.append((line_num, f"Sequence {st.session_state.live_sequence_number} completed!"))
+                        # Reset for new sequence
+                        st.session_state.live_sequence_codes = sequence_code_options[live_sequence_option].copy()
+                        st.session_state.live_recording = False
+                        st.session_state.live_current_bet_type = 1
+                        st.session_state.live_stage = 1
+                        st.session_state.live_stage2_divisor = st.session_state.live_initial_stage2_divisor
+                        st.session_state.live_waiting_for_a1_losses = False
+                        st.session_state.live_non_a1_count = 0
+                        st.session_state.live_four_corner_rule_active = False
+                        st.session_state.live_consecutive_non_a1 = 0
+                        st.session_state.live_pending_sequence_codes = None
+                        st.session_state.live_cumulative_negative = {'integer': 0, 'decimal': 0}
+                        st.session_state.live_cumulative_positive_chips = 0
+                        st.session_state.live_first_bet_placed = False
+
+                    # Check for four corner rule trigger
+                    if st.session_state.live_consecutive_non_a1 == 4:
+                        st.session_state.live_four_corner_rule_active = True
+                        st.session_state.live_pending_sequence_codes = seq_code.copy()
+
+                    # Update next bet recommendation
+                    if not st.session_state.live_recording:
+                        st.session_state.live_current_bet = "Wait for first A1 win"
+                    elif st.session_state.live_waiting_for_a1_losses:
+                        st.session_state.live_current_bet = "Wait (A1 wait period)"
+                    elif st.session_state.live_stage == 1:
+                        bet_type = st.session_state.live_current_bet_type
+                        if bet_type == 1:
+                            st.session_state.live_current_bet = "Bet 1: 5 chips on A2 (Six-Line)"
+                        elif bet_type == 2:
+                            st.session_state.live_current_bet = "Bet 2: 4 chips on A1 (Corners)"
+                        elif bet_type == 3:
+                            st.session_state.live_current_bet = "Bet 3: 8 chips on A1 (Corners)"
+                    elif st.session_state.live_stage == 2:
+                        if st.session_state.live_four_corner_rule_active:
+                            st.session_state.live_current_bet = "Wait (Four corner rule - wait for A1)"
+                        else:
+                            # Calculate next bet units
+                            a_val = st.session_state.live_sequence_codes['a']
+                            c_val = st.session_state.live_sequence_codes['c']
+                            div_val = st.session_state.live_stage2_divisor
+                            units = max(1, int(c_val / div_val))
+                            st.session_state.live_current_bet = f"Stage 2: {units} units on A1 (Corners)"
+                    elif st.session_state.live_stage == 3:
+                        st.session_state.live_current_bet = "Sequence completed - wait for next A1"
+
+                    st.success(f"✓ Number {outcome} processed - {'WIN' if outcome in A1 else 'LOSS'}")
+
+                st.rerun()
+
         else:
             # Spinning Wheel mode
-            st.subheader("🎰 Interactive Spinning Wheel")
+            st.subheader("Spinning Wheel - Auto-Generate Numbers")
 
             # Display the wheel using components
             import streamlit.components.v1 as components
+            import random
 
-            st.info("👇 Click 'SPIN WHEEL' to generate a random number, then enter the result in the field below")
-
-            # Load the interactive HTML
-            with open('roulette_wheel_interactive.html', 'r') as f:
+            # Load the HTML
+            with open('roulette_wheel.html', 'r') as f:
                 wheel_html = f.read()
 
-            # Display the interactive wheel
-            components.html(wheel_html, height=800, scrolling=False)
+            # Display the wheel (for visual effect)
+            st.info("🎰 Visual roulette wheel for atmosphere - Click 'SPIN & GENERATE' button below to play")
+            components.html(wheel_html, height=750, scrolling=False)
 
+            # Add a spin button that generates AND processes a random number
             st.write("---")
+            st.subheader("Generate & Process Result")
 
-            # Manual entry after seeing wheel result
-            st.subheader("Enter the Wheel Result")
-            col1, col2 = st.columns([1, 3])
-            with col1:
-                wheel_number_input = st.number_input("Number from wheel:",
-                                                      min_value=0,
-                                                      max_value=36,
-                                                      value=0,
-                                                      step=1,
-                                                      key="wheel_number_input")
-            with col2:
-                st.write("")
-                st.write("")
-                if st.button("Process Wheel Result", type="primary", key="process_wheel_number"):
-                    process_outcome_live(wheel_number_input, st, A1, A2, live_bypass_a10, sequence_code_options, live_sequence_option)
+            if st.button("🎲 SPIN & GENERATE NUMBER", type="primary", key="random_spin", use_container_width=True):
+                # Generate random number (0-36)
+                outcome = random.randint(0, 36)
+
+                # Process using the SAME logic as manual entry - extract to avoid duplication
+                # We'll call the same processing block by wrapping it
+                process_outcome_live(outcome, st, A1, A2, live_bypass_a10, sequence_code_options, live_sequence_option)
+
+            st.caption("💡 Tip: The wheel animation above is for visual effect. Click the button above to generate a random number and process it through the betting system.")
 
     # Display current betting recommendation (always show if session active)
     if st.session_state.live_session_active:

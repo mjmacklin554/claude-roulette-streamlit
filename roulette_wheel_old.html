@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #1a472a;
+            font-family: Arial, sans-serif;
+        }
+
+        #wheelContainer {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 20px auto;
+        }
+
+        #wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+        }
+
+        #pointer {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 30px solid gold;
+            z-index: 100;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        #center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(145deg, #c9b037, #f4e95c);
+            border-radius: 50%;
+            border: 3px solid #8b7220;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #8b7220;
+        }
+
+        .segment {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(50% 50%, 50% 0%, 52.7% 0%);
+            transform-origin: center;
+        }
+
+        .segment-inner {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 50%;
+            transform-origin: bottom left;
+        }
+
+        .number-label {
+            position: absolute;
+            top: 15%;
+            left: 70%;
+            transform: translate(-50%, -50%) rotate(90deg);
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        #resultDisplay {
+            margin: 20px;
+            padding: 20px 40px;
+            background: linear-gradient(145deg, #2d5a3d, #1a472a);
+            border: 3px solid gold;
+            border-radius: 10px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            min-width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #resultNumber {
+            font-size: 48px;
+            margin: 10px 0;
+        }
+
+        #spinButton {
+            padding: 15px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            background: linear-gradient(145deg, #c9b037, #f4e95c);
+            color: #1a472a;
+            border: 3px solid #8b7220;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s;
+            margin: 20px;
+        }
+
+        #spinButton:hover:not(:disabled) {
+            background: linear-gradient(145deg, #f4e95c, #c9b037);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        #spinButton:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .red { background-color: #c41e3a; }
+        .black { background-color: #000000; }
+        .green { background-color: #00693e; }
+    </style>
+</head>
+<body>
+    <div id="wheelContainer">
+        <div id="pointer"></div>
+        <div id="wheel"></div>
+        <div id="center">SPIN</div>
+    </div>
+
+    <div id="resultDisplay">
+        <div style="font-size: 18px; opacity: 0.8;">Result</div>
+        <div id="resultNumber">-</div>
+        <div id="resultColor" style="font-size: 16px; opacity: 0.8;"></div>
+    </div>
+
+    <button id="spinButton">SPIN WHEEL</button>
+
+    <script>
+        // European Roulette wheel order (standard layout)
+        const wheelNumbers = [
+            0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5,
+            24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26
+        ];
+
+        // Color mapping for European roulette
+        const redNumbers = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36];
+        const blackNumbers = [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35];
+
+        function getColor(num) {
+            if (num === 0) return 'green';
+            if (redNumbers.includes(num)) return 'red';
+            if (blackNumbers.includes(num)) return 'black';
+        }
+
+        // Create wheel segments
+        const wheel = document.getElementById('wheel');
+        const segmentAngle = 360 / wheelNumbers.length;
+
+        wheelNumbers.forEach((num, index) => {
+            const segment = document.createElement('div');
+            segment.className = 'segment';
+            segment.style.transform = `rotate(${index * segmentAngle}deg)`;
+
+            const inner = document.createElement('div');
+            inner.className = `segment-inner ${getColor(num)}`;
+            inner.style.clipPath = `polygon(0 0, 100% 0, 100% 100%)`;
+
+            const label = document.createElement('div');
+            label.className = 'number-label';
+            label.textContent = num;
+            label.style.transform = `translate(-50%, -50%) rotate(${90 + segmentAngle/2}deg)`;
+
+            inner.appendChild(label);
+            segment.appendChild(inner);
+            wheel.appendChild(segment);
+        });
+
+        let isSpinning = false;
+        let currentRotation = 0;
+
+        document.getElementById('spinButton').addEventListener('click', spinWheel);
+
+        function spinWheel() {
+            if (isSpinning) return;
+
+            isSpinning = true;
+            document.getElementById('spinButton').disabled = true;
+            document.getElementById('resultNumber').textContent = '...';
+            document.getElementById('resultColor').textContent = '';
+
+            // Generate random winning number (0-36)
+            const winningNumber = Math.floor(Math.random() * 37);
+
+            // Find the index of winning number on wheel
+            const winningIndex = wheelNumbers.indexOf(winningNumber);
+
+            // Calculate target rotation
+            // We want the winning number to stop at the top (under the pointer)
+            const extraSpins = 5 + Math.random() * 3; // 5-8 full rotations
+            const targetAngle = (extraSpins * 360) + (360 - (winningIndex * segmentAngle)) - (segmentAngle / 2);
+
+            // Apply rotation
+            wheel.style.transform = `rotate(${currentRotation + targetAngle}deg)`;
+            currentRotation += targetAngle;
+
+            // Show result after spin completes
+            setTimeout(() => {
+                const color = getColor(winningNumber);
+                const colorText = color.charAt(0).toUpperCase() + color.slice(1);
+
+                document.getElementById('resultNumber').textContent = winningNumber;
+                document.getElementById('resultNumber').style.color =
+                    color === 'red' ? '#c41e3a' :
+                    color === 'black' ? '#000000' : '#00693e';
+                document.getElementById('resultColor').textContent = colorText;
+
+                // Send result to Streamlit
+                window.parent.postMessage({
+                    type: 'streamlit:rouletteResult',
+                    number: winningNumber
+                }, '*');
+
+                isSpinning = false;
+                document.getElementById('spinButton').disabled = false;
+            }, 3000);
+        }
+
+        // Auto-spin on load for demo
+        // setTimeout(spinWheel, 500);
+    </script>
+</body>
+</html>

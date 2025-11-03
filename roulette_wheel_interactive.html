@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #1a472a;
+            font-family: Arial, sans-serif;
+        }
+
+        #wheelContainer {
+            position: relative;
+            width: 450px;
+            height: 450px;
+            margin: 10px auto;
+        }
+
+        #wheelOuter {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #8b6914, #c9a236);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #wheel {
+            width: calc(100% - 30px);
+            height: calc(100% - 30px);
+            border-radius: 50%;
+            position: relative;
+            background: #1a1a1a;
+            transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            border: 5px solid #333;
+        }
+
+        #wheel.spinning .pocket-inner {
+            transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+        }
+
+        #pointer {
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 35px solid gold;
+            z-index: 100;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.5));
+        }
+
+        #center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(145deg, #c9b037, #f4e95c);
+            border-radius: 50%;
+            border: 4px solid #8b7220;
+            z-index: 50;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 11px;
+            color: #8b7220;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .pocket {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-origin: center;
+        }
+
+        .pocket-inner {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 28px;
+            height: 40px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            border: 1.5px solid #333;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
+        }
+
+        .pocket-inner.winning {
+            border: 3px solid gold !important;
+            box-shadow: 0 0 15px gold, inset 0 1px 3px rgba(0,0,0,0.4) !important;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 15px gold, inset 0 1px 3px rgba(0,0,0,0.4); }
+            50% { box-shadow: 0 0 25px gold, inset 0 1px 3px rgba(0,0,0,0.4); }
+        }
+
+        .red { background-color: #d32f2f; }
+        .black { background-color: #1a1a1a; }
+        .green { background-color: #2e7d32; }
+
+        #resultDisplay {
+            margin: 15px;
+            padding: 15px 30px;
+            background: linear-gradient(145deg, #2d5a3d, #1a472a);
+            border: 3px solid gold;
+            border-radius: 10px;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            min-width: 150px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #resultNumber {
+            font-size: 40px;
+            margin: 8px 0;
+        }
+
+        #spinButton {
+            padding: 15px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            background: linear-gradient(145deg, #c9b037, #f4e95c);
+            color: #1a472a;
+            border: 3px solid #8b7220;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s;
+            margin: 15px;
+        }
+
+        #spinButton:hover:not(:disabled) {
+            background: linear-gradient(145deg, #f4e95c, #c9b037);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        #spinButton:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .message {
+            color: #f4e95c;
+            font-size: 14px;
+            margin: 5px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="wheelContainer">
+        <div id="pointer"></div>
+        <div id="wheelOuter">
+            <div id="wheel"></div>
+        </div>
+        <div id="center">ROULETTE</div>
+    </div>
+
+    <div id="resultDisplay">
+        <div style="font-size: 16px; opacity: 0.8;">Result</div>
+        <div id="resultNumber">-</div>
+        <div id="resultColor" style="font-size: 14px; opacity: 0.8;"></div>
+    </div>
+
+    <button id="spinButton">🎰 SPIN WHEEL</button>
+    <div id="message" class="message"></div>
+
+    <script>
+        // European Roulette wheel order (single zero)
+        const wheelNumbers = [
+            0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5,
+            24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26
+        ];
+
+        const redNumbers = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36];
+        const blackNumbers = [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35];
+
+        function getColor(num) {
+            if (num === 0) return 'green';
+            if (redNumbers.includes(num)) return 'red';
+            if (blackNumbers.includes(num)) return 'black';
+        }
+
+        // Create wheel pockets
+        const wheel = document.getElementById('wheel');
+        const totalPockets = wheelNumbers.length;
+        const radius = 165; // Distance from center to pocket
+
+        wheelNumbers.forEach((num, index) => {
+            const pocket = document.createElement('div');
+            pocket.className = 'pocket';
+            pocket.dataset.number = num; // Store number for debugging
+            pocket.dataset.index = index; // Store index for debugging
+
+            // Rotate each pocket segment
+            const angle = (index * 360 / totalPockets);
+            pocket.style.transform = `rotate(${angle}deg)`;
+
+            // Create the colored inner pocket
+            const pocketInner = document.createElement('div');
+            pocketInner.className = `pocket-inner ${getColor(num)}`;
+            pocketInner.textContent = num;
+            pocketInner.dataset.baseAngle = angle; // Store for counter-rotation
+
+            pocket.appendChild(pocketInner);
+            wheel.appendChild(pocket);
+        });
+
+        let isSpinning = false;
+        let currentRotation = 0;
+
+        document.getElementById('spinButton').addEventListener('click', spinWheel);
+
+        function spinWheel() {
+            if (isSpinning) return;
+
+            isSpinning = true;
+            document.getElementById('spinButton').disabled = true;
+            document.getElementById('resultNumber').textContent = '...';
+            document.getElementById('resultColor').textContent = '';
+            document.getElementById('message').textContent = '';
+
+            // Generate random winning number
+            const winningNumber = Math.floor(Math.random() * 37);
+
+            // Find index and calculate rotation
+            const winningIndex = wheelNumbers.indexOf(winningNumber);
+            const extraSpins = Math.floor(5 + Math.random() * 4); // 5-8 full spins (integer only!)
+            const degreesPerPocket = 360 / totalPockets;
+
+            // Each pocket is positioned at: index * degreesPerPocket
+            // Pocket 0 is at 0°, Pocket 1 is at ~9.73°, etc.
+            const pocketAngle = winningIndex * degreesPerPocket;
+
+            // The wheel rotates, but we need to think about where pockets END UP
+            // If we rotate the wheel by +R degrees, a pocket at base angle P ends up at (P + R) % 360
+            // But we want the winning pocket to be at 0° (top, under the pointer)
+
+            // So: (pocketAngle + targetRotation) % 360 = 0
+            // Therefore: targetRotation = -pocketAngle (mod 360)
+            // Which is: targetRotation = 360 - pocketAngle (for positive rotation)
+            // Plus extra full spins: targetRotation = 360*n - pocketAngle
+
+            const extraSpinDegrees = extraSpins * 360;
+            const targetFinalRotation = extraSpinDegrees - pocketAngle;
+
+            console.log(`Spinning to number ${winningNumber} at index ${winningIndex}`);
+            console.log(`Pocket base angle: ${pocketAngle}°`);
+            console.log(`Extra spins: ${extraSpins} (= ${extraSpinDegrees}°)`);
+            console.log(`Target rotation: ${targetFinalRotation}° (= ${extraSpinDegrees}° - ${pocketAngle}°)`);
+            console.log(`Final position mod 360: ${((targetFinalRotation % 360) + 360) % 360}°`);
+
+            // Spin the wheel
+            wheel.style.transform = `rotate(${targetFinalRotation}deg)`;
+            currentRotation = targetFinalRotation;
+
+            // Show result after spin
+            setTimeout(() => {
+                // Verify: After rotation R, a pocket at base angle P is now at (P + R) % 360
+                // We want to find which pocket is at 0° (top)
+
+                const finalRotation = ((currentRotation % 360) + 360) % 360;
+
+                // Which pocket ended up at 0°?
+                // For each pocket i: pocket_angle_i = i * degreesPerPocket
+                // After rotation: new_position_i = (pocket_angle_i + finalRotation) % 360
+                // We want: new_position = 0, so: (pocket_angle_i + finalRotation) % 360 = 0
+                // Therefore: pocket_angle_i = -finalRotation (mod 360) = 360 - finalRotation
+
+                const angleAtTop = (360 - finalRotation) % 360;
+                const pocketAtTop = Math.round(angleAtTop / degreesPerPocket) % totalPockets;
+                const actualNumber = wheelNumbers[pocketAtTop];
+
+                console.log(`\nAfter spin verification:`);
+                console.log(`Final rotation: ${finalRotation}°`);
+                console.log(`Pocket angle that should be at top: ${angleAtTop}°`);
+                console.log(`Pocket index at top: ${pocketAtTop}, Number: ${actualNumber}`);
+                console.log(`Expected: index ${winningIndex}, number ${winningNumber}`);
+                console.log(`Match: ${actualNumber === winningNumber ? '✓ CORRECT' : '✗ WRONG'}`);
+
+                // Verify where winning pocket ended up
+                const winningPocketFinalPosition = (pocketAngle + finalRotation) % 360;
+                console.log(`Winning pocket final position: ${winningPocketFinalPosition}° (should be 0°)`);
+                console.log(`Visual check: Number ${winningNumber} should be at the TOP under the gold pointer\n`);
+
+                // Highlight the winning pocket
+                const allPocketInners = wheel.querySelectorAll('.pocket-inner');
+                allPocketInners.forEach(inner => inner.classList.remove('winning'));
+                const winningPocket = wheel.querySelector(`.pocket[data-index="${winningIndex}"] .pocket-inner`);
+                if (winningPocket) {
+                    winningPocket.classList.add('winning');
+                }
+
+                const color = getColor(winningNumber);
+                const colorText = color.charAt(0).toUpperCase() + color.slice(1);
+
+                document.getElementById('resultNumber').textContent = winningNumber;
+                document.getElementById('resultNumber').style.color =
+                    color === 'red' ? '#d32f2f' :
+                    color === 'black' ? '#1a1a1a' : '#2e7d32';
+                document.getElementById('resultColor').textContent = colorText;
+
+                document.getElementById('message').textContent = '👇 Enter this number in the field below and click "Process Wheel Result"';
+
+                isSpinning = false;
+                document.getElementById('spinButton').disabled = false;
+            }, 4000); // 4 second spin
+        }
+    </script>
+</body>
+</html>
