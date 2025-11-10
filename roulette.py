@@ -94,7 +94,7 @@ def delete_session(filename):
     return False
 
 # Streamlit user inputs - Create tabs for main app, live play, and history
-tab1, tab2, tab3 = st.tabs(["Run Simulation", "Live Play Mode", "View History"])
+tab1, tab2, tab3, tab4 = st.tabs(["Run Simulation", "Live Play Mode", "View History", "Batch Processing"])
 
 with tab1:
     st.title("Michael's Roulette System Configuration")
@@ -136,6 +136,30 @@ with tab1:
     # Bypass rule checkbox
     bypass_a10_rule = st.checkbox("Enable 'Negative > 20' Bypass Rule", value=True,
                                   help="When enabled, allows betting even when a > 10 if negative exceeds 20 units. When disabled, ALWAYS enforces a ≤ 10 rule.")
+
+    # Only bet when c > 7 checkbox
+    only_bet_c_gt_7 = st.checkbox("Only bet when c > 7", value=False,
+                                  help="When enabled, skips betting when sequence code 'c' is 7 or less (works like A1 wait rule).")
+
+    # A1 Wait Rule checkbox
+    enable_a1_wait_rule = st.checkbox("Enable A1 Wait Rule", value=False,
+                                      help="When enabled, waits for 3 consecutive non-A1 outcomes after an A1 win before resuming betting.")
+
+    # Always bet when a > 10 checkbox
+    always_bet_a_gt_10 = st.checkbox("Always bet when a > 10", value=False,
+                                     help="When enabled, ALWAYS bets when a > 10 regardless of negative units (overrides bypass rule).")
+
+    # Enable divisor below 1 checkbox
+    enable_divisor_below_1 = st.checkbox("Enable divisor below 1 (aggressive betting)", value=False,
+                                        help="When enabled, allows divisor to continue halving below 1 (0.5, 0.25, etc.), resulting in multiplied bets (c*2, c*4, etc.).")
+
+    # Max bet cap
+    max_bet_cap = st.number_input("Max Bet Cap (Stage 2 units, 0 = no cap)",
+                                  min_value=0,
+                                  max_value=100,
+                                  value=0,
+                                  step=5,
+                                  help="Sets an absolute maximum bet size in Stage 2. Set to 0 for no cap. Recommended: 25-30 units for safety.")
 
     # Debug checkbox
     debug_mode = st.checkbox("Enable Debug Output", value=False,
@@ -406,8 +430,8 @@ with tab1:
                     # Stage 1 betting logic (inline)
                     bet_result = {'bet_amount': 0, 'loss_mixed': {'integer': 0, 'decimal': 0}, 'win_mixed': False}
 
-                    # Check A1 wait rule first
-                    if waiting_for_a1_losses:
+                    # Check A1 wait rule first (only if enabled)
+                    if enable_a1_wait_rule and waiting_for_a1_losses:
                         if outcome in A1:
                             # A1 outcome resets the counter
                             non_a1_count = 0
@@ -420,6 +444,9 @@ with tab1:
                                 non_a1_count = 0
                                 debug_messages.append((line_num, f"A1 wait period ended after 3 non-A1 outcomes"))
                             bet_result = {'bet_amount': 0, 'loss_mixed': {'integer': 0, 'decimal': 0}, 'win_mixed': False}
+                    elif only_bet_c_gt_7 and sequence_code['c'] <= 7:
+                        # c <= 7 rule: skip betting (like A1 wait rule)
+                        bet_result = {'bet_amount': 0, 'loss_mixed': {'integer': 0, 'decimal': 0}, 'win_mixed': False}
                     else:
                         # Determine bet parameters based on current bet type
                         if current_bet_type == 1:
@@ -449,7 +476,7 @@ with tab1:
                                 if current_bet_type == 1:
                                     balance += win_profit
                                     current_bet_type = 1
-                                    if outcome in A1:
+                                    if outcome in A1 and enable_a1_wait_rule:
                                         waiting_for_a1_losses = True
                                         non_a1_count = 0
                                         debug_messages.append((line_num, f"A1 win detected - starting wait for 3 consecutive non-A1 outcomes"))
@@ -467,7 +494,7 @@ with tab1:
                                         balance += total_recovery
                                         recovery_achieved = True
                                     current_bet_type = 1
-                                    if outcome in A1:
+                                    if outcome in A1 and enable_a1_wait_rule:
                                         waiting_for_a1_losses = True
                                         non_a1_count = 0
                                         debug_messages.append((line_num, f"A1 win detected - starting wait for 3 consecutive non-A1 outcomes"))
@@ -503,7 +530,11 @@ with tab1:
                         negative_units = abs(cumulative_negative['integer'])
                         should_bet = False
 
-                        if bypass_a10_rule:
+                        # Always bet when a > 10 overrides everything
+                        if always_bet_a_gt_10 and sequence_code['a'] > 10:
+                            should_bet = True
+                            debug_messages.append((line_num, f"Always bet a>10 rule: a={sequence_code['a']} > 10, forcing bet"))
+                        elif bypass_a10_rule:
                             # Original rule: bet if (a ≤ 10) OR (negative > 20)
                             should_bet = not (sequence_code['a'] > 10 and negative_units <= 20)
                             if sequence_code['a'] > 10 and negative_units > 20:
@@ -513,6 +544,10 @@ with tab1:
                             should_bet = sequence_code['a'] <= 10
                             if sequence_code['a'] > 10:
                                 debug_messages.append((line_num, f"Bypass rule disabled: a={sequence_code['a']} > 10, skipping bet"))
+
+                        # Check c <= 7 rule (like A1 wait rule)
+                        if should_bet and only_bet_c_gt_7 and sequence_code['c'] <= 7:
+                            should_bet = False
 
                         if should_bet:
                             # Calculate bet units: c / divisor
@@ -548,11 +583,14 @@ with tab1:
                                 bet_units = min_recovery_bet_units
                                 risk_managed_bet_units = min_recovery_bet_units  # For debug display
                             else:
-                                risk_managed_bet_units = int(abs(recovery_shortfall) * 0.8)
-                                if risk_managed_bet_units == 0:
-                                    risk_managed_bet_units = 1  # Minimum bet
-                                # Normal betting: use the smaller of normal bet or risk-managed bet
-                                bet_units = min(normal_bet_units, risk_managed_bet_units)
+                                # When a > 4, no risk management - just use normal bet
+                                bet_units = normal_bet_units
+                                risk_managed_bet_units = normal_bet_units  # For debug display
+
+                            # Apply max bet cap if set
+                            if max_bet_cap > 0 and bet_units > max_bet_cap:
+                                debug_messages.append((line_num, f"Max bet cap applied: reducing bet from {bet_units} to {max_bet_cap} units"))
+                                bet_units = max_bet_cap
 
                             debug_messages.append((line_num, f"Stage 2 bet calculation: a={sequence_code['a']}, Normal={normal_bet_units}, Risk-managed={risk_managed_bet_units}, Using={bet_units} units"))
                             bet_chips = bet_units * 4  # Convert units to chips
@@ -691,9 +729,16 @@ with tab1:
                     if sequence_code['b'] > 89:
                         sequence_code['b'] = int((sequence_code['b'] + 1) / 2)
                         # In Stage 2, halve the divisor when b > 89 rule applies AND we're actively betting
-                        if stage == 2 and stage2_divisor > 1 and recording and not four_corner_rule_active:
-                            stage2_divisor = stage2_divisor // 2
-                            debug_messages.append((line_num, f"b > 89 rule applied in Stage 2 - divisor reduced to {stage2_divisor}"))
+                        if stage == 2 and recording and not four_corner_rule_active:
+                            # Check if divisor can be reduced
+                            if enable_divisor_below_1:
+                                # Allow divisor to go below 1 (using float division)
+                                stage2_divisor = stage2_divisor / 2
+                                debug_messages.append((line_num, f"b > 89 rule applied in Stage 2 - divisor reduced to {stage2_divisor}"))
+                            elif stage2_divisor > 1:
+                                # Normal mode: stop at 1
+                                stage2_divisor = stage2_divisor // 2
+                                debug_messages.append((line_num, f"b > 89 rule applied in Stage 2 - divisor reduced to {stage2_divisor}"))
 
                     # Prevent division by zero
                     if sequence_code['a'] == 0:
@@ -701,8 +746,9 @@ with tab1:
                         debug_messages.append((line_num, f"Warning: sequence_code['a'] was 0, reset to 1"))
                     sequence_code['c'] = (int(sequence_code['b'] / sequence_code['a'])) * 2
 
-                # Check for sequence completion (a < 3 after first bet OR stage 3 after Stage 2 recovery)
-                if (first_bet_placed and sequence_code['a'] < 3) or stage == 3:
+                # Check for sequence completion (a < 3 while recording OR stage 3 after Stage 2 recovery)
+                # Note: Uses 'recording' instead of 'first_bet_placed' so c <= 7 rule doesn't prevent sequence ending
+                if (recording and sequence_code['a'] < 3) or stage == 3:
                     debug_messages.append((line_num, f"Sequence {sequence_number} completed! (a={sequence_code['a']} < 3)"))
                     # Reset for new sequence
                     sequence_code = initial_sequence_codes.copy()
@@ -1860,3 +1906,612 @@ with tab3:
                 )
             except Exception as e:
                 st.error(f"Error exporting: {str(e)}")
+
+with tab4:
+    st.title("Batch Processing")
+    st.write("Process multiple files from the `numbers_for_autorun` folder. Select which settings to vary - unchecked settings will use default values.")
+
+    # Batch processing settings
+    st.subheader("Variable Settings")
+    st.write("**Check** the settings you want to customize. **Unchecked** settings will use default values shown below.")
+
+    # Starting Sequence Codes with multiselect
+    use_custom_sequences = st.checkbox("Customize Starting Sequence Codes", value=False, key="batch_use_seq")
+    if use_custom_sequences:
+        batch_sequence_options = st.multiselect(
+            "Select sequence codes to test:",
+            list(sequence_code_options.keys()),
+            default=["Standard (3, 4, 2)"],
+            key="batch_seq",
+            help="Choose one or more sequence codes. Each will be tested with all files."
+        )
+    else:
+        batch_sequence_options = ["Standard (3, 4, 2)"]
+        st.info("📌 Default: Standard (3, 4, 2)")
+
+    # Stage 2 Divisor with multiselect
+    use_custom_divisor = st.checkbox("Customize Stage 2 Divisor", value=False, key="batch_use_div")
+    if use_custom_divisor:
+        batch_stage2_divisors = st.multiselect(
+            "Select divisors to test:",
+            [8, 16, 32],
+            default=[8],
+            key="batch_div",
+            help="Choose one or more divisors. Each will be tested."
+        )
+    else:
+        batch_stage2_divisors = [8]
+        st.info("📌 Default: 8")
+
+    st.divider()
+    st.subheader("Optional Rules")
+
+    col1, col2 = st.columns(2)
+    with col1:
+        use_bypass_rule = st.checkbox("Test Bypass Rule variations", value=False, key="batch_use_bypass")
+        if use_bypass_rule:
+            batch_bypass_options = st.multiselect(
+                "Bypass Rule settings:",
+                ["Enabled", "Disabled"],
+                default=["Enabled"],
+                key="batch_bypass",
+                help="Test with bypass rule on/off"
+            )
+        else:
+            batch_bypass_options = ["Enabled"]
+            st.info("📌 Default: Enabled")
+
+        use_c_gt_7 = st.checkbox("Test 'Only bet when c > 7' variations", value=False, key="batch_use_c_gt_7")
+        if use_c_gt_7:
+            batch_c_gt_7_options = st.multiselect(
+                "c > 7 Rule settings:",
+                ["Enabled", "Disabled"],
+                default=["Disabled"],
+                key="batch_c_gt_7",
+                help="Test with c > 7 rule on/off"
+            )
+        else:
+            batch_c_gt_7_options = ["Disabled"]
+            st.info("📌 Default: Disabled")
+
+        use_a1_wait = st.checkbox("Test 'A1 Wait Rule' variations", value=False, key="batch_use_a1_wait")
+        if use_a1_wait:
+            batch_a1_wait_options = st.multiselect(
+                "A1 Wait Rule settings:",
+                ["Enabled", "Disabled"],
+                default=["Disabled"],
+                key="batch_a1_wait",
+                help="Test with A1 wait rule on/off"
+            )
+        else:
+            batch_a1_wait_options = ["Disabled"]
+            st.info("📌 Default: Disabled")
+
+    with col2:
+        use_always_bet = st.checkbox("Test 'Always bet when a > 10' variations", value=False, key="batch_use_always_bet")
+        if use_always_bet:
+            batch_always_bet_options = st.multiselect(
+                "Always bet a>10 settings:",
+                ["Enabled", "Disabled"],
+                default=["Disabled"],
+                key="batch_always_bet",
+                help="Test with always bet rule on/off"
+            )
+        else:
+            batch_always_bet_options = ["Disabled"]
+            st.info("📌 Default: Disabled")
+
+        use_divisor_below_1 = st.checkbox("Test 'Divisor below 1' variations", value=False, key="batch_use_div_below_1")
+        if use_divisor_below_1:
+            batch_divisor_below_1_options = st.multiselect(
+                "Divisor below 1 settings:",
+                ["Enabled", "Disabled"],
+                default=["Disabled"],
+                key="batch_div_below_1",
+                help="Test with divisor below 1 on/off"
+            )
+        else:
+            batch_divisor_below_1_options = ["Disabled"]
+            st.info("📌 Default: Disabled")
+
+        use_max_bet_cap = st.checkbox("Test 'Max Bet Cap' variations", value=False, key="batch_use_max_cap")
+        if use_max_bet_cap:
+            batch_max_bet_caps = st.multiselect(
+                "Max bet cap values:",
+                [0, 10, 15, 20, 25, 30],
+                default=[0],
+                key="batch_max_cap",
+                help="Test with different max bet caps (0 = no cap)"
+            )
+        else:
+            batch_max_bet_caps = [0]
+            st.info("📌 Default: 0 (no cap)")
+
+    # Check for files in batch folder
+    batch_folder = "numbers_for_autorun"
+    batch_files_available = []
+    if os.path.exists(batch_folder):
+        batch_files_available = sorted([f for f in os.listdir(batch_folder)
+                                       if f.endswith(('.xls', '.xlsx', '.csv', '.txt'))])
+
+    # Calculate total combinations
+    import itertools
+    total_combinations = (
+        len(batch_sequence_options) *
+        len(batch_stage2_divisors) *
+        len(batch_bypass_options) *
+        len(batch_c_gt_7_options) *
+        len(batch_a1_wait_options) *
+        len(batch_always_bet_options) *
+        len(batch_divisor_below_1_options) *
+        len(batch_max_bet_caps)
+    )
+    total_tests = len(batch_files_available) * total_combinations
+
+    st.divider()
+    st.subheader("Batch Summary")
+
+    col_a, col_b, col_c = st.columns(3)
+    with col_a:
+        st.metric("Files", len(batch_files_available))
+    with col_b:
+        st.metric("Setting Combinations", total_combinations)
+    with col_c:
+        st.metric("Total Tests", total_tests)
+
+    if batch_files_available:
+        # Show preview of files
+        with st.expander(f"Preview files ({len(batch_files_available)} total)"):
+            preview_df = pd.DataFrame({'Filename': batch_files_available[:20]})
+            st.dataframe(preview_df, use_container_width=True)
+            if len(batch_files_available) > 20:
+                st.write(f"... and {len(batch_files_available) - 20} more files")
+    else:
+        st.warning(f"No files found in `{batch_folder}` folder. Please add .xls, .xlsx, .csv, or .txt files to process.")
+
+    # Run batch processing
+    if st.button("Run Batch Processing", disabled=not batch_files_available):
+        st.title("Batch Processing Results")
+
+        st.info(f"Running {total_tests} total tests ({len(batch_files_available)} files × {total_combinations} combinations)")
+        st.write("Processing all files with selected setting combinations...")
+
+        batch_results = []
+        batch_progress = st.progress(0)
+        batch_status = st.empty()
+
+        # Generate all combinations
+        all_combinations = list(itertools.product(
+            batch_sequence_options,
+            batch_stage2_divisors,
+            batch_bypass_options,
+            batch_c_gt_7_options,
+            batch_a1_wait_options,
+            batch_always_bet_options,
+            batch_divisor_below_1_options,
+            batch_max_bet_caps
+        ))
+
+        test_num = 0
+        for batch_file in batch_files_available:
+            file_path = os.path.join(batch_folder, batch_file)
+
+            try:
+                # Load file outcomes
+                if batch_file.endswith('.txt'):
+                    with open(file_path, 'r') as f:
+                        file_outcomes = [int(line.strip()) for line in f if line.strip().isdigit()]
+                elif batch_file.endswith('.csv'):
+                    df = pd.read_csv(file_path, header=None)
+                    file_outcomes = df.iloc[:, 0].dropna().astype(int).tolist()
+                else:
+                    df = pd.read_excel(file_path, header=None)
+                    file_outcomes = df.iloc[:, 0].dropna().astype(int).tolist()
+
+                # Run simulation for each combination
+                for combo in all_combinations:
+                    test_num += 1
+                    seq_code_name, divisor, bypass, c_gt_7, a1_wait, always_bet, div_below_1, max_cap = combo
+
+                    batch_status.text(f"Test {test_num}/{total_tests}: {batch_file[:20]}... | {seq_code_name[:15]} | Div:{divisor}")
+
+                    # Convert string options to boolean
+                    bypass_enabled = (bypass == "Enabled")
+                    c_gt_7_enabled = (c_gt_7 == "Enabled")
+                    a1_wait_enabled = (a1_wait == "Enabled")
+                    always_bet_enabled = (always_bet == "Enabled")
+                    div_below_1_enabled = (div_below_1 == "Enabled")
+
+                    # Get sequence codes
+                    init_seq_codes = sequence_code_options[seq_code_name].copy()
+
+                    # Run streamlined simulation (no UI, just core logic and results)
+                    try:
+                        # === SIMULATION START ===
+                        # Initialize all variables
+                        seq_code = init_seq_codes.copy()
+                        recording = False
+                        balance = 0
+                        current_bet_type = 1
+                        session_active = True
+                        sequence_number = 0
+                        first_bet_placed = False
+                        stage = 1
+                        waiting_for_a1_losses = False
+                        non_a1_count = 0
+                        cumulative_negative = {'integer': 0, 'decimal': 0}
+                        cumulative_positive_chips = 0
+                        consecutive_non_a1 = 0
+                        four_corner_rule_active = False
+                        pending_sequence_codes = None
+                        codes_displayed = False
+                        current_divisor = divisor
+                        initial_divisor = divisor
+                        starting_bank = 250
+
+                        # Helper functions (inline for batch)
+                        def calc_new_a(a):
+                            if a > 13: return 10
+                            elif 10 < a < 14: return a - 4
+                            elif 7 < a < 11: return a - 3
+                            elif a < 8: return a - 2
+                            return a
+
+                        def chips_to_mixed(chips):
+                            if chips == 0: return {'integer': 0, 'decimal': 0}
+                            abs_chips = abs(chips)
+                            units_of_4 = abs_chips // 4
+                            remainder = abs_chips % 4
+                            if chips < 0:
+                                if remainder == 0: return {'integer': -units_of_4, 'decimal': 0}
+                                else: return {'integer': -(units_of_4 + 1), 'decimal': 4 - remainder}
+                            else:return {'integer': units_of_4, 'decimal': remainder}
+
+                        def mixed_to_chips(mixed_dict):
+                            if mixed_dict['integer'] < 0: return mixed_dict['integer'] * 4
+                            else: return (mixed_dict['integer'] * 4) + mixed_dict['decimal']
+
+                        # Process outcomes
+                        for i, outcome in enumerate(file_outcomes):
+                            if not session_active:
+                                break
+
+                            win_status = 'W' if outcome in A1 else 'L'
+
+                            # Start recording on first A1 win
+                            if win_status == 'W' and not recording and session_active:
+                                recording = True
+                                sequence_number += 1
+                                continue
+
+                            # Main betting and sequence logic
+                            if recording and session_active:
+                                # Apply pending codes
+                                if pending_sequence_codes and not four_corner_rule_active:
+                                    seq_code.update(pending_sequence_codes)
+                                    pending_sequence_codes = None
+
+                                # Display codes
+                                if not four_corner_rule_active and not pending_sequence_codes:
+                                    codes_displayed = True
+                                else:
+                                    codes_displayed = False
+
+                                # === STAGE 1 BETTING ===
+                                if stage == 1:
+                                    # Check c > 7 rule
+                                    if c_gt_7_enabled and seq_code['c'] <= 7:
+                                        pass  # Skip betting
+                                    # Check A1 wait rule
+                                    elif a1_wait_enabled and waiting_for_a1_losses:
+                                        # Update non-A1 count
+                                        if outcome not in A1:
+                                            non_a1_count += 1
+                                            if non_a1_count >= 3:
+                                                waiting_for_a1_losses = False
+                                                non_a1_count = 0
+                                    else:
+                                        # Place bet based on bet type
+                                        if current_bet_type == 1:
+                                            bet_numbers = A2
+                                            bet_amount = 5
+                                        elif current_bet_type == 2:
+                                            bet_numbers = A1
+                                            bet_amount = 4
+                                        else:  # Bet3
+                                            bet_numbers = A1
+                                            bet_amount = 8
+
+                                        first_bet_placed = True
+                                        is_win = outcome in bet_numbers
+
+                                        if is_win:
+                                            # Handle wins
+                                            if current_bet_type == 1:
+                                                balance += bet_amount
+                                                current_bet_type = 1
+                                                if outcome in A1 and a1_wait_enabled:
+                                                    waiting_for_a1_losses = True
+                                                    non_a1_count = 0
+                                            else:
+                                                # Bet2/Bet3 win - mixed number logic
+                                                cumulative_negative['integer'] += (bet_amount // 4)
+                                                bip_chips = (bet_amount // 4)
+                                                cumulative_positive_chips += cumulative_negative['decimal'] + bip_chips
+                                                negative_chips = mixed_to_chips(cumulative_negative)
+                                                total_recovery = negative_chips + cumulative_positive_chips
+                                                if total_recovery >= 0:
+                                                    balance += total_recovery
+                                                current_bet_type = 1
+                                                if outcome in A1 and a1_wait_enabled:
+                                                    waiting_for_a1_losses = True
+                                                    non_a1_count = 0
+                                        else:
+                                            # Handle losses
+                                            loss_mixed = chips_to_mixed(-bet_amount)
+                                            cumulative_negative['integer'] += loss_mixed['integer']
+                                            cumulative_negative['decimal'] += loss_mixed['decimal']
+                                            if cumulative_negative['decimal'] >= 4:
+                                                carry = cumulative_negative['decimal'] // 4
+                                                cumulative_negative['integer'] += carry
+                                                cumulative_negative['decimal'] = cumulative_negative['decimal'] % 4
+
+                                            # Progress bet type
+                                            if current_bet_type == 1:
+                                                current_bet_type = 2
+                                            elif current_bet_type == 2:
+                                                current_bet_type = 3
+                                            else:
+                                                # Bet3 lost - move to Stage 2
+                                                stage = 2
+                                                current_bet_type = 1
+
+                                # === STAGE 2 BETTING ===
+                                elif stage == 2:
+                                    if codes_displayed:
+                                        negative_units = abs(cumulative_negative['integer'])
+                                        should_bet = False
+
+                                        # Check always bet a>10 rule (overrides everything)
+                                        if always_bet_enabled and seq_code['a'] > 10:
+                                            should_bet = True
+                                        elif bypass_enabled:
+                                            should_bet = not (seq_code['a'] > 10 and negative_units <= 20)
+                                        else:
+                                            should_bet = seq_code['a'] <= 10
+
+                                        # Check c > 7 rule
+                                        if should_bet and c_gt_7_enabled and seq_code['c'] <= 7:
+                                            should_bet = False
+
+                                        if should_bet:
+                                            # Calculate bet units
+                                            if current_divisor == 0: current_divisor = 1
+                                            normal_bet_units = int(seq_code['c'] / current_divisor)
+                                            if normal_bet_units == 0: normal_bet_units = 1
+
+                                            # Risk management
+                                            if seq_code['a'] <= 4:
+                                                negative_chips = mixed_to_chips(cumulative_negative)
+                                                current_deficit_chips = -(negative_chips + cumulative_positive_chips)
+                                                import math
+                                                min_recovery_bet_units = math.ceil(current_deficit_chips / 5)
+                                                if min_recovery_bet_units == 0: min_recovery_bet_units = 1
+                                                bet_units = min_recovery_bet_units
+                                            else:
+                                                bet_units = normal_bet_units
+
+                                            # Apply max bet cap
+                                            if max_cap > 0 and bet_units > max_cap:
+                                                bet_units = max_cap
+
+                                            bet_chips = bet_units * 4
+                                            is_win = outcome in A1
+
+                                            if is_win:
+                                                # Stage 2 win
+                                                cumulative_negative['integer'] += bet_units
+                                                bip_chips = bet_units
+                                                cumulative_positive_chips += cumulative_negative['decimal'] + bip_chips
+                                                negative_chips = mixed_to_chips(cumulative_negative)
+                                                total_recovery = negative_chips + cumulative_positive_chips
+
+                                                if total_recovery >= 0:
+                                                    balance += total_recovery
+                                                    # Recovery complete
+                                                    stage = 3
+                                                    cumulative_negative = {'integer': 0, 'decimal': 0}
+                                                    cumulative_positive_chips = 0
+                                            else:
+                                                # Stage 2 loss
+                                                loss_mixed = chips_to_mixed(-bet_chips)
+                                                cumulative_negative['integer'] += loss_mixed['integer']
+                                                cumulative_negative['decimal'] += loss_mixed['decimal']
+                                                if cumulative_negative['decimal'] >= 4:
+                                                    carry = cumulative_negative['decimal'] // 4
+                                                    cumulative_negative['integer'] += carry
+                                                    cumulative_negative['decimal'] = cumulative_negative['decimal'] % 4
+
+                                                # Check bank depletion
+                                                if abs(mixed_to_chips(cumulative_negative)) >= 1000:
+                                                    stage = 4
+                                                    session_active = False
+
+                                # Track consecutive non-A1 for four corner rule
+                                if outcome in A1:
+                                    consecutive_non_a1 = 0
+                                    if four_corner_rule_active:
+                                        four_corner_rule_active = False
+                                else:
+                                    consecutive_non_a1 += 1
+
+                                # Update sequence codes
+                                is_a1_win = outcome in A1
+                                if is_a1_win:
+                                    seq_code['a'] = calc_new_a(seq_code['a'])
+                                    seq_code['b'] = seq_code['b'] - seq_code['c']
+                                    if seq_code['a'] == 0: seq_code['a'] = 1
+                                    seq_code['c'] = (int(seq_code['b'] / seq_code['a'])) * 2
+                                else:
+                                    seq_code['a'] = seq_code['a'] + 1
+                                    seq_code['b'] = seq_code['b'] + seq_code['c']
+
+                                    # B > 89 rule
+                                    if seq_code['b'] > 89:
+                                        seq_code['b'] = int((seq_code['b'] + 1) / 2)
+                                        if stage == 2 and recording and not four_corner_rule_active:
+                                            if div_below_1_enabled:
+                                                current_divisor = current_divisor / 2
+                                            elif current_divisor > 1:
+                                                current_divisor = current_divisor // 2
+
+                                    if seq_code['a'] == 0: seq_code['a'] = 1
+                                    seq_code['c'] = (int(seq_code['b'] / seq_code['a'])) * 2
+
+                                # Check sequence completion
+                                if (recording and seq_code['a'] < 3) or stage == 3:
+                                    # Sequence complete
+                                    recording = False
+                                    first_bet_placed = False
+                                    stage = 1
+                                    current_bet_type = 1
+                                    seq_code = init_seq_codes.copy()
+                                    cumulative_negative = {'integer': 0, 'decimal': 0}
+                                    cumulative_positive_chips = 0
+                                    waiting_for_a1_losses = False
+                                    non_a1_count = 0
+                                    consecutive_non_a1 = 0
+                                    four_corner_rule_active = False
+                                    pending_sequence_codes = None
+                                    codes_displayed = False
+                                    current_divisor = initial_divisor
+
+                        # Calculate final results
+                        final_bank_units = starting_bank + (balance // 4)
+                        profit_loss = final_bank_units - starting_bank
+
+                        # Determine success (not stuck in Stage 2)
+                        session_successful = stage != 2
+
+                        batch_results.append({
+                            'Test #': test_num,
+                            'File': batch_file,
+                            'Seq Codes': seq_code_name,
+                            'Divisor': divisor,
+                            'Bypass': bypass[:3],
+                            'c>7': c_gt_7[:3],
+                            'A1 Wait': a1_wait[:3],
+                            'Always Bet': always_bet[:3],
+                            'Div<1': div_below_1[:3],
+                            'Max Cap': max_cap,
+                            'Sequences': sequence_number,
+                            'Final Balance': balance,
+                            'Final Bank': final_bank_units,
+                            'Profit/Loss': profit_loss,
+                            'Status': 'ENDED' if not session_active else 'ACTIVE',
+                            'Success': 'Yes' if session_successful else 'No'
+                        })
+                        # === SIMULATION END ===
+
+                    except Exception as e:
+                        batch_results.append({
+                            'Test #': test_num,
+                            'File': batch_file,
+                            'Seq Codes': seq_code_name,
+                            'Divisor': divisor,
+                            'Bypass': '-',
+                            'c>7': '-',
+                            'A1 Wait': '-',
+                            'Always Bet': '-',
+                            'Div<1': '-',
+                            'Max Cap': '-',
+                            'Sequences': '-',
+                            'Final Balance': '-',
+                            'Final Bank': '-',
+                            'Profit/Loss': '-',
+                            'Status': f'ERROR: {str(e)[:20]}',
+                            'Success': '-'
+                        })
+
+                    batch_progress.progress(test_num / total_tests)
+
+            except Exception as e:
+                test_num += 1
+                batch_results.append({
+                    'Test #': test_num,
+                    'File': batch_file,
+                    'Seq Codes': '-',
+                    'Divisor': '-',
+                    'Bypass': '-',
+                    'c>7': '-',
+                    'A1 Wait': '-',
+                    'Always Bet a>10': '-',
+                    'Div<1': '-',
+                    'Max Cap': '-',
+                    'Outcomes': 'ERROR',
+                    'Status': f'✗ {str(e)[:30]}'
+                })
+                batch_progress.progress(test_num / total_tests)
+                continue
+
+        batch_status.text("✓ Batch configuration complete!")
+
+        # Display results
+        results_df = pd.DataFrame(batch_results)
+
+        # Calculate summary statistics
+        successful_tests = len([r for r in batch_results if r['Status'] == 'ACTIVE' or r['Status'] == 'ENDED'])
+        active_sessions = len([r for r in batch_results if r['Status'] == 'ACTIVE'])
+        ended_sessions = len([r for r in batch_results if r['Status'] == 'ENDED'])
+        error_tests = len([r for r in batch_results if 'ERROR' in r['Status']])
+
+        # Calculate success rate (not stuck in Stage 2)
+        success_count = len([r for r in batch_results if r.get('Success') == 'Yes'])
+        success_rate = (success_count / successful_tests * 100) if successful_tests > 0 else 0
+
+        # Calculate profit statistics (only for successful tests)
+        successful_results = [r for r in batch_results if isinstance(r['Profit/Loss'], int)]
+        if successful_results:
+            total_profit = sum(r['Profit/Loss'] for r in successful_results)
+            avg_profit = total_profit / len(successful_results)
+            profitable_tests = len([r for r in successful_results if r['Profit/Loss'] > 0])
+            win_rate = (profitable_tests / len(successful_results)) * 100
+        else:
+            total_profit = 0
+            avg_profit = 0
+            profitable_tests = 0
+            win_rate = 0
+
+        st.success(f"✓ Batch processing complete! {successful_tests}/{total_tests} tests ran successfully")
+
+        # Show summary statistics
+        st.subheader("Batch Results Summary")
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.metric("Total Tests", total_tests)
+            st.metric("Completed", successful_tests)
+        with col2:
+            st.metric("Success Rate", f"{success_rate:.1f}%")
+            st.metric("Successful Tests", success_count)
+        with col3:
+            st.metric("Win Rate", f"{win_rate:.1f}%")
+            st.metric("Profitable Tests", profitable_tests)
+        with col4:
+            st.metric("Avg Profit/Loss", f"{avg_profit:+.1f} units")
+            st.metric("Total Profit", f"{total_profit:+d} units")
+
+        # Show detailed results
+        st.subheader("Detailed Results")
+        st.write(f"Showing all {len(results_df)} test results:")
+        st.dataframe(results_df, use_container_width=True, height=600)
+
+        # Download results as CSV
+        csv = results_df.to_csv(index=False)
+        from datetime import datetime
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        st.download_button(
+            label="Download Results as CSV",
+            data=csv,
+            file_name=f"batch_results_{timestamp}.csv",
+            mime="text/csv"
+        )
