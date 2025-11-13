@@ -1578,18 +1578,20 @@ with tab3:
     if not all_sessions:
         st.info("No session history found. Run a simulation with 'Save session to history' enabled to create history.")
     else:
-        st.write(f"**Total Sessions: {len(all_sessions)}**")
+        # Filter out batch runs from session display
+        regular_sessions = [s for s in all_sessions if s.get('type') != 'batch']
+        st.write(f"**Total Sessions: {len(regular_sessions)}**")
 
-        # Calculate overall statistics
-        total_profit_chips = sum(s['results']['profit_loss_chips'] for s in all_sessions)
-        total_profit_units = sum(s['results']['profit_loss_units'] for s in all_sessions)
-        total_turnover = sum(s['results'].get('total_turnover', 0) for s in all_sessions)
-        profitable_sessions = len([s for s in all_sessions if s['results']['profit_loss_chips'] > 0])
-        win_rate = (profitable_sessions / len(all_sessions)) * 100 if all_sessions else 0
+        # Calculate overall statistics for regular sessions only
+        total_profit_chips = sum(s['results']['profit_loss_chips'] for s in regular_sessions)
+        total_profit_units = sum(s['results']['profit_loss_units'] for s in regular_sessions)
+        total_turnover = sum(s['results'].get('total_turnover', 0) for s in regular_sessions)
+        profitable_sessions = len([s for s in regular_sessions if s['results']['profit_loss_chips'] > 0])
+        win_rate = (profitable_sessions / len(regular_sessions)) * 100 if regular_sessions else 0
 
         # Calculate worst losses
         worst_losses = []
-        for s in all_sessions:
+        for s in regular_sessions:
             worst_dd = s['results'].get('worst_drawdown', {})
             if 'total_loss' in worst_dd:
                 worst_losses.append(worst_dd['total_loss'])
@@ -1607,7 +1609,7 @@ with tab3:
         # First row of metrics
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.metric("Total Sessions", len(all_sessions))
+            st.metric("Total Sessions", len(regular_sessions))
         with col2:
             st.metric("Win Rate", f"{win_rate:.1f}%")
         with col3:
@@ -1625,9 +1627,9 @@ with tab3:
         # Create summary table
         st.subheader("Session List")
 
-        # Prepare data for table
+        # Prepare data for table - regular sessions only
         session_summary = []
-        for session in all_sessions:
+        for session in regular_sessions:
             timestamp_str = session['timestamp']
             # Parse ISO timestamp
             try:
@@ -1883,10 +1885,10 @@ with tab3:
         st.subheader("Session Comparison")
         st.write("Compare performance across different configurations:")
 
-        # Group by sequence codes
-        if len(all_sessions) > 1:
+        # Group by sequence codes (skip batch runs)
+        if len(regular_sessions) > 1:
             seq_code_performance = {}
-            for session in all_sessions:
+            for session in regular_sessions:
                 seq_code = session['configuration']['sequence_codes']
                 if seq_code not in seq_code_performance:
                     seq_code_performance[seq_code] = {'count': 0, 'total_profit': 0, 'wins': 0}
@@ -1932,34 +1934,119 @@ with tab4:
     st.title("Batch Processing")
     st.write("Process multiple files from the `numbers_for_autorun` folder. Select which settings to vary - unchecked settings will use default values.")
 
+    # Batch Run History Section
+    st.divider()
+    st.subheader("📊 Batch Run History")
+
+    all_sessions = load_all_sessions()
+    batch_runs = [s for s in all_sessions if s.get('type') == 'batch']
+
+    if batch_runs:
+        st.write(f"**Total Batch Runs: {len(batch_runs)}**")
+
+        # Prepare batch history table
+        batch_history = []
+        for batch in batch_runs:
+            timestamp_str = batch['timestamp']
+            try:
+                dt = datetime.fromisoformat(timestamp_str)
+                date_display = dt.strftime("%Y-%m-%d %H:%M:%S")
+            except:
+                date_display = timestamp_str
+
+            # Get configuration summary
+            config = batch['configuration']
+            seq_codes = ', '.join(config.get('sequence_options', []))
+            divisors = ', '.join(map(str, config.get('divisor_options', [])))
+
+            batch_history.append({
+                'Date': date_display,
+                'Batch ID': batch.get('batch_id', 'N/A'),
+                'Files': config.get('files_processed', 0),
+                'Tests': f"{config.get('successful_tests', 0)}/{config.get('total_tests', 0)}",
+                'Seq Codes': seq_codes,
+                'Divisors': divisors,
+                'Turnover': f"{batch['results'].get('total_turnover', 0):,}",
+                'Balance': f"{batch['results'].get('total_final_balance', 0):+,}",
+                'Profit/Loss': f"{batch['results'].get('total_profit_loss', 0):+,}",
+                'Filename': batch['filename']
+            })
+
+        batch_df = pd.DataFrame(batch_history)
+
+        # Show table
+        display_df = batch_df.drop(columns=['Filename'])
+        st.dataframe(display_df, use_container_width=True, height=300)
+
+        # Delete batch runs
+        st.write("**Delete Batch Runs:**")
+        selected_batches = []
+        for idx, row in batch_df.iterrows():
+            if st.checkbox(f"{row['Date']} - {row['Batch ID']}", key=f"batch_del_{idx}"):
+                selected_batches.append(row['Filename'])
+
+        if selected_batches:
+            if st.button("Delete Selected Batch Runs", type="primary", key="delete_batch_runs"):
+                deleted = 0
+                for filename in selected_batches:
+                    if delete_session(filename):
+                        deleted += 1
+                st.success(f"Deleted {deleted} batch run(s)")
+                st.rerun()
+    else:
+        st.info("No batch run history found. Run a batch processing job and save it to history.")
+
+    st.divider()
+
     # Batch processing settings
     st.subheader("Variable Settings")
     st.write("**Check** the settings you want to customize. **Unchecked** settings will use default values shown below.")
 
-    # Starting Sequence Codes with multiselect
+    # Starting Sequence Codes with radio buttons
     use_custom_sequences = st.checkbox("Customize Starting Sequence Codes", value=False, key="batch_use_seq")
     if use_custom_sequences:
-        batch_sequence_options = st.multiselect(
+        seq_choice = st.radio(
             "Select sequence codes to test:",
-            list(sequence_code_options.keys()),
-            default=["Standard (3, 4, 2)"],
-            key="batch_seq",
-            help="Choose one or more sequence codes. Each will be tested with all files."
+            ["Test All", "Standard (3, 4, 2) only", "Alternative (8, 44, 10) only"],
+            key="batch_seq_radio",
+            horizontal=True
         )
+
+        if seq_choice == "Test All":
+            batch_sequence_options = ["Standard (3, 4, 2)", "Alternative (8, 44, 10)"]
+        elif seq_choice == "Standard (3, 4, 2) only":
+            batch_sequence_options = ["Standard (3, 4, 2)"]
+        else:  # Alternative (8, 44, 10) only
+            batch_sequence_options = ["Alternative (8, 44, 10)"]
     else:
         batch_sequence_options = ["Standard (3, 4, 2)"]
         st.info("📌 Default: Standard (3, 4, 2)")
 
-    # Stage 2 Divisor with multiselect
+    # Stage 2 Divisor with radio buttons
     use_custom_divisor = st.checkbox("Customize Stage 2 Divisor", value=False, key="batch_use_div")
     if use_custom_divisor:
-        batch_stage2_divisors = st.multiselect(
+        div_choice = st.radio(
             "Select divisors to test:",
-            [8, 16, 32],
-            default=[8],
-            key="batch_div",
-            help="Choose one or more divisors. Each will be tested."
+            ["Test All", "8 only", "16 only", "32 only", "Custom selection"],
+            key="batch_div_radio",
+            horizontal=False
         )
+
+        if div_choice == "Test All":
+            batch_stage2_divisors = [8, 16, 32]
+        elif div_choice == "8 only":
+            batch_stage2_divisors = [8]
+        elif div_choice == "16 only":
+            batch_stage2_divisors = [16]
+        elif div_choice == "32 only":
+            batch_stage2_divisors = [32]
+        else:  # Custom selection
+            batch_stage2_divisors = st.multiselect(
+                "Choose specific divisors:",
+                [8, 16, 32],
+                default=[8],
+                key="batch_div_custom"
+            )
     else:
         batch_stage2_divisors = [8]
         st.info("📌 Default: 8")
@@ -1971,39 +2058,54 @@ with tab4:
     with col1:
         use_bypass_rule = st.checkbox("Test Bypass Rule variations", value=False, key="batch_use_bypass")
         if use_bypass_rule:
-            batch_bypass_options = st.multiselect(
+            bypass_choice = st.radio(
                 "Bypass Rule settings:",
-                ["Enabled", "Disabled"],
-                default=["Enabled"],
-                key="batch_bypass",
-                help="Test with bypass rule on/off"
+                ["Test Both", "Enabled only", "Disabled only"],
+                key="batch_bypass_radio",
+                horizontal=True
             )
+            if bypass_choice == "Test Both":
+                batch_bypass_options = ["Enabled", "Disabled"]
+            elif bypass_choice == "Enabled only":
+                batch_bypass_options = ["Enabled"]
+            else:
+                batch_bypass_options = ["Disabled"]
         else:
             batch_bypass_options = ["Enabled"]
             st.info("📌 Default: Enabled")
 
         use_c_gt_7 = st.checkbox("Test 'Only bet when c > 7' variations", value=False, key="batch_use_c_gt_7")
         if use_c_gt_7:
-            batch_c_gt_7_options = st.multiselect(
+            c_gt_7_choice = st.radio(
                 "c > 7 Rule settings:",
-                ["Enabled", "Disabled"],
-                default=["Disabled"],
-                key="batch_c_gt_7",
-                help="Test with c > 7 rule on/off"
+                ["Test Both", "Enabled only", "Disabled only"],
+                key="batch_c_gt_7_radio",
+                horizontal=True
             )
+            if c_gt_7_choice == "Test Both":
+                batch_c_gt_7_options = ["Enabled", "Disabled"]
+            elif c_gt_7_choice == "Enabled only":
+                batch_c_gt_7_options = ["Enabled"]
+            else:
+                batch_c_gt_7_options = ["Disabled"]
         else:
             batch_c_gt_7_options = ["Disabled"]
             st.info("📌 Default: Disabled")
 
         use_a1_wait = st.checkbox("Test 'A1 Wait Rule' variations", value=False, key="batch_use_a1_wait")
         if use_a1_wait:
-            batch_a1_wait_options = st.multiselect(
+            a1_wait_choice = st.radio(
                 "A1 Wait Rule settings:",
-                ["Enabled", "Disabled"],
-                default=["Disabled"],
-                key="batch_a1_wait",
-                help="Test with A1 wait rule on/off"
+                ["Test Both", "Enabled only", "Disabled only"],
+                key="batch_a1_wait_radio",
+                horizontal=True
             )
+            if a1_wait_choice == "Test Both":
+                batch_a1_wait_options = ["Enabled", "Disabled"]
+            elif a1_wait_choice == "Enabled only":
+                batch_a1_wait_options = ["Enabled"]
+            else:
+                batch_a1_wait_options = ["Disabled"]
         else:
             batch_a1_wait_options = ["Disabled"]
             st.info("📌 Default: Disabled")
@@ -2011,89 +2113,224 @@ with tab4:
     with col2:
         use_always_bet = st.checkbox("Test 'Always bet when a > 10' variations", value=False, key="batch_use_always_bet")
         if use_always_bet:
-            batch_always_bet_options = st.multiselect(
+            always_bet_choice = st.radio(
                 "Always bet a>10 settings:",
-                ["Enabled", "Disabled"],
-                default=["Disabled"],
-                key="batch_always_bet",
-                help="Test with always bet rule on/off"
+                ["Test Both", "Enabled only", "Disabled only"],
+                key="batch_always_bet_radio",
+                horizontal=True
             )
+            if always_bet_choice == "Test Both":
+                batch_always_bet_options = ["Enabled", "Disabled"]
+            elif always_bet_choice == "Enabled only":
+                batch_always_bet_options = ["Enabled"]
+            else:
+                batch_always_bet_options = ["Disabled"]
         else:
             batch_always_bet_options = ["Disabled"]
             st.info("📌 Default: Disabled")
 
         use_divisor_below_1 = st.checkbox("Test 'Divisor below 1' variations", value=False, key="batch_use_div_below_1")
         if use_divisor_below_1:
-            batch_divisor_below_1_options = st.multiselect(
+            div_below_1_choice = st.radio(
                 "Divisor below 1 settings:",
-                ["Enabled", "Disabled"],
-                default=["Disabled"],
-                key="batch_div_below_1",
-                help="Test with divisor below 1 on/off"
+                ["Test Both", "Enabled only", "Disabled only"],
+                key="batch_div_below_1_radio",
+                horizontal=True
             )
+            if div_below_1_choice == "Test Both":
+                batch_divisor_below_1_options = ["Enabled", "Disabled"]
+            elif div_below_1_choice == "Enabled only":
+                batch_divisor_below_1_options = ["Enabled"]
+            else:
+                batch_divisor_below_1_options = ["Disabled"]
         else:
             batch_divisor_below_1_options = ["Disabled"]
             st.info("📌 Default: Disabled")
 
         use_max_bet_cap = st.checkbox("Test 'Max Bet Cap' variations", value=False, key="batch_use_max_cap")
         if use_max_bet_cap:
-            batch_max_bet_caps = st.multiselect(
+            max_cap_choice = st.radio(
                 "Max bet cap values:",
-                [0, 10, 15, 20, 25, 30],
-                default=[0],
-                key="batch_max_cap",
-                help="Test with different max bet caps (0 = no cap)"
+                ["Test All", "No cap (0) only", "10 only", "15 only", "20 only", "25 only", "30 only", "Custom selection"],
+                key="batch_max_cap_radio",
+                horizontal=False
             )
+            if max_cap_choice == "Test All":
+                batch_max_bet_caps = [0, 10, 15, 20, 25, 30]
+            elif max_cap_choice == "No cap (0) only":
+                batch_max_bet_caps = [0]
+            elif max_cap_choice == "10 only":
+                batch_max_bet_caps = [10]
+            elif max_cap_choice == "15 only":
+                batch_max_bet_caps = [15]
+            elif max_cap_choice == "20 only":
+                batch_max_bet_caps = [20]
+            elif max_cap_choice == "25 only":
+                batch_max_bet_caps = [25]
+            elif max_cap_choice == "30 only":
+                batch_max_bet_caps = [30]
+            else:  # Custom selection
+                batch_max_bet_caps = st.multiselect(
+                    "Choose specific max bet caps:",
+                    [0, 10, 15, 20, 25, 30],
+                    default=[0],
+                    key="batch_max_cap_custom"
+                )
         else:
             batch_max_bet_caps = [0]
             st.info("📌 Default: 0 (no cap)")
 
     # Check for files in batch folder
     batch_folder = "numbers_for_autorun"
-    batch_files_available = []
+    all_batch_files = []
     if os.path.exists(batch_folder):
-        batch_files_available = sorted([f for f in os.listdir(batch_folder)
-                                       if f.endswith(('.xls', '.xlsx', '.csv', '.txt'))])
-
-    # Calculate total combinations
-    import itertools
-    total_combinations = (
-        len(batch_sequence_options) *
-        len(batch_stage2_divisors) *
-        len(batch_bypass_options) *
-        len(batch_c_gt_7_options) *
-        len(batch_a1_wait_options) *
-        len(batch_always_bet_options) *
-        len(batch_divisor_below_1_options) *
-        len(batch_max_bet_caps)
-    )
-    total_tests = len(batch_files_available) * total_combinations
+        all_batch_files = sorted([f for f in os.listdir(batch_folder)
+                                  if f.endswith(('.xls', '.xlsx', '.csv', '.txt'))])
 
     st.divider()
-    st.subheader("Batch Summary")
+    st.subheader("📁 File Selection")
 
-    col_a, col_b, col_c = st.columns(3)
-    with col_a:
-        st.metric("Files", len(batch_files_available))
-    with col_b:
-        st.metric("Setting Combinations", total_combinations)
-    with col_c:
-        st.metric("Total Tests", total_tests)
+    if all_batch_files:
+        # Initialize session state for selected files FIRST
+        if 'selected_batch_files' not in st.session_state:
+            st.session_state.selected_batch_files = set(all_batch_files)  # All selected by default
 
-    if batch_files_available:
-        # Show preview of files
-        with st.expander(f"Preview files ({len(batch_files_available)} total)"):
-            preview_df = pd.DataFrame({'Filename': batch_files_available[:20]})
-            st.dataframe(preview_df, use_container_width=True)
-            if len(batch_files_available) > 20:
-                st.write(f"... and {len(batch_files_available) - 20} more files")
+        # Add search/filter box
+        search_filter = st.text_input("🔍 Filter files (type to search):", key="file_search_filter", placeholder="e.g., 2011 or .xls")
+
+        # Filter files based on search
+        if search_filter:
+            filtered_files = [f for f in all_batch_files if search_filter.lower() in f.lower()]
+        else:
+            filtered_files = all_batch_files
+
+        # Add "Select All" / "Deselect All" buttons with consistent styling
+        col_sel1, col_sel2, col_sel3, col_sel4 = st.columns([1.2, 1.2, 2, 1.6])
+        with col_sel1:
+            if st.button("✓ Select All", key="select_all_files", use_container_width=True):
+                st.session_state.selected_batch_files = set(all_batch_files)
+                st.rerun()
+        with col_sel2:
+            if st.button("✗ Deselect All", key="deselect_all_files", use_container_width=True):
+                st.session_state.selected_batch_files = set()
+                st.rerun()
+        with col_sel3:
+            if search_filter and filtered_files:
+                if st.button(f"✓ Select Filtered ({len(filtered_files)})", key="select_filtered_files", use_container_width=True):
+                    st.session_state.selected_batch_files.update(filtered_files)
+                    st.rerun()
+
+        # Show file selection with checkboxes in an expander
+        with st.expander(f"Select files to process ({len(st.session_state.selected_batch_files)}/{len(all_batch_files)} selected)", expanded=True):
+            if filtered_files:
+                # Create columns for checkboxes (3 per row)
+                for i in range(0, len(filtered_files), 3):
+                    cols = st.columns(3)
+                    for j, col in enumerate(cols):
+                        if i + j < len(filtered_files):
+                            file = filtered_files[i + j]
+                            file_index = all_batch_files.index(file)
+                            with col:
+                                is_selected = file in st.session_state.selected_batch_files
+                                if st.checkbox(file, value=is_selected, key=f"file_check_{file_index}"):
+                                    st.session_state.selected_batch_files.add(file)
+                                else:
+                                    st.session_state.selected_batch_files.discard(file)
+            else:
+                st.info("No files match your search filter")
+
+        # Use only selected files for processing
+        batch_files_available = sorted(list(st.session_state.selected_batch_files))
+
+        # Calculate total combinations
+        import itertools
+        total_combinations = (
+            len(batch_sequence_options) *
+            len(batch_stage2_divisors) *
+            len(batch_bypass_options) *
+            len(batch_c_gt_7_options) *
+            len(batch_a1_wait_options) *
+            len(batch_always_bet_options) *
+            len(batch_divisor_below_1_options) *
+            len(batch_max_bet_caps)
+        )
+        total_tests = len(batch_files_available) * total_combinations
+
+        st.divider()
+        st.subheader("Batch Summary")
+
+        col_a, col_b, col_c = st.columns(3)
+        with col_a:
+            st.metric("Files Selected", len(batch_files_available))
+        with col_b:
+            st.metric("Setting Combinations", total_combinations)
+        with col_c:
+            st.metric("Total Tests", total_tests)
     else:
+        batch_files_available = []
         st.warning(f"No files found in `{batch_folder}` folder. Please add .xls, .xlsx, .csv, or .txt files to process.")
+
+    # Save last batch run section (always visible if data exists)
+    if 'last_batch_data' in st.session_state:
+        st.divider()
+        st.subheader("💾 Save Last Batch Run")
+        bd = st.session_state.last_batch_data
+        st.write(f"**Batch ID:** {bd['batch_run_id']}")
+        st.write(f"**Files:** {len(bd['batch_files_available'])} | **Tests:** {bd['successful_tests']}/{bd['total_tests']}")
+        st.write(f"**Total Balance:** {bd['total_final_balance_all']:+,} chips | **Profit/Loss:** {bd['total_profit_loss_all']:+,} units")
+
+        if st.button("💾 Save This Batch Run to History", type="primary"):
+            try:
+                # Prepare batch run data
+                batch_run_data = {
+                    'type': 'batch',
+                    'batch_id': bd['batch_run_id'],
+                    'timestamp': datetime.now().isoformat(),
+                    'configuration': {
+                        'files_processed': len(bd['batch_files_available']),
+                        'total_tests': bd['total_tests'],
+                        'successful_tests': bd['successful_tests'],
+                        'sequence_options': list(bd['batch_sequence_options']),
+                        'divisor_options': list(bd['batch_stage2_divisors']),
+                        'bypass_options': list(bd['batch_bypass_options']),
+                        'c_gt_7_options': list(bd['batch_c_gt_7_options']),
+                        'a1_wait_options': list(bd['batch_a1_wait_options']),
+                        'always_bet_options': list(bd['batch_always_bet_options']),
+                        'divisor_below_1_options': list(bd['batch_divisor_below_1_options']),
+                        'max_bet_cap_options': list(bd['batch_max_bet_caps'])
+                    },
+                    'results': {
+                        'total_turnover': bd['total_turnover_all'],
+                        'total_final_balance': bd['total_final_balance_all'],
+                        'total_profit_loss': bd['total_profit_loss_all'],
+                        'success_count': bd['success_count'],
+                        'success_rate': bd['success_rate']
+                    },
+                    'detailed_results': bd['batch_results']
+                }
+
+                saved_filename = save_session(batch_run_data)
+                st.success(f"✓ Batch run saved to history: {saved_filename}")
+                # Clear the session state after saving
+                del st.session_state.last_batch_data
+                st.rerun()
+            except Exception as e:
+                import traceback
+                st.error(f"Error saving batch run: {str(e)}")
+                st.code(traceback.format_exc())
 
     # Run batch processing
     if st.button("Run Batch Processing", disabled=not batch_files_available):
+        # Clear previous batch data when starting a new run
+        if 'last_batch_data' in st.session_state:
+            del st.session_state.last_batch_data
+
         st.title("Batch Processing Results")
 
+        # Generate unique batch run ID
+        batch_run_id = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+        st.info(f"**Batch Run ID: {batch_run_id}**")
         st.info(f"Running {total_tests} total tests ({len(batch_files_available)} files × {total_combinations} combinations)")
         st.write("Processing all files with selected setting combinations...")
 
@@ -2782,6 +3019,7 @@ with tab4:
                         session_successful = stage != 2 and stage != 4
 
                         batch_results.append({
+                            'Batch ID': batch_run_id,
                             'Test #': test_num,
                             'File': batch_file,
                             'Seq Codes': seq_code_name,
@@ -2793,6 +3031,7 @@ with tab4:
                             'Div<1': div_below_1[:3],
                             'Max Cap': max_cap,
                             'Sequences': sequence_number,
+                            'Turnover': total_turnover,
                             'Final Balance': final_balance_chips,
                             'Final Bank': final_bank_units,
                             'Profit/Loss': profit_loss,
@@ -2803,6 +3042,7 @@ with tab4:
 
                     except Exception as e:
                         batch_results.append({
+                            'Batch ID': batch_run_id,
                             'Test #': test_num,
                             'File': batch_file,
                             'Seq Codes': seq_code_name,
@@ -2814,6 +3054,7 @@ with tab4:
                             'Div<1': '-',
                             'Max Cap': '-',
                             'Sequences': '-',
+                            'Turnover': '-',
                             'Final Balance': '-',
                             'Final Bank': '-',
                             'Profit/Loss': '-',
@@ -2826,6 +3067,7 @@ with tab4:
             except Exception as e:
                 test_num += 1
                 batch_results.append({
+                    'Batch ID': batch_run_id,
                     'Test #': test_num,
                     'File': batch_file,
                     'Seq Codes': '-',
@@ -2833,11 +3075,16 @@ with tab4:
                     'Bypass': '-',
                     'c>7': '-',
                     'A1 Wait': '-',
-                    'Always Bet a>10': '-',
+                    'Always Bet': '-',
                     'Div<1': '-',
                     'Max Cap': '-',
-                    'Outcomes': 'ERROR',
-                    'Status': f'✗ {str(e)[:30]}'
+                    'Sequences': '-',
+                    'Turnover': '-',
+                    'Final Balance': '-',
+                    'Final Bank': '-',
+                    'Profit/Loss': '-',
+                    'Status': f'ERROR: {str(e)[:20]}',
+                    'Success': '-'
                 })
                 batch_progress.progress(test_num / total_tests)
                 continue
@@ -2872,21 +3119,46 @@ with tab4:
 
         st.success(f"✓ Batch processing complete! {successful_tests}/{total_tests} tests ran successfully")
 
-        # Show summary statistics
-        st.subheader("Batch Results Summary")
-        col1, col2, col3, col4 = st.columns(4)
+        # Calculate aggregated totals across all files
+        total_turnover_all = sum([r['Turnover'] for r in batch_results if isinstance(r.get('Turnover'), (int, float))])
+        total_final_balance_all = sum([r['Final Balance'] for r in batch_results if isinstance(r.get('Final Balance'), (int, float))])
+        total_profit_loss_all = sum([r['Profit/Loss'] for r in batch_results if isinstance(r.get('Profit/Loss'), (int, float))])
+
+        # Show key summary metrics prominently
+        st.subheader("📊 Batch Summary")
+        st.write(f"**Batch Run ID:** {batch_run_id} | **Files:** {len(batch_files_available)} | **Tests:** {successful_tests}/{total_tests}")
+
+        col1, col2, col3 = st.columns(3)
         with col1:
-            st.metric("Total Tests", total_tests)
-            st.metric("Completed", successful_tests)
+            st.metric("Total Turnover", f"{total_turnover_all:,} chips")
         with col2:
-            st.metric("Success Rate", f"{success_rate:.1f}%")
-            st.metric("Successful Tests", success_count)
+            st.metric("Total Final Balance", f"{total_final_balance_all:+,} chips")
         with col3:
-            st.metric("Win Rate", f"{win_rate:.1f}%")
-            st.metric("Profitable Tests", profitable_tests)
-        with col4:
-            st.metric("Avg Profit/Loss", f"{avg_profit:+.1f} units")
-            st.metric("Total Profit", f"{total_profit:+d} units")
+            st.metric("Total Profit/Loss", f"{total_profit_loss_all:+,} units")
+
+        st.divider()
+
+        # Store batch data in session state for the save button
+        st.session_state.last_batch_data = {
+            'batch_run_id': batch_run_id,
+            'batch_files_available': batch_files_available,
+            'total_tests': total_tests,
+            'successful_tests': successful_tests,
+            'batch_sequence_options': batch_sequence_options,
+            'batch_stage2_divisors': batch_stage2_divisors,
+            'batch_bypass_options': batch_bypass_options,
+            'batch_c_gt_7_options': batch_c_gt_7_options,
+            'batch_a1_wait_options': batch_a1_wait_options,
+            'batch_always_bet_options': batch_always_bet_options,
+            'batch_divisor_below_1_options': batch_divisor_below_1_options,
+            'batch_max_bet_caps': batch_max_bet_caps,
+            'total_turnover_all': total_turnover_all,
+            'total_final_balance_all': total_final_balance_all,
+            'total_profit_loss_all': total_profit_loss_all,
+            'success_count': success_count,
+            'success_rate': success_rate,
+            'batch_results': batch_results
+        }
 
         # Show detailed results
         st.subheader("Detailed Results")
@@ -2895,11 +3167,17 @@ with tab4:
 
         # Download results as CSV
         csv = results_df.to_csv(index=False)
-        from datetime import datetime
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         st.download_button(
-            label="Download Results as CSV",
+            label="📥 Download Results as CSV",
             data=csv,
-            file_name=f"batch_results_{timestamp}.csv",
+            file_name=f"batch_results_{batch_run_id}.csv",
             mime="text/csv"
         )
+
+        st.divider()
+
+        # Show message and button to refresh and show save button
+        st.info("💡 **To save this batch run to history:** Click the button below to show the save option")
+
+        if st.button("💾 Show Save Button", type="primary", key="show_save_btn"):
+            st.rerun()
