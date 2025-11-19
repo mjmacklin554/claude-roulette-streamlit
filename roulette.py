@@ -64,6 +64,7 @@ def save_session(session_data):
 
     return filename
 
+@st.cache_data(ttl=60)  # Cache for 60 seconds
 def load_all_sessions():
     """Load all session files and return as list"""
     ensure_history_folder()
@@ -94,6 +95,17 @@ def delete_session(filename):
         return True
     return False
 
+@st.cache_data(ttl=60)  # Cache for 60 seconds
+def get_available_files(numbers_folder):
+    """Get list of available outcome files from numbers folder"""
+    available_files = []
+    if os.path.exists(numbers_folder):
+        files = [f for f in os.listdir(numbers_folder) if f.endswith(('.xls', '.xlsx', '.csv', '.txt'))]
+        # Sort files by date (format: YYYY-MM-DD_nnn)
+        # Extract date portion before underscore for sorting
+        available_files = sorted(files, key=lambda x: x.split('_')[0] if '_' in x else x)
+    return available_files
+
 # Streamlit user inputs - Create tabs for main app, live play, and history
 tab1, tab2, tab3, tab4 = st.tabs(["Run Simulation", "Live Play Mode", "View History", "Batch Processing"])
 
@@ -102,12 +114,7 @@ with tab1:
 
     # File input for outcomes (OUTSIDE form to allow dynamic file selection)
     numbers_folder = "numbers"
-    available_files = []
-    if os.path.exists(numbers_folder):
-        files = [f for f in os.listdir(numbers_folder) if f.endswith(('.xls', '.xlsx', '.csv', '.txt'))]
-        # Sort files by date (format: YYYY-MM-DD_nnn)
-        # Extract date portion before underscore for sorting
-        available_files = sorted(files, key=lambda x: x.split('_')[0] if '_' in x else x)
+    available_files = get_available_files(numbers_folder)
 
     use_file = st.checkbox("Load outcomes from file", value=False)
     selected_file = None
@@ -275,34 +282,35 @@ with tab1:
 
             # Load outcomes from file or use default
             if current_file:
-                try:
-                    file_path = os.path.join(numbers_folder, current_file)
-                    if current_file.endswith('.txt'):
-                        # Load TXT file (one number per line)
-                        with open(file_path, 'r') as f:
-                            file_outcomes = [int(line.strip()) for line in f if line.strip().isdigit()]
-                        outcomes = file_outcomes
-                    elif current_file.endswith('.csv'):
-                        # Load CSV file with no header
-                        df_file = pd.read_csv(file_path, header=None)
-                        file_outcomes = df_file.iloc[:, 0].dropna().astype(int).tolist()
-                        outcomes = file_outcomes
-                    else:
-                        # Load Excel file (.xls or .xlsx) with no header
-                        df_file = pd.read_excel(file_path, header=None)
-                        file_outcomes = df_file.iloc[:, 0].dropna().astype(int).tolist()
-                        outcomes = file_outcomes
+                with st.spinner(f"Loading outcomes from {current_file}..."):
+                    try:
+                        file_path = os.path.join(numbers_folder, current_file)
+                        if current_file.endswith('.txt'):
+                            # Load TXT file (one number per line)
+                            with open(file_path, 'r') as f:
+                                file_outcomes = [int(line.strip()) for line in f if line.strip().isdigit()]
+                            outcomes = file_outcomes
+                        elif current_file.endswith('.csv'):
+                            # Load CSV file with no header
+                            df_file = pd.read_csv(file_path, header=None)
+                            file_outcomes = df_file.iloc[:, 0].dropna().astype(int).tolist()
+                            outcomes = file_outcomes
+                        else:
+                            # Load Excel file (.xls or .xlsx) with no header
+                            df_file = pd.read_excel(file_path, header=None)
+                            file_outcomes = df_file.iloc[:, 0].dropna().astype(int).tolist()
+                            outcomes = file_outcomes
 
-                    if not batch_mode:
-                        st.success(f"Loaded {len(outcomes)} outcomes from {current_file} (first outcome: {outcomes[0]})")
+                        if not batch_mode:
+                            st.success(f"Loaded {len(outcomes)} outcomes from {current_file} (first outcome: {outcomes[0]})")
 
-                except Exception as e:
-                    st.error(f"Error loading file {current_file}: {str(e)}")
-                    if batch_mode:
-                        continue  # Skip this file in batch mode
-                    else:
-                        st.info("Using default outcomes instead")
-                        # Keep the original default outcomes for single file mode
+                    except Exception as e:
+                        st.error(f"Error loading file {current_file}: {str(e)}")
+                        if batch_mode:
+                            continue  # Skip this file in batch mode
+                        else:
+                            st.info("Using default outcomes instead")
+                            # Keep the original default outcomes for single file mode
             else:
                 st.info("Using default test outcomes")
 
@@ -350,7 +358,13 @@ with tab1:
 
             # Create DataFrame and collect debug messages - must be before functions
             results = []
-            debug_messages = []
+            # Use a no-op list class when debug mode is disabled for performance
+            class NoOpList:
+                def append(self, item): pass
+                def __iter__(self): return iter([])
+                def __bool__(self): return False
+                def __len__(self): return 0
+            debug_messages = [] if debug_mode else NoOpList()
             balance_history = []  # Track balance at each spin
 
             # Bank limits
@@ -471,7 +485,18 @@ with tab1:
 
             # Remove the nested functions and put logic inline in the main loop
 
+            # Show status message and progress bar for simulation processing
+            if not batch_mode:
+                progress_bar = st.progress(0)
+                status_text = st.empty()
+                status_text.text(f"Processing {len(outcomes)} outcomes...")
+
             for i, outcome in enumerate(outcomes):
+                # Update progress every 100 spins for better performance
+                if not batch_mode and i % 100 == 0:
+                    progress = i / len(outcomes)
+                    progress_bar.progress(progress)
+                    status_text.text(f"Processing outcome {i}/{len(outcomes)}...")
                 if not session_active:
                     break  # Stop processing if session ended
                 line_num = i + 1
@@ -482,8 +507,6 @@ with tab1:
                     stage2_starts_next_spin = False
                     debug_messages.append((line_num, f"Stage 2 begins."))
 
-                # Debug: Log current_bet_type at start of iteration
-                debug_messages.append((line_num, f"[DEBUG] Start of line: stage={stage}, current_bet_type={current_bet_type}, four_corner_active={four_corner_rule_active}, waiting_for_a1={waiting_for_a1_losses}"))
 
                 # Determine win/loss (W if in A1, L otherwise)
                 win_status = 'W' if outcome in A1 else 'L'
@@ -545,8 +568,6 @@ with tab1:
                         # Stage 1 betting logic (inline)
                         bet_result = {'bet_amount': 0, 'loss_mixed': {'integer': 0, 'decimal': 0}, 'win_mixed': False}
 
-                        # Debug: Log before betting decision
-                        debug_messages.append((line_num, f"[DEBUG] Before betting: current_bet_type={current_bet_type}, outcome={outcome}, c={sequence_code['c']}"))
 
                         # Check A1 wait rule first (only if enabled)
                         if enable_a1_wait_rule and waiting_for_a1_losses:
@@ -621,9 +642,7 @@ with tab1:
                                     # Handle loss with mixed numbers
                                     loss_mixed_number = chips_to_mixed_number(-bet_amount)
                                     cumulative_negative = add_mixed_numbers(cumulative_negative, loss_mixed_number)
-                                    debug_messages.append((line_num, f"[DEBUG] Bet lost: bet_amount={bet_amount}, current_bet_type before increment={current_bet_type}"))
                                     current_bet_type += 1
-                                    debug_messages.append((line_num, f"[DEBUG] After increment: current_bet_type={current_bet_type}"))
                                     if current_bet_type > 3:
                                         debug_messages.append((line_num, f"Bet3 lost. Stage 1 ends, Stage 2 will begin next spin."))
                                         stage1_complete = True
@@ -880,8 +899,6 @@ with tab1:
                                 sequence_code['a'] = 1
                                 debug_messages.append((line_num, f"Warning: sequence_code['a'] was 0, reset to 1"))
                             sequence_code['c'] = (int(sequence_code['b'] / sequence_code['a'])) * 2
-                    else:
-                        debug_messages.append((line_num, f"[DEBUG] Sequence code update skipped - four corner rule active"))
 
                     # Check for sequence completion (a < 3 while recording OR stage 3 after Stage 2 recovery)
                     # Note: Uses 'recording' instead of 'first_bet_placed' so c <= 7 rule doesn't prevent sequence ending
@@ -949,6 +966,11 @@ with tab1:
 
                 results.append(row)
                 balance_history.append(balance)  # Track balance after each spin
+
+            # Clear status message and progress bar
+            if not batch_mode:
+                progress_bar.empty()
+                status_text.empty()
 
             # Create and display DataFrame
             df = pd.DataFrame(results)
@@ -2271,10 +2293,7 @@ with tab4:
 
     # Check for files in batch folder
     batch_folder = "numbers_for_autorun"
-    all_batch_files = []
-    if os.path.exists(batch_folder):
-        all_batch_files = sorted([f for f in os.listdir(batch_folder)
-                                  if f.endswith(('.xls', '.xlsx', '.csv', '.txt'))])
+    all_batch_files = get_available_files(batch_folder)
 
     st.divider()
     st.subheader("📁 File Selection")
@@ -2540,7 +2559,13 @@ with tab4:
 
                         # Create DataFrame and collect debug messages - must be before functions
                         results = []
-                        debug_messages = []
+                        # Use a no-op list class for debug messages in optimization mode for performance
+                        class NoOpList:
+                            def append(self, item): pass
+                            def __iter__(self): return iter([])
+                            def __bool__(self): return False
+                            def __len__(self): return 0
+                        debug_messages = NoOpList()  # Always disabled in optimization mode for speed
                         balance_history = []  # Track balance at each spin
 
                         # Bank limits
@@ -2672,8 +2697,6 @@ with tab4:
                                 stage2_starts_next_spin = False
                                 debug_messages.append((line_num, f"Stage 2 begins."))
 
-                            # Debug: Log current_bet_type at start of iteration
-                            debug_messages.append((line_num, f"[DEBUG] Start of line: stage={stage}, current_bet_type={current_bet_type}, four_corner_active={four_corner_rule_active}, waiting_for_a1={waiting_for_a1_losses}"))
 
                             # Determine win/loss (W if in A1, L otherwise)
                             win_status = 'W' if outcome in A1 else 'L'
@@ -2735,8 +2758,6 @@ with tab4:
                                     # Stage 1 betting logic (inline)
                                     bet_result = {'bet_amount': 0, 'loss_mixed': {'integer': 0, 'decimal': 0}, 'win_mixed': False}
 
-                                    # Debug: Log before betting decision
-                                    debug_messages.append((line_num, f"[DEBUG] Before betting: current_bet_type={current_bet_type}, outcome={outcome}, c={sequence_code['c']}"))
 
                                     # Check A1 wait rule first (only if enabled)
                                     if enable_a1_wait_rule and waiting_for_a1_losses:
@@ -2811,9 +2832,7 @@ with tab4:
                                                 # Handle loss with mixed numbers
                                                 loss_mixed_number = chips_to_mixed_number(-bet_amount)
                                                 cumulative_negative = add_mixed_numbers(cumulative_negative, loss_mixed_number)
-                                                debug_messages.append((line_num, f"[DEBUG] Bet lost: bet_amount={bet_amount}, current_bet_type before increment={current_bet_type}"))
                                                 current_bet_type += 1
-                                                debug_messages.append((line_num, f"[DEBUG] After increment: current_bet_type={current_bet_type}"))
                                                 if current_bet_type > 3:
                                                     debug_messages.append((line_num, f"Bet3 lost. Stage 1 ends, Stage 2 will begin next spin."))
                                                     stage1_complete = True
@@ -3070,8 +3089,6 @@ with tab4:
                                             sequence_code['a'] = 1
                                             debug_messages.append((line_num, f"Warning: sequence_code['a'] was 0, reset to 1"))
                                         sequence_code['c'] = (int(sequence_code['b'] / sequence_code['a'])) * 2
-                                else:
-                                    debug_messages.append((line_num, f"[DEBUG] Sequence code update skipped - four corner rule active"))
 
                                 # Check for sequence completion (a < 3 while recording OR stage 3 after Stage 2 recovery)
                                 # Note: Uses 'recording' instead of 'first_bet_placed' so c <= 7 rule doesn't prevent sequence ending
