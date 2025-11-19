@@ -1,0 +1,9714 @@
+{
+  "timestamp": "2025-11-18T06:27:16.244546",
+  "configuration": {
+    "file": "2011-10-24_559.xls",
+    "sequence_codes": "Alternative (8, 44, 10)",
+    "stage2_divisor": 32,
+    "bypass_a10_rule": false,
+    "total_outcomes": 559
+  },
+  "results": {
+    "sequences_completed": 34,
+    "final_balance_chips": 84,
+    "starting_bank_units": 250,
+    "final_bank_units": 271,
+    "session_status": "ACTIVE",
+    "outcomes_processed": 559,
+    "profit_loss_chips": 84,
+    "profit_loss_units": 21,
+    "worst_drawdown": {
+      "line": 258,
+      "bet": "18 units",
+      "negative": -79,
+      "positive": "9.1",
+      "positive_chips": 37,
+      "chip_loss": -279,
+      "balance": 35,
+      "total_loss": -244
+    },
+    "session_successful": true,
+    "final_stage": 1,
+    "total_turnover": 1713
+  },
+  "dataframe": [
+    {
+      "line": 1,
+      "outcome": 26,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 2,
+      "outcome": 18,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 1
+    },
+    {
+      "line": 3,
+      "outcome": 5,
+      "win": "W",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 4,
+      "outcome": 1,
+      "win": "L",
+      "a": 3,
+      "b": 22,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 5,
+      "outcome": 5,
+      "win": "W",
+      "a": 4,
+      "b": 36,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 6,
+      "outcome": 34,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 7,
+      "outcome": 34,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 2
+    },
+    {
+      "line": 8,
+      "outcome": 36,
+      "win": "L",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 9,
+      "outcome": 24,
+      "win": "L",
+      "a": 6,
+      "b": 46,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 10,
+      "outcome": 22,
+      "win": "L",
+      "a": 7,
+      "b": 60,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 11,
+      "outcome": 9,
+      "win": "L",
+      "a": 8,
+      "b": 76,
+      "c": 18,
+      "actual bet": "Bet 1",
+      "negative": -2,
+      "positive": ".3",
+      "balance": ""
+    },
+    {
+      "line": 12,
+      "outcome": 29,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 2",
+      "negative": -1,
+      "positive": "1",
+      "balance": 2
+    },
+    {
+      "line": 13,
+      "outcome": 18,
+      "win": "W",
+      "a": 9,
+      "b": 47,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 14,
+      "outcome": 11,
+      "win": "L",
+      "a": 6,
+      "b": 37,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 15,
+      "outcome": 11,
+      "win": "L",
+      "a": 7,
+      "b": 49,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 16,
+      "outcome": 24,
+      "win": "L",
+      "a": 8,
+      "b": 63,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 17,
+      "outcome": 22,
+      "win": "L",
+      "a": 9,
+      "b": 77,
+      "c": 16,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 3
+    },
+    {
+      "line": 18,
+      "outcome": 0,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 1",
+      "negative": -2,
+      "positive": ".3",
+      "balance": ""
+    },
+    {
+      "line": 19,
+      "outcome": 23,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 2",
+      "negative": -3,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 20,
+      "outcome": 4,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 3",
+      "negative": -5,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 21,
+      "outcome": 4,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 22,
+      "outcome": 0,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 23,
+      "outcome": 19,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 24,
+      "outcome": 20,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 25,
+      "outcome": 31,
+      "win": "W",
+      "a": 10,
+      "b": 47,
+      "c": 8,
+      "actual bet": "1 units",
+      "negative": -4,
+      "positive": "1",
+      "balance": ""
+    },
+    {
+      "line": 26,
+      "outcome": 7,
+      "win": "L",
+      "a": 7,
+      "b": 39,
+      "c": 10,
+      "actual bet": "1 units",
+      "negative": -5,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 27,
+      "outcome": 26,
+      "win": "W",
+      "a": 8,
+      "b": 49,
+      "c": 12,
+      "actual bet": "1 units",
+      "negative": -4,
+      "positive": "1.1",
+      "balance": ""
+    },
+    {
+      "line": 28,
+      "outcome": 31,
+      "win": "W",
+      "a": 5,
+      "b": 37,
+      "c": 14,
+      "actual bet": "1 units",
+      "negative": -3,
+      "positive": "1.2",
+      "balance": ""
+    },
+    {
+      "line": 29,
+      "outcome": 8,
+      "win": "L",
+      "a": 3,
+      "b": 23,
+      "c": 14,
+      "actual bet": "2 units",
+      "negative": -5,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 30,
+      "outcome": 9,
+      "win": "L",
+      "a": 4,
+      "b": 37,
+      "c": 18,
+      "actual bet": "3 units",
+      "negative": -8,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 31,
+      "outcome": 11,
+      "win": "L",
+      "a": 5,
+      "b": 55,
+      "c": 22,
+      "actual bet": "1 units",
+      "negative": -9,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 32,
+      "outcome": 16,
+      "win": "L",
+      "a": 6,
+      "b": 77,
+      "c": 24,
+      "actual bet": "1 units",
+      "negative": -10,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 33,
+      "outcome": 5,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 34,
+      "outcome": 24,
+      "win": "L",
+      "a": 7,
+      "b": 51,
+      "c": 14,
+      "actual bet": "1 units",
+      "negative": -11,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 35,
+      "outcome": 36,
+      "win": "L",
+      "a": 8,
+      "b": 65,
+      "c": 16,
+      "actual bet": "1 units",
+      "negative": -12,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 36,
+      "outcome": 8,
+      "win": "L",
+      "a": 9,
+      "b": 81,
+      "c": 18,
+      "actual bet": "1 units",
+      "negative": -13,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 37,
+      "outcome": 20,
+      "win": "W",
+      "a": 10,
+      "b": 50,
+      "c": 10,
+      "actual bet": "1 units",
+      "negative": -12,
+      "positive": "1.3",
+      "balance": ""
+    },
+    {
+      "line": 38,
+      "outcome": 26,
+      "win": "W",
+      "a": 7,
+      "b": 40,
+      "c": 10,
+      "actual bet": "1 units",
+      "negative": -11,
+      "positive": "2",
+      "balance": ""
+    },
+    {
+      "line": 39,
+      "outcome": 15,
+      "win": "L",
+      "a": 5,
+      "b": 30,
+      "c": 12,
+      "actual bet": "1 units",
+      "negative": -12,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 40,
+      "outcome": 22,
+      "win": "L",
+      "a": 6,
+      "b": 42,
+      "c": 14,
+      "actual bet": "1 units",
+      "negative": -13,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 41,
+      "outcome": 15,
+      "win": "L",
+      "a": 7,
+      "b": 56,
+      "c": 16,
+      "actual bet": "2 units",
+      "negative": -15,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 42,
+      "outcome": 34,
+      "win": "W",
+      "a": 8,
+      "b": 72,
+      "c": 18,
+      "actual bet": "2 units",
+      "negative": -13,
+      "positive": "2.2",
+      "balance": ""
+    },
+    {
+      "line": 43,
+      "outcome": 10,
+      "win": "L",
+      "a": 5,
+      "b": 54,
+      "c": 20,
+      "actual bet": "2 units",
+      "negative": -15,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 44,
+      "outcome": 8,
+      "win": "L",
+      "a": 6,
+      "b": 74,
+      "c": 24,
+      "actual bet": "3 units",
+      "negative": -18,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 45,
+      "outcome": 28,
+      "win": "W",
+      "a": 7,
+      "b": 49,
+      "c": 14,
+      "actual bet": "3 units",
+      "negative": -15,
+      "positive": "3.1",
+      "balance": ""
+    },
+    {
+      "line": 46,
+      "outcome": 6,
+      "win": "W",
+      "a": 5,
+      "b": 35,
+      "c": 14,
+      "actual bet": "3 units",
+      "negative": -12,
+      "positive": "4",
+      "balance": ""
+    },
+    {
+      "line": 47,
+      "outcome": 9,
+      "win": "L",
+      "a": 3,
+      "b": 21,
+      "c": 14,
+      "actual bet": "7 units",
+      "negative": -19,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 48,
+      "outcome": 7,
+      "win": "L",
+      "a": 4,
+      "b": 35,
+      "c": 16,
+      "actual bet": "12 units",
+      "negative": -31,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 49,
+      "outcome": 17,
+      "win": "W",
+      "a": 5,
+      "b": 51,
+      "c": 20,
+      "actual bet": "5 units",
+      "negative": -26,
+      "positive": "5.1",
+      "balance": ""
+    },
+    {
+      "line": 50,
+      "outcome": 31,
+      "win": "W",
+      "a": 3,
+      "b": 31,
+      "c": 20,
+      "actual bet": "17 units",
+      "negative": -9,
+      "positive": "9.2",
+      "balance": 5
+    },
+    {
+      "line": 51,
+      "outcome": 1,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 52,
+      "outcome": 29,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 53,
+      "outcome": 13,
+      "win": "L",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 6
+    },
+    {
+      "line": 54,
+      "outcome": 24,
+      "win": "L",
+      "a": 9,
+      "b": 54,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 7
+    },
+    {
+      "line": 55,
+      "outcome": 4,
+      "win": "L",
+      "a": 10,
+      "b": 66,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 8
+    },
+    {
+      "line": 56,
+      "outcome": 21,
+      "win": "W",
+      "a": 11,
+      "b": 78,
+      "c": 14,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 9
+    },
+    {
+      "line": 57,
+      "outcome": 23,
+      "win": "L",
+      "a": 7,
+      "b": 64,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 58,
+      "outcome": 14,
+      "win": "L",
+      "a": 8,
+      "b": 82,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 59,
+      "outcome": 25,
+      "win": "W",
+      "a": 9,
+      "b": 51,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 60,
+      "outcome": 6,
+      "win": "W",
+      "a": 6,
+      "b": 41,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 61,
+      "outcome": 13,
+      "win": "L",
+      "a": 4,
+      "b": 29,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 62,
+      "outcome": 20,
+      "win": "W",
+      "a": 5,
+      "b": 43,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 63,
+      "outcome": 14,
+      "win": "L",
+      "a": 3,
+      "b": 27,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 64,
+      "outcome": 7,
+      "win": "L",
+      "a": 4,
+      "b": 45,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 65,
+      "outcome": 2,
+      "win": "W",
+      "a": 5,
+      "b": 67,
+      "c": 26,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 66,
+      "outcome": 32,
+      "win": "W",
+      "a": 3,
+      "b": 41,
+      "c": 26,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 67,
+      "outcome": 28,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 68,
+      "outcome": 5,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 10
+    },
+    {
+      "line": 69,
+      "outcome": 5,
+      "win": "W",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 70,
+      "outcome": 33,
+      "win": "L",
+      "a": 3,
+      "b": 22,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 71,
+      "outcome": 15,
+      "win": "L",
+      "a": 4,
+      "b": 36,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 72,
+      "outcome": 13,
+      "win": "L",
+      "a": 5,
+      "b": 54,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 73,
+      "outcome": 3,
+      "win": "W",
+      "a": 6,
+      "b": 74,
+      "c": 24,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 11
+    },
+    {
+      "line": 74,
+      "outcome": 14,
+      "win": "L",
+      "a": 4,
+      "b": 50,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 75,
+      "outcome": 27,
+      "win": "L",
+      "a": 5,
+      "b": 74,
+      "c": 28,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 76,
+      "outcome": 5,
+      "win": "W",
+      "a": 6,
+      "b": 51,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 77,
+      "outcome": 29,
+      "win": "W",
+      "a": 4,
+      "b": 35,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 78,
+      "outcome": 14,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 79,
+      "outcome": 8,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 80,
+      "outcome": 35,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 81,
+      "outcome": 28,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 12
+    },
+    {
+      "line": 82,
+      "outcome": 26,
+      "win": "W",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 83,
+      "outcome": 17,
+      "win": "W",
+      "a": 3,
+      "b": 22,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 84,
+      "outcome": 30,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 85,
+      "outcome": 7,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 86,
+      "outcome": 2,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 87,
+      "outcome": 25,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 13
+    },
+    {
+      "line": 88,
+      "outcome": 29,
+      "win": "W",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 89,
+      "outcome": 22,
+      "win": "L",
+      "a": 3,
+      "b": 22,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 90,
+      "outcome": 7,
+      "win": "L",
+      "a": 4,
+      "b": 36,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 91,
+      "outcome": 28,
+      "win": "W",
+      "a": 5,
+      "b": 54,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 92,
+      "outcome": 18,
+      "win": "W",
+      "a": 3,
+      "b": 34,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 93,
+      "outcome": 10,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 94,
+      "outcome": 32,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 95,
+      "outcome": 33,
+      "win": "L",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 14
+    },
+    {
+      "line": 96,
+      "outcome": 15,
+      "win": "L",
+      "a": 9,
+      "b": 54,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 15
+    },
+    {
+      "line": 97,
+      "outcome": 29,
+      "win": "W",
+      "a": 10,
+      "b": 66,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 16
+    },
+    {
+      "line": 98,
+      "outcome": 35,
+      "win": "W",
+      "a": 7,
+      "b": 54,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 99,
+      "outcome": 15,
+      "win": "L",
+      "a": 5,
+      "b": 40,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 100,
+      "outcome": 23,
+      "win": "L",
+      "a": 6,
+      "b": 56,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 101,
+      "outcome": 18,
+      "win": "W",
+      "a": 7,
+      "b": 74,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 102,
+      "outcome": 8,
+      "win": "L",
+      "a": 5,
+      "b": 54,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 103,
+      "outcome": 26,
+      "win": "W",
+      "a": 6,
+      "b": 74,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 104,
+      "outcome": 31,
+      "win": "W",
+      "a": 4,
+      "b": 50,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 105,
+      "outcome": 35,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 106,
+      "outcome": 4,
+      "win": "L",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 17
+    },
+    {
+      "line": 107,
+      "outcome": 16,
+      "win": "L",
+      "a": 9,
+      "b": 54,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 18
+    },
+    {
+      "line": 108,
+      "outcome": 24,
+      "win": "L",
+      "a": 10,
+      "b": 66,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 19
+    },
+    {
+      "line": 109,
+      "outcome": 3,
+      "win": "W",
+      "a": 11,
+      "b": 78,
+      "c": 14,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 20
+    },
+    {
+      "line": 110,
+      "outcome": 14,
+      "win": "L",
+      "a": 7,
+      "b": 64,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 111,
+      "outcome": 29,
+      "win": "W",
+      "a": 8,
+      "b": 82,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 112,
+      "outcome": 25,
+      "win": "W",
+      "a": 5,
+      "b": 62,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 113,
+      "outcome": 26,
+      "win": "W",
+      "a": 3,
+      "b": 38,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 114,
+      "outcome": 28,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 115,
+      "outcome": 2,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 21
+    },
+    {
+      "line": 116,
+      "outcome": 17,
+      "win": "W",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 117,
+      "outcome": 12,
+      "win": "L",
+      "a": 3,
+      "b": 22,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 118,
+      "outcome": 11,
+      "win": "L",
+      "a": 4,
+      "b": 36,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 119,
+      "outcome": 7,
+      "win": "L",
+      "a": 5,
+      "b": 54,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 120,
+      "outcome": 12,
+      "win": "L",
+      "a": 6,
+      "b": 74,
+      "c": 24,
+      "actual bet": "Bet 1",
+      "negative": -2,
+      "positive": ".3",
+      "balance": ""
+    },
+    {
+      "line": 121,
+      "outcome": 6,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 2",
+      "negative": -1,
+      "positive": "1",
+      "balance": 21
+    },
+    {
+      "line": 122,
+      "outcome": 12,
+      "win": "L",
+      "a": 7,
+      "b": 49,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 123,
+      "outcome": 28,
+      "win": "W",
+      "a": 8,
+      "b": 63,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 124,
+      "outcome": 7,
+      "win": "L",
+      "a": 5,
+      "b": 49,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 125,
+      "outcome": 14,
+      "win": "L",
+      "a": 6,
+      "b": 67,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 126,
+      "outcome": 17,
+      "win": "W",
+      "a": 7,
+      "b": 89,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 127,
+      "outcome": 10,
+      "win": "L",
+      "a": 5,
+      "b": 65,
+      "c": 26,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 128,
+      "outcome": 0,
+      "win": "L",
+      "a": 6,
+      "b": 46,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 129,
+      "outcome": 18,
+      "win": "W",
+      "a": 7,
+      "b": 60,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 130,
+      "outcome": 6,
+      "win": "W",
+      "a": 5,
+      "b": 44,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 131,
+      "outcome": 16,
+      "win": "L",
+      "a": 3,
+      "b": 28,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 132,
+      "outcome": 27,
+      "win": "L",
+      "a": 4,
+      "b": 46,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 133,
+      "outcome": 35,
+      "win": "W",
+      "a": 5,
+      "b": 68,
+      "c": 26,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 134,
+      "outcome": 34,
+      "win": "W",
+      "a": 3,
+      "b": 42,
+      "c": 28,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 135,
+      "outcome": 29,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 136,
+      "outcome": 31,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 22
+    },
+    {
+      "line": 137,
+      "outcome": 26,
+      "win": "W",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 138,
+      "outcome": 14,
+      "win": "L",
+      "a": 3,
+      "b": 22,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 139,
+      "outcome": 3,
+      "win": "W",
+      "a": 4,
+      "b": 36,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 140,
+      "outcome": 6,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 141,
+      "outcome": 5,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 23
+    },
+    {
+      "line": 142,
+      "outcome": 14,
+      "win": "L",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 143,
+      "outcome": 15,
+      "win": "L",
+      "a": 6,
+      "b": 46,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 144,
+      "outcome": 7,
+      "win": "L",
+      "a": 7,
+      "b": 60,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 145,
+      "outcome": 27,
+      "win": "L",
+      "a": 8,
+      "b": 76,
+      "c": 18,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 24
+    },
+    {
+      "line": 146,
+      "outcome": 12,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 1",
+      "negative": -2,
+      "positive": ".3",
+      "balance": ""
+    },
+    {
+      "line": 147,
+      "outcome": 9,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 2",
+      "negative": -3,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 148,
+      "outcome": 5,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 3",
+      "negative": -1,
+      "positive": "1.1",
+      "balance": 25
+    },
+    {
+      "line": 149,
+      "outcome": 16,
+      "win": "L",
+      "a": 9,
+      "b": 47,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 150,
+      "outcome": 30,
+      "win": "L",
+      "a": 10,
+      "b": 57,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 151,
+      "outcome": 13,
+      "win": "L",
+      "a": 11,
+      "b": 67,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 152,
+      "outcome": 10,
+      "win": "L",
+      "a": 12,
+      "b": 79,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": -2,
+      "positive": ".3",
+      "balance": ""
+    },
+    {
+      "line": 153,
+      "outcome": 17,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 154,
+      "outcome": 13,
+      "win": "L",
+      "a": 13,
+      "b": 46,
+      "c": 6,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 155,
+      "outcome": 30,
+      "win": "L",
+      "a": 14,
+      "b": 52,
+      "c": 6,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 156,
+      "outcome": 4,
+      "win": "L",
+      "a": 15,
+      "b": 58,
+      "c": 6,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 157,
+      "outcome": 28,
+      "win": "W",
+      "a": 16,
+      "b": 64,
+      "c": 8,
+      "actual bet": "Bet 2",
+      "negative": -1,
+      "positive": "1",
+      "balance": 25
+    },
+    {
+      "line": 158,
+      "outcome": 31,
+      "win": "W",
+      "a": 10,
+      "b": 56,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 159,
+      "outcome": 12,
+      "win": "L",
+      "a": 7,
+      "b": 46,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 160,
+      "outcome": 32,
+      "win": "W",
+      "a": 8,
+      "b": 58,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 161,
+      "outcome": 13,
+      "win": "L",
+      "a": 5,
+      "b": 44,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 162,
+      "outcome": 0,
+      "win": "L",
+      "a": 6,
+      "b": 60,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 163,
+      "outcome": 15,
+      "win": "L",
+      "a": 7,
+      "b": 80,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 164,
+      "outcome": 20,
+      "win": "W",
+      "a": 8,
+      "b": 51,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 26
+    },
+    {
+      "line": 165,
+      "outcome": 26,
+      "win": "W",
+      "a": 5,
+      "b": 39,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 166,
+      "outcome": 0,
+      "win": "L",
+      "a": 3,
+      "b": 25,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 167,
+      "outcome": 12,
+      "win": "L",
+      "a": 4,
+      "b": 41,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 168,
+      "outcome": 34,
+      "win": "W",
+      "a": 5,
+      "b": 61,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 169,
+      "outcome": 0,
+      "win": "L",
+      "a": 3,
+      "b": 37,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 170,
+      "outcome": 29,
+      "win": "W",
+      "a": 4,
+      "b": 61,
+      "c": 30,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 171,
+      "outcome": 16,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 172,
+      "outcome": 14,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 173,
+      "outcome": 10,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 174,
+      "outcome": 17,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 175,
+      "outcome": 18,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 27
+    },
+    {
+      "line": 176,
+      "outcome": 15,
+      "win": "L",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 177,
+      "outcome": 35,
+      "win": "W",
+      "a": 6,
+      "b": 46,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 178,
+      "outcome": 13,
+      "win": "L",
+      "a": 4,
+      "b": 32,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 179,
+      "outcome": 36,
+      "win": "L",
+      "a": 5,
+      "b": 48,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 180,
+      "outcome": 20,
+      "win": "W",
+      "a": 6,
+      "b": 66,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 181,
+      "outcome": 11,
+      "win": "L",
+      "a": 4,
+      "b": 44,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 182,
+      "outcome": 31,
+      "win": "W",
+      "a": 5,
+      "b": 66,
+      "c": 26,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 183,
+      "outcome": 36,
+      "win": "L",
+      "a": 3,
+      "b": 40,
+      "c": 26,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 184,
+      "outcome": 6,
+      "win": "W",
+      "a": 4,
+      "b": 66,
+      "c": 32,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 185,
+      "outcome": 21,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 186,
+      "outcome": 15,
+      "win": "L",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 28
+    },
+    {
+      "line": 187,
+      "outcome": 28,
+      "win": "W",
+      "a": 9,
+      "b": 54,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 29
+    },
+    {
+      "line": 188,
+      "outcome": 33,
+      "win": "L",
+      "a": 6,
+      "b": 42,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 189,
+      "outcome": 26,
+      "win": "W",
+      "a": 7,
+      "b": 56,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 190,
+      "outcome": 1,
+      "win": "L",
+      "a": 5,
+      "b": 40,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 191,
+      "outcome": 29,
+      "win": "W",
+      "a": 6,
+      "b": 56,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 192,
+      "outcome": 11,
+      "win": "L",
+      "a": 4,
+      "b": 38,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 193,
+      "outcome": 34,
+      "win": "W",
+      "a": 5,
+      "b": 56,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 194,
+      "outcome": 17,
+      "win": "W",
+      "a": 3,
+      "b": 34,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 195,
+      "outcome": 5,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 196,
+      "outcome": 23,
+      "win": "L",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 30
+    },
+    {
+      "line": 197,
+      "outcome": 3,
+      "win": "W",
+      "a": 9,
+      "b": 54,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 31
+    },
+    {
+      "line": 198,
+      "outcome": 0,
+      "win": "L",
+      "a": 6,
+      "b": 42,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 199,
+      "outcome": 1,
+      "win": "L",
+      "a": 7,
+      "b": 56,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 200,
+      "outcome": 35,
+      "win": "W",
+      "a": 8,
+      "b": 72,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 201,
+      "outcome": 28,
+      "win": "W",
+      "a": 5,
+      "b": 54,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 202,
+      "outcome": 1,
+      "win": "L",
+      "a": 3,
+      "b": 34,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 203,
+      "outcome": 17,
+      "win": "W",
+      "a": 4,
+      "b": 56,
+      "c": 28,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 204,
+      "outcome": 36,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 205,
+      "outcome": 12,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 206,
+      "outcome": 20,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 207,
+      "outcome": 6,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 32
+    },
+    {
+      "line": 208,
+      "outcome": 24,
+      "win": "L",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 209,
+      "outcome": 9,
+      "win": "L",
+      "a": 6,
+      "b": 46,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 210,
+      "outcome": 15,
+      "win": "L",
+      "a": 7,
+      "b": 60,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 211,
+      "outcome": 36,
+      "win": "L",
+      "a": 8,
+      "b": 76,
+      "c": 18,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 33
+    },
+    {
+      "line": 212,
+      "outcome": 36,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 34
+    },
+    {
+      "line": 213,
+      "outcome": 14,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 35
+    },
+    {
+      "line": 214,
+      "outcome": 8,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 1",
+      "negative": -2,
+      "positive": ".3",
+      "balance": ""
+    },
+    {
+      "line": 215,
+      "outcome": 14,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 2",
+      "negative": -3,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 216,
+      "outcome": 6,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 217,
+      "outcome": 14,
+      "win": "L",
+      "a": 9,
+      "b": 47,
+      "c": 10,
+      "actual bet": "Bet 3",
+      "negative": -5,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 218,
+      "outcome": 31,
+      "win": "W",
+      "a": 10,
+      "b": 57,
+      "c": 10,
+      "actual bet": "1 units",
+      "negative": -4,
+      "positive": "1",
+      "balance": ""
+    },
+    {
+      "line": 219,
+      "outcome": 27,
+      "win": "L",
+      "a": 7,
+      "b": 47,
+      "c": 12,
+      "actual bet": "1 units",
+      "negative": -5,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 220,
+      "outcome": 8,
+      "win": "L",
+      "a": 8,
+      "b": 59,
+      "c": 14,
+      "actual bet": "1 units",
+      "negative": -6,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 221,
+      "outcome": 7,
+      "win": "L",
+      "a": 9,
+      "b": 73,
+      "c": 16,
+      "actual bet": "1 units",
+      "negative": -7,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 222,
+      "outcome": 18,
+      "win": "W",
+      "a": 10,
+      "b": 89,
+      "c": 16,
+      "actual bet": "1 units",
+      "negative": -6,
+      "positive": "1.1",
+      "balance": ""
+    },
+    {
+      "line": 223,
+      "outcome": 36,
+      "win": "L",
+      "a": 7,
+      "b": 73,
+      "c": 20,
+      "actual bet": "1 units",
+      "negative": -7,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 224,
+      "outcome": 3,
+      "win": "W",
+      "a": 8,
+      "b": 47,
+      "c": 10,
+      "actual bet": "1 units",
+      "negative": -6,
+      "positive": "1.2",
+      "balance": ""
+    },
+    {
+      "line": 225,
+      "outcome": 22,
+      "win": "L",
+      "a": 5,
+      "b": 37,
+      "c": 14,
+      "actual bet": "1 units",
+      "negative": -7,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 226,
+      "outcome": 8,
+      "win": "L",
+      "a": 6,
+      "b": 51,
+      "c": 16,
+      "actual bet": "1 units",
+      "negative": -8,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 227,
+      "outcome": 30,
+      "win": "L",
+      "a": 7,
+      "b": 67,
+      "c": 18,
+      "actual bet": "1 units",
+      "negative": -9,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 228,
+      "outcome": 36,
+      "win": "L",
+      "a": 8,
+      "b": 85,
+      "c": 20,
+      "actual bet": "1 units",
+      "negative": -10,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 229,
+      "outcome": 25,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 230,
+      "outcome": 13,
+      "win": "L",
+      "a": 9,
+      "b": 53,
+      "c": 10,
+      "actual bet": "1 units",
+      "negative": -11,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 231,
+      "outcome": 33,
+      "win": "L",
+      "a": 10,
+      "b": 63,
+      "c": 12,
+      "actual bet": "1 units",
+      "negative": -12,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 232,
+      "outcome": 1,
+      "win": "L",
+      "a": 11,
+      "b": 75,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 233,
+      "outcome": 8,
+      "win": "L",
+      "a": 12,
+      "b": 87,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 234,
+      "outcome": 23,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 235,
+      "outcome": 28,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 236,
+      "outcome": 8,
+      "win": "L",
+      "a": 13,
+      "b": 51,
+      "c": 6,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 237,
+      "outcome": 9,
+      "win": "L",
+      "a": 14,
+      "b": 57,
+      "c": 8,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 238,
+      "outcome": 3,
+      "win": "W",
+      "a": 15,
+      "b": 65,
+      "c": 8,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 239,
+      "outcome": 0,
+      "win": "L",
+      "a": 10,
+      "b": 57,
+      "c": 10,
+      "actual bet": "2 units",
+      "negative": -14,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 240,
+      "outcome": 8,
+      "win": "L",
+      "a": 11,
+      "b": 67,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 241,
+      "outcome": 9,
+      "win": "L",
+      "a": 12,
+      "b": 79,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 242,
+      "outcome": 33,
+      "win": "L",
+      "a": 13,
+      "b": 46,
+      "c": 6,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 243,
+      "outcome": 0,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 244,
+      "outcome": 29,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 245,
+      "outcome": 26,
+      "win": "W",
+      "a": 14,
+      "b": 52,
+      "c": 6,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 246,
+      "outcome": 30,
+      "win": "L",
+      "a": 10,
+      "b": 46,
+      "c": 8,
+      "actual bet": "4 units",
+      "negative": -18,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 247,
+      "outcome": 17,
+      "win": "W",
+      "a": 11,
+      "b": 54,
+      "c": 8,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 248,
+      "outcome": 16,
+      "win": "L",
+      "a": 7,
+      "b": 46,
+      "c": 12,
+      "actual bet": "6 units",
+      "negative": -24,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 249,
+      "outcome": 14,
+      "win": "L",
+      "a": 8,
+      "b": 58,
+      "c": 14,
+      "actual bet": "7 units",
+      "negative": -31,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 250,
+      "outcome": 34,
+      "win": "W",
+      "a": 9,
+      "b": 72,
+      "c": 16,
+      "actual bet": "8 units",
+      "negative": -23,
+      "positive": "3.2",
+      "balance": ""
+    },
+    {
+      "line": 251,
+      "outcome": 18,
+      "win": "W",
+      "a": 6,
+      "b": 56,
+      "c": 18,
+      "actual bet": "9 units",
+      "negative": -14,
+      "positive": "5.3",
+      "balance": ""
+    },
+    {
+      "line": 252,
+      "outcome": 12,
+      "win": "L",
+      "a": 4,
+      "b": 38,
+      "c": 18,
+      "actual bet": "7 units",
+      "negative": -21,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 253,
+      "outcome": 30,
+      "win": "L",
+      "a": 5,
+      "b": 56,
+      "c": 22,
+      "actual bet": "11 units",
+      "negative": -32,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 254,
+      "outcome": 23,
+      "win": "L",
+      "a": 6,
+      "b": 78,
+      "c": 26,
+      "actual bet": "13 units",
+      "negative": -45,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 255,
+      "outcome": 5,
+      "win": "W",
+      "a": 7,
+      "b": 52,
+      "c": 14,
+      "actual bet": "14 units",
+      "negative": -31,
+      "positive": "9.1",
+      "balance": ""
+    },
+    {
+      "line": 256,
+      "outcome": 7,
+      "win": "L",
+      "a": 5,
+      "b": 38,
+      "c": 14,
+      "actual bet": "14 units",
+      "negative": -45,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 257,
+      "outcome": 9,
+      "win": "L",
+      "a": 6,
+      "b": 52,
+      "c": 16,
+      "actual bet": "16 units",
+      "negative": -61,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 258,
+      "outcome": 23,
+      "win": "L",
+      "a": 7,
+      "b": 68,
+      "c": 18,
+      "actual bet": "18 units",
+      "negative": -79,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 259,
+      "outcome": 3,
+      "win": "W",
+      "a": 8,
+      "b": 86,
+      "c": 20,
+      "actual bet": "20 units",
+      "negative": -59,
+      "positive": "14.1",
+      "balance": ""
+    },
+    {
+      "line": 260,
+      "outcome": 18,
+      "win": "W",
+      "a": 5,
+      "b": 66,
+      "c": 26,
+      "actual bet": "26 units",
+      "negative": -33,
+      "positive": "20.3",
+      "balance": ""
+    },
+    {
+      "line": 261,
+      "outcome": 27,
+      "win": "L",
+      "a": 3,
+      "b": 40,
+      "c": 26,
+      "actual bet": "10 units",
+      "negative": -43,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 262,
+      "outcome": 34,
+      "win": "W",
+      "a": 4,
+      "b": 66,
+      "c": 32,
+      "actual bet": "18 units",
+      "negative": -25,
+      "positive": "25.1",
+      "balance": 36
+    },
+    {
+      "line": 263,
+      "outcome": 5,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 264,
+      "outcome": 3,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 37
+    },
+    {
+      "line": 265,
+      "outcome": 20,
+      "win": "W",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 266,
+      "outcome": 2,
+      "win": "W",
+      "a": 3,
+      "b": 22,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 267,
+      "outcome": 24,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 268,
+      "outcome": 24,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 269,
+      "outcome": 2,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 270,
+      "outcome": 4,
+      "win": "L",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 38
+    },
+    {
+      "line": 271,
+      "outcome": 22,
+      "win": "L",
+      "a": 9,
+      "b": 54,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 39
+    },
+    {
+      "line": 272,
+      "outcome": 1,
+      "win": "L",
+      "a": 10,
+      "b": 66,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 40
+    },
+    {
+      "line": 273,
+      "outcome": 36,
+      "win": "L",
+      "a": 11,
+      "b": 78,
+      "c": 14,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 41
+    },
+    {
+      "line": 274,
+      "outcome": 30,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 275,
+      "outcome": 35,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 42
+    },
+    {
+      "line": 276,
+      "outcome": 18,
+      "win": "W",
+      "a": 12,
+      "b": 46,
+      "c": 6,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 277,
+      "outcome": 23,
+      "win": "L",
+      "a": 8,
+      "b": 40,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 278,
+      "outcome": 3,
+      "win": "W",
+      "a": 9,
+      "b": 50,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 279,
+      "outcome": 1,
+      "win": "L",
+      "a": 6,
+      "b": 40,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 280,
+      "outcome": 24,
+      "win": "L",
+      "a": 7,
+      "b": 52,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 281,
+      "outcome": 17,
+      "win": "W",
+      "a": 8,
+      "b": 66,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 282,
+      "outcome": 0,
+      "win": "L",
+      "a": 5,
+      "b": 50,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 283,
+      "outcome": 33,
+      "win": "L",
+      "a": 6,
+      "b": 70,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 284,
+      "outcome": 13,
+      "win": "L",
+      "a": 7,
+      "b": 46,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 285,
+      "outcome": 0,
+      "win": "L",
+      "a": 8,
+      "b": 58,
+      "c": 14,
+      "actual bet": "Bet 1",
+      "negative": -2,
+      "positive": ".3",
+      "balance": ""
+    },
+    {
+      "line": 286,
+      "outcome": 7,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 2",
+      "negative": -3,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 287,
+      "outcome": 25,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 3",
+      "negative": -1,
+      "positive": "1.1",
+      "balance": 43
+    },
+    {
+      "line": 288,
+      "outcome": 9,
+      "win": "L",
+      "a": 9,
+      "b": 72,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 289,
+      "outcome": 17,
+      "win": "W",
+      "a": 10,
+      "b": 88,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 290,
+      "outcome": 29,
+      "win": "W",
+      "a": 7,
+      "b": 72,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 291,
+      "outcome": 17,
+      "win": "W",
+      "a": 5,
+      "b": 52,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 292,
+      "outcome": 27,
+      "win": "L",
+      "a": 3,
+      "b": 32,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 293,
+      "outcome": 14,
+      "win": "L",
+      "a": 4,
+      "b": 52,
+      "c": 26,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 294,
+      "outcome": 13,
+      "win": "L",
+      "a": 5,
+      "b": 78,
+      "c": 30,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 295,
+      "outcome": 36,
+      "win": "L",
+      "a": 6,
+      "b": 54,
+      "c": 18,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 44
+    },
+    {
+      "line": 296,
+      "outcome": 21,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 45
+    },
+    {
+      "line": 297,
+      "outcome": 13,
+      "win": "L",
+      "a": 7,
+      "b": 72,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 298,
+      "outcome": 34,
+      "win": "W",
+      "a": 8,
+      "b": 46,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 299,
+      "outcome": 25,
+      "win": "W",
+      "a": 5,
+      "b": 36,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 300,
+      "outcome": 13,
+      "win": "L",
+      "a": 3,
+      "b": 22,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 301,
+      "outcome": 5,
+      "win": "W",
+      "a": 4,
+      "b": 36,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 302,
+      "outcome": 8,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 303,
+      "outcome": 31,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 304,
+      "outcome": 23,
+      "win": "L",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 46
+    },
+    {
+      "line": 305,
+      "outcome": 6,
+      "win": "W",
+      "a": 9,
+      "b": 54,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 47
+    },
+    {
+      "line": 306,
+      "outcome": 29,
+      "win": "W",
+      "a": 6,
+      "b": 42,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 307,
+      "outcome": 19,
+      "win": "L",
+      "a": 4,
+      "b": 28,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 308,
+      "outcome": 34,
+      "win": "W",
+      "a": 5,
+      "b": 42,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 309,
+      "outcome": 17,
+      "win": "W",
+      "a": 3,
+      "b": 26,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 310,
+      "outcome": 14,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 311,
+      "outcome": 13,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 312,
+      "outcome": 27,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 313,
+      "outcome": 22,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 314,
+      "outcome": 31,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 315,
+      "outcome": 27,
+      "win": "L",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 48
+    },
+    {
+      "line": 316,
+      "outcome": 33,
+      "win": "L",
+      "a": 9,
+      "b": 54,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 49
+    },
+    {
+      "line": 317,
+      "outcome": 18,
+      "win": "W",
+      "a": 10,
+      "b": 66,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 50
+    },
+    {
+      "line": 318,
+      "outcome": 11,
+      "win": "L",
+      "a": 7,
+      "b": 54,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 319,
+      "outcome": 30,
+      "win": "L",
+      "a": 8,
+      "b": 68,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 320,
+      "outcome": 4,
+      "win": "L",
+      "a": 9,
+      "b": 84,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 321,
+      "outcome": 32,
+      "win": "W",
+      "a": 10,
+      "b": 51,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 51
+    },
+    {
+      "line": 322,
+      "outcome": 25,
+      "win": "W",
+      "a": 7,
+      "b": 41,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 323,
+      "outcome": 1,
+      "win": "L",
+      "a": 5,
+      "b": 31,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 324,
+      "outcome": 22,
+      "win": "L",
+      "a": 6,
+      "b": 43,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 325,
+      "outcome": 27,
+      "win": "L",
+      "a": 7,
+      "b": 57,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 326,
+      "outcome": 1,
+      "win": "L",
+      "a": 8,
+      "b": 73,
+      "c": 18,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 52
+    },
+    {
+      "line": 327,
+      "outcome": 34,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 53
+    },
+    {
+      "line": 328,
+      "outcome": 15,
+      "win": "L",
+      "a": 9,
+      "b": 46,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 329,
+      "outcome": 29,
+      "win": "W",
+      "a": 10,
+      "b": 56,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 330,
+      "outcome": 20,
+      "win": "W",
+      "a": 7,
+      "b": 46,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 331,
+      "outcome": 22,
+      "win": "L",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 332,
+      "outcome": 25,
+      "win": "W",
+      "a": 6,
+      "b": 46,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 333,
+      "outcome": 15,
+      "win": "L",
+      "a": 4,
+      "b": 32,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 334,
+      "outcome": 30,
+      "win": "L",
+      "a": 5,
+      "b": 48,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 335,
+      "outcome": 6,
+      "win": "W",
+      "a": 6,
+      "b": 66,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 336,
+      "outcome": 17,
+      "win": "W",
+      "a": 4,
+      "b": 44,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 337,
+      "outcome": 3,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 338,
+      "outcome": 12,
+      "win": "L",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": -2,
+      "positive": ".3",
+      "balance": ""
+    },
+    {
+      "line": 339,
+      "outcome": 6,
+      "win": "W",
+      "a": 9,
+      "b": 54,
+      "c": 12,
+      "actual bet": "Bet 2",
+      "negative": -1,
+      "positive": "1",
+      "balance": 53
+    },
+    {
+      "line": 340,
+      "outcome": 1,
+      "win": "L",
+      "a": 6,
+      "b": 42,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 341,
+      "outcome": 20,
+      "win": "W",
+      "a": 7,
+      "b": 56,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 342,
+      "outcome": 0,
+      "win": "L",
+      "a": 5,
+      "b": 40,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 343,
+      "outcome": 28,
+      "win": "W",
+      "a": 6,
+      "b": 56,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 344,
+      "outcome": 0,
+      "win": "L",
+      "a": 4,
+      "b": 38,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 345,
+      "outcome": 11,
+      "win": "L",
+      "a": 5,
+      "b": 56,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 346,
+      "outcome": 9,
+      "win": "L",
+      "a": 6,
+      "b": 78,
+      "c": 26,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 347,
+      "outcome": 29,
+      "win": "W",
+      "a": 7,
+      "b": 52,
+      "c": 14,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 54
+    },
+    {
+      "line": 348,
+      "outcome": 22,
+      "win": "L",
+      "a": 5,
+      "b": 38,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 349,
+      "outcome": 3,
+      "win": "W",
+      "a": 6,
+      "b": 52,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 350,
+      "outcome": 0,
+      "win": "L",
+      "a": 4,
+      "b": 36,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 351,
+      "outcome": 27,
+      "win": "L",
+      "a": 5,
+      "b": 54,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 352,
+      "outcome": 20,
+      "win": "W",
+      "a": 6,
+      "b": 74,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 353,
+      "outcome": 16,
+      "win": "L",
+      "a": 4,
+      "b": 50,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 354,
+      "outcome": 14,
+      "win": "L",
+      "a": 5,
+      "b": 74,
+      "c": 28,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 355,
+      "outcome": 5,
+      "win": "W",
+      "a": 6,
+      "b": 51,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 356,
+      "outcome": 22,
+      "win": "L",
+      "a": 4,
+      "b": 35,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 357,
+      "outcome": 5,
+      "win": "W",
+      "a": 5,
+      "b": 51,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 358,
+      "outcome": 21,
+      "win": "W",
+      "a": 3,
+      "b": 31,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 359,
+      "outcome": 18,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 360,
+      "outcome": 2,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 55
+    },
+    {
+      "line": 361,
+      "outcome": 3,
+      "win": "W",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 362,
+      "outcome": 25,
+      "win": "W",
+      "a": 3,
+      "b": 22,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 363,
+      "outcome": 4,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 364,
+      "outcome": 18,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 365,
+      "outcome": 21,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 56
+    },
+    {
+      "line": 366,
+      "outcome": 25,
+      "win": "W",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 367,
+      "outcome": 10,
+      "win": "L",
+      "a": 3,
+      "b": 22,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 368,
+      "outcome": 14,
+      "win": "L",
+      "a": 4,
+      "b": 36,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 369,
+      "outcome": 35,
+      "win": "W",
+      "a": 5,
+      "b": 54,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 370,
+      "outcome": 1,
+      "win": "L",
+      "a": 3,
+      "b": 34,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 371,
+      "outcome": 27,
+      "win": "L",
+      "a": 4,
+      "b": 56,
+      "c": 28,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 372,
+      "outcome": 5,
+      "win": "W",
+      "a": 5,
+      "b": 84,
+      "c": 32,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 373,
+      "outcome": 16,
+      "win": "L",
+      "a": 3,
+      "b": 52,
+      "c": 34,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 374,
+      "outcome": 9,
+      "win": "L",
+      "a": 4,
+      "b": 86,
+      "c": 42,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 375,
+      "outcome": 28,
+      "win": "W",
+      "a": 5,
+      "b": 64,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 376,
+      "outcome": 24,
+      "win": "L",
+      "a": 3,
+      "b": 40,
+      "c": 26,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 377,
+      "outcome": 6,
+      "win": "W",
+      "a": 4,
+      "b": 66,
+      "c": 32,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 378,
+      "outcome": 3,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 379,
+      "outcome": 18,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 57
+    },
+    {
+      "line": 380,
+      "outcome": 24,
+      "win": "L",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 381,
+      "outcome": 33,
+      "win": "L",
+      "a": 6,
+      "b": 46,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 382,
+      "outcome": 6,
+      "win": "W",
+      "a": 7,
+      "b": 60,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 383,
+      "outcome": 25,
+      "win": "W",
+      "a": 5,
+      "b": 44,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 384,
+      "outcome": 11,
+      "win": "L",
+      "a": 3,
+      "b": 28,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 385,
+      "outcome": 3,
+      "win": "W",
+      "a": 4,
+      "b": 46,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 386,
+      "outcome": 8,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 387,
+      "outcome": 21,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 388,
+      "outcome": 5,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 58
+    },
+    {
+      "line": 389,
+      "outcome": 34,
+      "win": "W",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 390,
+      "outcome": 2,
+      "win": "W",
+      "a": 3,
+      "b": 22,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 391,
+      "outcome": 6,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 392,
+      "outcome": 26,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 59
+    },
+    {
+      "line": 393,
+      "outcome": 22,
+      "win": "L",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 394,
+      "outcome": 27,
+      "win": "L",
+      "a": 6,
+      "b": 46,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 395,
+      "outcome": 2,
+      "win": "W",
+      "a": 7,
+      "b": 60,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 396,
+      "outcome": 29,
+      "win": "W",
+      "a": 5,
+      "b": 44,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 397,
+      "outcome": 14,
+      "win": "L",
+      "a": 3,
+      "b": 28,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 398,
+      "outcome": 31,
+      "win": "W",
+      "a": 4,
+      "b": 46,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 399,
+      "outcome": 21,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 400,
+      "outcome": 2,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 60
+    },
+    {
+      "line": 401,
+      "outcome": 1,
+      "win": "L",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 402,
+      "outcome": 23,
+      "win": "L",
+      "a": 6,
+      "b": 46,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 403,
+      "outcome": 20,
+      "win": "W",
+      "a": 7,
+      "b": 60,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 404,
+      "outcome": 22,
+      "win": "L",
+      "a": 5,
+      "b": 44,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 405,
+      "outcome": 20,
+      "win": "W",
+      "a": 6,
+      "b": 60,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 406,
+      "outcome": 18,
+      "win": "W",
+      "a": 4,
+      "b": 40,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 407,
+      "outcome": 32,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 408,
+      "outcome": 14,
+      "win": "L",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 61
+    },
+    {
+      "line": 409,
+      "outcome": 16,
+      "win": "L",
+      "a": 9,
+      "b": 54,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 62
+    },
+    {
+      "line": 410,
+      "outcome": 5,
+      "win": "W",
+      "a": 10,
+      "b": 66,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 63
+    },
+    {
+      "line": 411,
+      "outcome": 11,
+      "win": "L",
+      "a": 7,
+      "b": 54,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 412,
+      "outcome": 8,
+      "win": "L",
+      "a": 8,
+      "b": 68,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 413,
+      "outcome": 34,
+      "win": "W",
+      "a": 9,
+      "b": 84,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 414,
+      "outcome": 36,
+      "win": "L",
+      "a": 6,
+      "b": 66,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 415,
+      "outcome": 31,
+      "win": "W",
+      "a": 7,
+      "b": 88,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 416,
+      "outcome": 32,
+      "win": "W",
+      "a": 5,
+      "b": 64,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 417,
+      "outcome": 4,
+      "win": "L",
+      "a": 3,
+      "b": 40,
+      "c": 26,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 418,
+      "outcome": 20,
+      "win": "W",
+      "a": 4,
+      "b": 66,
+      "c": 32,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 419,
+      "outcome": 22,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 420,
+      "outcome": 18,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 421,
+      "outcome": 5,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 64
+    },
+    {
+      "line": 422,
+      "outcome": 24,
+      "win": "L",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 423,
+      "outcome": 11,
+      "win": "L",
+      "a": 6,
+      "b": 46,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 424,
+      "outcome": 26,
+      "win": "W",
+      "a": 7,
+      "b": 60,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 425,
+      "outcome": 20,
+      "win": "W",
+      "a": 5,
+      "b": 44,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 426,
+      "outcome": 4,
+      "win": "L",
+      "a": 3,
+      "b": 28,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 427,
+      "outcome": 31,
+      "win": "W",
+      "a": 4,
+      "b": 46,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 428,
+      "outcome": 16,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 429,
+      "outcome": 30,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 430,
+      "outcome": 2,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 431,
+      "outcome": 27,
+      "win": "L",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 65
+    },
+    {
+      "line": 432,
+      "outcome": 32,
+      "win": "W",
+      "a": 9,
+      "b": 54,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 66
+    },
+    {
+      "line": 433,
+      "outcome": 0,
+      "win": "L",
+      "a": 6,
+      "b": 42,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 434,
+      "outcome": 21,
+      "win": "W",
+      "a": 7,
+      "b": 56,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 435,
+      "outcome": 15,
+      "win": "L",
+      "a": 5,
+      "b": 40,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 436,
+      "outcome": 16,
+      "win": "L",
+      "a": 6,
+      "b": 56,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 437,
+      "outcome": 18,
+      "win": "W",
+      "a": 7,
+      "b": 74,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 438,
+      "outcome": 1,
+      "win": "L",
+      "a": 5,
+      "b": 54,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 439,
+      "outcome": 13,
+      "win": "L",
+      "a": 6,
+      "b": 74,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 440,
+      "outcome": 17,
+      "win": "W",
+      "a": 7,
+      "b": 49,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 441,
+      "outcome": 7,
+      "win": "L",
+      "a": 5,
+      "b": 35,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 442,
+      "outcome": 36,
+      "win": "L",
+      "a": 6,
+      "b": 49,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 443,
+      "outcome": 10,
+      "win": "L",
+      "a": 7,
+      "b": 65,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 444,
+      "outcome": 22,
+      "win": "L",
+      "a": 8,
+      "b": 83,
+      "c": 20,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 67
+    },
+    {
+      "line": 445,
+      "outcome": 34,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 68
+    },
+    {
+      "line": 446,
+      "outcome": 22,
+      "win": "L",
+      "a": 9,
+      "b": 52,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 447,
+      "outcome": 19,
+      "win": "L",
+      "a": 10,
+      "b": 62,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 448,
+      "outcome": 1,
+      "win": "L",
+      "a": 11,
+      "b": 74,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 449,
+      "outcome": 17,
+      "win": "W",
+      "a": 12,
+      "b": 86,
+      "c": 14,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 69
+    },
+    {
+      "line": 450,
+      "outcome": 13,
+      "win": "L",
+      "a": 8,
+      "b": 72,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 451,
+      "outcome": 25,
+      "win": "W",
+      "a": 9,
+      "b": 45,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 452,
+      "outcome": 13,
+      "win": "L",
+      "a": 6,
+      "b": 35,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 453,
+      "outcome": 31,
+      "win": "W",
+      "a": 7,
+      "b": 45,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 454,
+      "outcome": 4,
+      "win": "L",
+      "a": 5,
+      "b": 33,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 455,
+      "outcome": 13,
+      "win": "L",
+      "a": 6,
+      "b": 45,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 456,
+      "outcome": 17,
+      "win": "W",
+      "a": 7,
+      "b": 59,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 457,
+      "outcome": 23,
+      "win": "L",
+      "a": 5,
+      "b": 43,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 458,
+      "outcome": 10,
+      "win": "L",
+      "a": 6,
+      "b": 59,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 459,
+      "outcome": 31,
+      "win": "W",
+      "a": 7,
+      "b": 77,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 460,
+      "outcome": 0,
+      "win": "L",
+      "a": 5,
+      "b": 55,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 461,
+      "outcome": 10,
+      "win": "L",
+      "a": 6,
+      "b": 77,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 462,
+      "outcome": 12,
+      "win": "L",
+      "a": 7,
+      "b": 51,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 463,
+      "outcome": 15,
+      "win": "L",
+      "a": 8,
+      "b": 65,
+      "c": 16,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 70
+    },
+    {
+      "line": 464,
+      "outcome": 35,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 71
+    },
+    {
+      "line": 465,
+      "outcome": 15,
+      "win": "L",
+      "a": 9,
+      "b": 81,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 466,
+      "outcome": 1,
+      "win": "L",
+      "a": 10,
+      "b": 50,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 467,
+      "outcome": 11,
+      "win": "L",
+      "a": 11,
+      "b": 60,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 468,
+      "outcome": 20,
+      "win": "W",
+      "a": 12,
+      "b": 70,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 72
+    },
+    {
+      "line": 469,
+      "outcome": 32,
+      "win": "W",
+      "a": 8,
+      "b": 60,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 470,
+      "outcome": 6,
+      "win": "W",
+      "a": 5,
+      "b": 46,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 471,
+      "outcome": 35,
+      "win": "W",
+      "a": 3,
+      "b": 28,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 472,
+      "outcome": 6,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 473,
+      "outcome": 31,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 73
+    },
+    {
+      "line": 474,
+      "outcome": 13,
+      "win": "L",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 475,
+      "outcome": 12,
+      "win": "L",
+      "a": 6,
+      "b": 46,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 476,
+      "outcome": 13,
+      "win": "L",
+      "a": 7,
+      "b": 60,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 477,
+      "outcome": 17,
+      "win": "W",
+      "a": 8,
+      "b": 76,
+      "c": 18,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 74
+    },
+    {
+      "line": 478,
+      "outcome": 34,
+      "win": "W",
+      "a": 5,
+      "b": 58,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 479,
+      "outcome": 15,
+      "win": "L",
+      "a": 3,
+      "b": 36,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 480,
+      "outcome": 26,
+      "win": "W",
+      "a": 4,
+      "b": 60,
+      "c": 30,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 481,
+      "outcome": 28,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 482,
+      "outcome": 10,
+      "win": "L",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": -2,
+      "positive": ".3",
+      "balance": ""
+    },
+    {
+      "line": 483,
+      "outcome": 22,
+      "win": "L",
+      "a": 9,
+      "b": 54,
+      "c": 12,
+      "actual bet": "Bet 2",
+      "negative": -3,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 484,
+      "outcome": 21,
+      "win": "W",
+      "a": 10,
+      "b": 66,
+      "c": 12,
+      "actual bet": "Bet 3",
+      "negative": -1,
+      "positive": "1.1",
+      "balance": 75
+    },
+    {
+      "line": 485,
+      "outcome": 27,
+      "win": "L",
+      "a": 7,
+      "b": 54,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 486,
+      "outcome": 27,
+      "win": "L",
+      "a": 8,
+      "b": 68,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 487,
+      "outcome": 36,
+      "win": "L",
+      "a": 9,
+      "b": 84,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 488,
+      "outcome": 1,
+      "win": "L",
+      "a": 10,
+      "b": 51,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 76
+    },
+    {
+      "line": 489,
+      "outcome": 17,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 77
+    },
+    {
+      "line": 490,
+      "outcome": 28,
+      "win": "W",
+      "a": 11,
+      "b": 61,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 491,
+      "outcome": 32,
+      "win": "W",
+      "a": 7,
+      "b": 51,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 492,
+      "outcome": 16,
+      "win": "L",
+      "a": 5,
+      "b": 37,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 493,
+      "outcome": 27,
+      "win": "L",
+      "a": 6,
+      "b": 51,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 494,
+      "outcome": 2,
+      "win": "W",
+      "a": 7,
+      "b": 67,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 495,
+      "outcome": 15,
+      "win": "L",
+      "a": 5,
+      "b": 49,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 496,
+      "outcome": 27,
+      "win": "L",
+      "a": 6,
+      "b": 67,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 497,
+      "outcome": 10,
+      "win": "L",
+      "a": 7,
+      "b": 89,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 498,
+      "outcome": 19,
+      "win": "L",
+      "a": 8,
+      "b": 57,
+      "c": 14,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 78
+    },
+    {
+      "line": 499,
+      "outcome": 33,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 79
+    },
+    {
+      "line": 500,
+      "outcome": 11,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 1",
+      "negative": -2,
+      "positive": ".3",
+      "balance": ""
+    },
+    {
+      "line": 501,
+      "outcome": 8,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 2",
+      "negative": -3,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 502,
+      "outcome": 5,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 3",
+      "negative": -1,
+      "positive": "1.1",
+      "balance": 80
+    },
+    {
+      "line": 503,
+      "outcome": 15,
+      "win": "L",
+      "a": 9,
+      "b": 71,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 504,
+      "outcome": 34,
+      "win": "W",
+      "a": 10,
+      "b": 85,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 505,
+      "outcome": 3,
+      "win": "W",
+      "a": 7,
+      "b": 69,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 506,
+      "outcome": 22,
+      "win": "L",
+      "a": 5,
+      "b": 51,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 507,
+      "outcome": 31,
+      "win": "W",
+      "a": 6,
+      "b": 71,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 508,
+      "outcome": 36,
+      "win": "L",
+      "a": 4,
+      "b": 49,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 509,
+      "outcome": 25,
+      "win": "W",
+      "a": 5,
+      "b": 73,
+      "c": 28,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 510,
+      "outcome": 26,
+      "win": "W",
+      "a": 3,
+      "b": 45,
+      "c": 30,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 511,
+      "outcome": 14,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 512,
+      "outcome": 19,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 513,
+      "outcome": 12,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 514,
+      "outcome": 0,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 515,
+      "outcome": 6,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 516,
+      "outcome": 9,
+      "win": "L",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": -2,
+      "positive": ".3",
+      "balance": ""
+    },
+    {
+      "line": 517,
+      "outcome": 34,
+      "win": "W",
+      "a": 9,
+      "b": 54,
+      "c": 12,
+      "actual bet": "Bet 2",
+      "negative": -1,
+      "positive": "1",
+      "balance": 80
+    },
+    {
+      "line": 518,
+      "outcome": 15,
+      "win": "L",
+      "a": 6,
+      "b": 42,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 519,
+      "outcome": 16,
+      "win": "L",
+      "a": 7,
+      "b": 56,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 520,
+      "outcome": 20,
+      "win": "W",
+      "a": 8,
+      "b": 72,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 521,
+      "outcome": 35,
+      "win": "W",
+      "a": 5,
+      "b": 54,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 522,
+      "outcome": 24,
+      "win": "L",
+      "a": 3,
+      "b": 34,
+      "c": 22,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 523,
+      "outcome": 17,
+      "win": "W",
+      "a": 4,
+      "b": 56,
+      "c": 28,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 524,
+      "outcome": 4,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 525,
+      "outcome": 2,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 526,
+      "outcome": 11,
+      "win": "L",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": -2,
+      "positive": ".3",
+      "balance": ""
+    },
+    {
+      "line": 527,
+      "outcome": 36,
+      "win": "L",
+      "a": 9,
+      "b": 54,
+      "c": 12,
+      "actual bet": "Bet 2",
+      "negative": -3,
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 528,
+      "outcome": 34,
+      "win": "W",
+      "a": 10,
+      "b": 66,
+      "c": 12,
+      "actual bet": "Bet 3",
+      "negative": -1,
+      "positive": "1.1",
+      "balance": 81
+    },
+    {
+      "line": 529,
+      "outcome": 14,
+      "win": "L",
+      "a": 7,
+      "b": 54,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 530,
+      "outcome": 11,
+      "win": "L",
+      "a": 8,
+      "b": 68,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 531,
+      "outcome": 27,
+      "win": "L",
+      "a": 9,
+      "b": 84,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 532,
+      "outcome": 34,
+      "win": "W",
+      "a": 10,
+      "b": 51,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 82
+    },
+    {
+      "line": 533,
+      "outcome": 1,
+      "win": "L",
+      "a": 7,
+      "b": 41,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 534,
+      "outcome": 12,
+      "win": "L",
+      "a": 8,
+      "b": 51,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 535,
+      "outcome": 5,
+      "win": "W",
+      "a": 9,
+      "b": 63,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 536,
+      "outcome": 11,
+      "win": "L",
+      "a": 6,
+      "b": 49,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 537,
+      "outcome": 34,
+      "win": "W",
+      "a": 7,
+      "b": 65,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 538,
+      "outcome": 14,
+      "win": "L",
+      "a": 5,
+      "b": 47,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 539,
+      "outcome": 8,
+      "win": "L",
+      "a": 6,
+      "b": 65,
+      "c": 20,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 540,
+      "outcome": 5,
+      "win": "W",
+      "a": 7,
+      "b": 85,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 541,
+      "outcome": 30,
+      "win": "L",
+      "a": 5,
+      "b": 61,
+      "c": 24,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 542,
+      "outcome": 0,
+      "win": "L",
+      "a": 6,
+      "b": 85,
+      "c": 28,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 543,
+      "outcome": 21,
+      "win": "W",
+      "a": 7,
+      "b": 57,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 544,
+      "outcome": 21,
+      "win": "W",
+      "a": 5,
+      "b": 41,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 545,
+      "outcome": 17,
+      "win": "W",
+      "a": 3,
+      "b": 25,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 546,
+      "outcome": 17,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 547,
+      "outcome": 21,
+      "win": "W",
+      "a": 8,
+      "b": 44,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 83
+    },
+    {
+      "line": 548,
+      "outcome": 36,
+      "win": "L",
+      "a": 5,
+      "b": 34,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 549,
+      "outcome": 11,
+      "win": "L",
+      "a": 6,
+      "b": 46,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 550,
+      "outcome": 10,
+      "win": "L",
+      "a": 7,
+      "b": 60,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 551,
+      "outcome": 1,
+      "win": "L",
+      "a": 8,
+      "b": 76,
+      "c": 18,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 84
+    },
+    {
+      "line": 552,
+      "outcome": 0,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 1",
+      "negative": -2,
+      "positive": ".3",
+      "balance": ""
+    },
+    {
+      "line": 553,
+      "outcome": 5,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "Bet 2",
+      "negative": -1,
+      "positive": "1",
+      "balance": 84
+    },
+    {
+      "line": 554,
+      "outcome": 13,
+      "win": "L",
+      "a": 9,
+      "b": 47,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 555,
+      "outcome": 28,
+      "win": "W",
+      "a": 10,
+      "b": 57,
+      "c": 10,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 556,
+      "outcome": 21,
+      "win": "W",
+      "a": 7,
+      "b": 47,
+      "c": 12,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 557,
+      "outcome": 19,
+      "win": "L",
+      "a": 5,
+      "b": 35,
+      "c": 14,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 558,
+      "outcome": 0,
+      "win": "L",
+      "a": 6,
+      "b": 49,
+      "c": 16,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 559,
+      "outcome": 20,
+      "win": "W",
+      "a": 7,
+      "b": 65,
+      "c": 18,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    }
+  ],
+  "balance_history": [
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    5,
+    5,
+    5,
+    6,
+    7,
+    8,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    10,
+    10,
+    10,
+    10,
+    10,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    14,
+    15,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    17,
+    18,
+    19,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    22,
+    22,
+    22,
+    22,
+    22,
+    23,
+    23,
+    23,
+    23,
+    24,
+    24,
+    24,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    28,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    30,
+    31,
+    31,
+    31,
+    31,
+    31,
+    31,
+    31,
+    31,
+    31,
+    31,
+    32,
+    32,
+    32,
+    32,
+    33,
+    34,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    36,
+    36,
+    37,
+    37,
+    37,
+    37,
+    37,
+    37,
+    38,
+    39,
+    40,
+    41,
+    41,
+    42,
+    42,
+    42,
+    42,
+    42,
+    42,
+    42,
+    42,
+    42,
+    42,
+    42,
+    42,
+    43,
+    43,
+    43,
+    43,
+    43,
+    43,
+    43,
+    43,
+    44,
+    45,
+    45,
+    45,
+    45,
+    45,
+    45,
+    45,
+    45,
+    46,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    47,
+    48,
+    49,
+    50,
+    50,
+    50,
+    50,
+    51,
+    51,
+    51,
+    51,
+    51,
+    52,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    54,
+    55,
+    55,
+    55,
+    55,
+    55,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    56,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    57,
+    58,
+    58,
+    58,
+    58,
+    59,
+    59,
+    59,
+    59,
+    59,
+    59,
+    59,
+    59,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    60,
+    61,
+    62,
+    63,
+    63,
+    63,
+    63,
+    63,
+    63,
+    63,
+    63,
+    63,
+    63,
+    63,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    64,
+    65,
+    66,
+    66,
+    66,
+    66,
+    66,
+    66,
+    66,
+    66,
+    66,
+    66,
+    66,
+    66,
+    67,
+    68,
+    68,
+    68,
+    68,
+    69,
+    69,
+    69,
+    69,
+    69,
+    69,
+    69,
+    69,
+    69,
+    69,
+    69,
+    69,
+    69,
+    69,
+    70,
+    71,
+    71,
+    71,
+    71,
+    72,
+    72,
+    72,
+    72,
+    72,
+    73,
+    73,
+    73,
+    73,
+    74,
+    74,
+    74,
+    74,
+    74,
+    74,
+    74,
+    75,
+    75,
+    75,
+    75,
+    76,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    78,
+    79,
+    79,
+    79,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    80,
+    81,
+    81,
+    81,
+    81,
+    82,
+    82,
+    82,
+    82,
+    82,
+    82,
+    82,
+    82,
+    82,
+    82,
+    82,
+    82,
+    82,
+    82,
+    82,
+    83,
+    83,
+    83,
+    83,
+    84,
+    84,
+    84,
+    84,
+    84,
+    84,
+    84,
+    84,
+    84
+  ],
+  "debug_messages": [
+    [
+      1,
+      "Sequence 1 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      2,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      4,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      5,
+      "Sequence 1 completed! (a=2 < 3)"
+    ],
+    [
+      6,
+      "Sequence 2 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      7,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      8,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      9,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      10,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      10,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      11,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      11,
+      "Four corner rule triggered! Calculated codes {'a': 9, 'b': 47, 'c': 10} will be delayed"
+    ],
+    [
+      12,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      12,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      12,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      13,
+      "Applying pending sequence codes: {'a': 9, 'b': 47, 'c': 10}"
+    ],
+    [
+      14,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      15,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      16,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      16,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      17,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      17,
+      "Four corner rule triggered! Calculated codes {'a': 10, 'b': 47, 'c': 8} will be delayed"
+    ],
+    [
+      18,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      18,
+      "Consecutive non-A1 count: 5"
+    ],
+    [
+      19,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      19,
+      "Consecutive non-A1 count: 6"
+    ],
+    [
+      20,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      20,
+      "Bet3 lost. Stage 1 ends, Stage 2 will begin next spin."
+    ],
+    [
+      20,
+      "Consecutive non-A1 count: 7"
+    ],
+    [
+      21,
+      "Stage 2 begins."
+    ],
+    [
+      21,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      21,
+      "Consecutive non-A1 count: 8"
+    ],
+    [
+      22,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      22,
+      "Consecutive non-A1 count: 9"
+    ],
+    [
+      23,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      23,
+      "Consecutive non-A1 count: 10"
+    ],
+    [
+      24,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      24,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      25,
+      "Applying pending sequence codes: {'a': 10, 'b': 47, 'c': 8}"
+    ],
+    [
+      25,
+      "Stage 2 bet calculation: a=10, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      26,
+      "Stage 2 bet calculation: a=7, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      26,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      27,
+      "Stage 2 bet calculation: a=8, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      28,
+      "Stage 2 bet calculation: a=5, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      29,
+      "Stage 2 bet calculation: a=3, Normal=1, Risk-managed=2, Using=2 units"
+    ],
+    [
+      29,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      30,
+      "Stage 2 bet calculation: a=4, Normal=1, Risk-managed=3, Using=3 units"
+    ],
+    [
+      30,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      31,
+      "Stage 2 bet calculation: a=5, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      31,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      32,
+      "Stage 2 bet calculation: a=6, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      32,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      32,
+      "b > 89 rule applied in Stage 2 - divisor reduced to 16.0"
+    ],
+    [
+      32,
+      "Four corner rule triggered! Calculated codes {'a': 7, 'b': 51, 'c': 14} will be delayed"
+    ],
+    [
+      33,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      33,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      34,
+      "Applying pending sequence codes: {'a': 7, 'b': 51, 'c': 14}"
+    ],
+    [
+      34,
+      "Stage 2 bet calculation: a=7, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      34,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      35,
+      "Stage 2 bet calculation: a=8, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      35,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      36,
+      "Stage 2 bet calculation: a=9, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      36,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      36,
+      "b > 89 rule applied in Stage 2 - divisor reduced to 8.0"
+    ],
+    [
+      37,
+      "Stage 2 bet calculation: a=10, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      38,
+      "Stage 2 bet calculation: a=7, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      39,
+      "Stage 2 bet calculation: a=5, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      39,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      40,
+      "Stage 2 bet calculation: a=6, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      40,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      41,
+      "Stage 2 bet calculation: a=7, Normal=2, Risk-managed=2, Using=2 units"
+    ],
+    [
+      41,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      42,
+      "Stage 2 bet calculation: a=8, Normal=2, Risk-managed=2, Using=2 units"
+    ],
+    [
+      43,
+      "Stage 2 bet calculation: a=5, Normal=2, Risk-managed=2, Using=2 units"
+    ],
+    [
+      43,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      44,
+      "Stage 2 bet calculation: a=6, Normal=3, Risk-managed=3, Using=3 units"
+    ],
+    [
+      44,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      44,
+      "b > 89 rule applied in Stage 2 - divisor reduced to 4.0"
+    ],
+    [
+      45,
+      "Stage 2 bet calculation: a=7, Normal=3, Risk-managed=3, Using=3 units"
+    ],
+    [
+      46,
+      "Stage 2 bet calculation: a=5, Normal=3, Risk-managed=3, Using=3 units"
+    ],
+    [
+      47,
+      "Stage 2 bet calculation: a=3, Normal=3, Risk-managed=7, Using=7 units"
+    ],
+    [
+      47,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      48,
+      "Stage 2 bet calculation: a=4, Normal=4, Risk-managed=12, Using=12 units"
+    ],
+    [
+      48,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      49,
+      "Stage 2 bet calculation: a=5, Normal=5, Risk-managed=5, Using=5 units"
+    ],
+    [
+      50,
+      "Stage 2 bet calculation: a=3, Normal=5, Risk-managed=17, Using=17 units"
+    ],
+    [
+      50,
+      "Stage 2 recovery successful! Recovered 17 chips plus 2 profit."
+    ],
+    [
+      50,
+      "Sequence completed successfully."
+    ],
+    [
+      50,
+      "Sequence 2 completed! (a=1 < 3)"
+    ],
+    [
+      52,
+      "Sequence 3 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      53,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      54,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      55,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      56,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      57,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      58,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      61,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      63,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      64,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      66,
+      "Sequence 3 completed! (a=1 < 3)"
+    ],
+    [
+      67,
+      "Sequence 4 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      68,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      70,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      71,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      72,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      72,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      73,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      74,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      75,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      77,
+      "Sequence 4 completed! (a=2 < 3)"
+    ],
+    [
+      80,
+      "Sequence 5 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      81,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      83,
+      "Sequence 5 completed! (a=1 < 3)"
+    ],
+    [
+      86,
+      "Sequence 6 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      87,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      89,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      90,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      92,
+      "Sequence 6 completed! (a=1 < 3)"
+    ],
+    [
+      94,
+      "Sequence 7 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      95,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      96,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      97,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      99,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      100,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      102,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      104,
+      "Sequence 7 completed! (a=2 < 3)"
+    ],
+    [
+      105,
+      "Sequence 8 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      106,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      107,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      108,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      109,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      110,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      113,
+      "Sequence 8 completed! (a=1 < 3)"
+    ],
+    [
+      114,
+      "Sequence 9 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      115,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      117,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      118,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      119,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      119,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      120,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      120,
+      "Four corner rule triggered! Calculated codes {'a': 7, 'b': 49, 'c': 14} will be delayed"
+    ],
+    [
+      121,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      121,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      121,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      122,
+      "Applying pending sequence codes: {'a': 7, 'b': 49, 'c': 14}"
+    ],
+    [
+      122,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      124,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      125,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      127,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      128,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      131,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      132,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      134,
+      "Sequence 9 completed! (a=1 < 3)"
+    ],
+    [
+      135,
+      "Sequence 10 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      136,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      138,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      139,
+      "Sequence 10 completed! (a=2 < 3)"
+    ],
+    [
+      140,
+      "Sequence 11 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      141,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      142,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      143,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      144,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      144,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      145,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      145,
+      "Four corner rule triggered! Calculated codes {'a': 9, 'b': 47, 'c': 10} will be delayed"
+    ],
+    [
+      146,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      146,
+      "Consecutive non-A1 count: 5"
+    ],
+    [
+      147,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      147,
+      "Consecutive non-A1 count: 6"
+    ],
+    [
+      148,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      148,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      148,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      149,
+      "Applying pending sequence codes: {'a': 9, 'b': 47, 'c': 10}"
+    ],
+    [
+      149,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      150,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      151,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      151,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      152,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      152,
+      "Four corner rule triggered! Calculated codes {'a': 13, 'b': 46, 'c': 6} will be delayed"
+    ],
+    [
+      153,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      153,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      154,
+      "Applying pending sequence codes: {'a': 13, 'b': 46, 'c': 6}"
+    ],
+    [
+      154,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      155,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      156,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      157,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      159,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      161,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      162,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      163,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      163,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      164,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      166,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      167,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      169,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      170,
+      "Sequence 11 completed! (a=2 < 3)"
+    ],
+    [
+      174,
+      "Sequence 12 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      175,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      176,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      178,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      179,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      181,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      183,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      184,
+      "Sequence 12 completed! (a=2 < 3)"
+    ],
+    [
+      185,
+      "Sequence 13 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      186,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      187,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      188,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      190,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      192,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      194,
+      "Sequence 13 completed! (a=1 < 3)"
+    ],
+    [
+      195,
+      "Sequence 14 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      196,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      197,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      198,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      199,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      202,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      203,
+      "Sequence 14 completed! (a=2 < 3)"
+    ],
+    [
+      206,
+      "Sequence 15 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      207,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      208,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      209,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      210,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      210,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      211,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      211,
+      "Four corner rule triggered! Calculated codes {'a': 9, 'b': 47, 'c': 10} will be delayed"
+    ],
+    [
+      212,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      212,
+      "Consecutive non-A1 count: 5"
+    ],
+    [
+      213,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      213,
+      "Consecutive non-A1 count: 6"
+    ],
+    [
+      214,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      214,
+      "Consecutive non-A1 count: 7"
+    ],
+    [
+      215,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      215,
+      "Consecutive non-A1 count: 8"
+    ],
+    [
+      216,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      216,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      217,
+      "Applying pending sequence codes: {'a': 9, 'b': 47, 'c': 10}"
+    ],
+    [
+      217,
+      "Bet3 lost. Stage 1 ends, Stage 2 will begin next spin."
+    ],
+    [
+      217,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      218,
+      "Stage 2 begins."
+    ],
+    [
+      218,
+      "Stage 2 bet calculation: a=10, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      219,
+      "Stage 2 bet calculation: a=7, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      219,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      220,
+      "Stage 2 bet calculation: a=8, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      220,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      221,
+      "Stage 2 bet calculation: a=9, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      221,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      222,
+      "Stage 2 bet calculation: a=10, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      223,
+      "Stage 2 bet calculation: a=7, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      223,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      223,
+      "b > 89 rule applied in Stage 2 - divisor reduced to 16.0"
+    ],
+    [
+      224,
+      "Stage 2 bet calculation: a=8, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      225,
+      "Stage 2 bet calculation: a=5, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      225,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      226,
+      "Stage 2 bet calculation: a=6, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      226,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      227,
+      "Stage 2 bet calculation: a=7, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      227,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      228,
+      "Stage 2 bet calculation: a=8, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      228,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      228,
+      "b > 89 rule applied in Stage 2 - divisor reduced to 8.0"
+    ],
+    [
+      228,
+      "Four corner rule triggered! Calculated codes {'a': 9, 'b': 53, 'c': 10} will be delayed"
+    ],
+    [
+      229,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      229,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      230,
+      "Applying pending sequence codes: {'a': 9, 'b': 53, 'c': 10}"
+    ],
+    [
+      230,
+      "Stage 2 bet calculation: a=9, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      230,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      231,
+      "Stage 2 bet calculation: a=10, Normal=1, Risk-managed=1, Using=1 units"
+    ],
+    [
+      231,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      232,
+      "Bypass rule disabled: a=11 > 10, skipping bet"
+    ],
+    [
+      232,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      233,
+      "Bypass rule disabled: a=12 > 10, skipping bet"
+    ],
+    [
+      233,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      233,
+      "b > 89 rule applied in Stage 2 - divisor reduced to 4.0"
+    ],
+    [
+      233,
+      "Four corner rule triggered! Calculated codes {'a': 13, 'b': 51, 'c': 6} will be delayed"
+    ],
+    [
+      234,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      234,
+      "Consecutive non-A1 count: 5"
+    ],
+    [
+      235,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      235,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      236,
+      "Applying pending sequence codes: {'a': 13, 'b': 51, 'c': 6}"
+    ],
+    [
+      236,
+      "Bypass rule disabled: a=13 > 10, skipping bet"
+    ],
+    [
+      236,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      237,
+      "Bypass rule disabled: a=14 > 10, skipping bet"
+    ],
+    [
+      237,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      238,
+      "Bypass rule disabled: a=15 > 10, skipping bet"
+    ],
+    [
+      239,
+      "Stage 2 bet calculation: a=10, Normal=2, Risk-managed=2, Using=2 units"
+    ],
+    [
+      239,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      240,
+      "Bypass rule disabled: a=11 > 10, skipping bet"
+    ],
+    [
+      240,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      241,
+      "Bypass rule disabled: a=12 > 10, skipping bet"
+    ],
+    [
+      241,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      241,
+      "b > 89 rule applied in Stage 2 - divisor reduced to 2.0"
+    ],
+    [
+      242,
+      "Bypass rule disabled: a=13 > 10, skipping bet"
+    ],
+    [
+      242,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      242,
+      "Four corner rule triggered! Calculated codes {'a': 14, 'b': 52, 'c': 6} will be delayed"
+    ],
+    [
+      243,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      243,
+      "Consecutive non-A1 count: 5"
+    ],
+    [
+      244,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      244,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      245,
+      "Applying pending sequence codes: {'a': 14, 'b': 52, 'c': 6}"
+    ],
+    [
+      245,
+      "Bypass rule disabled: a=14 > 10, skipping bet"
+    ],
+    [
+      246,
+      "Stage 2 bet calculation: a=10, Normal=4, Risk-managed=4, Using=4 units"
+    ],
+    [
+      246,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      247,
+      "Bypass rule disabled: a=11 > 10, skipping bet"
+    ],
+    [
+      248,
+      "Stage 2 bet calculation: a=7, Normal=6, Risk-managed=6, Using=6 units"
+    ],
+    [
+      248,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      249,
+      "Stage 2 bet calculation: a=8, Normal=7, Risk-managed=7, Using=7 units"
+    ],
+    [
+      249,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      250,
+      "Stage 2 bet calculation: a=9, Normal=8, Risk-managed=8, Using=8 units"
+    ],
+    [
+      251,
+      "Stage 2 bet calculation: a=6, Normal=9, Risk-managed=9, Using=9 units"
+    ],
+    [
+      252,
+      "Stage 2 bet calculation: a=4, Normal=9, Risk-managed=7, Using=7 units"
+    ],
+    [
+      252,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      253,
+      "Stage 2 bet calculation: a=5, Normal=11, Risk-managed=11, Using=11 units"
+    ],
+    [
+      253,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      254,
+      "Stage 2 bet calculation: a=6, Normal=13, Risk-managed=13, Using=13 units"
+    ],
+    [
+      254,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      254,
+      "b > 89 rule applied in Stage 2 - divisor reduced to 1.0"
+    ],
+    [
+      255,
+      "Stage 2 bet calculation: a=7, Normal=14, Risk-managed=14, Using=14 units"
+    ],
+    [
+      256,
+      "Stage 2 bet calculation: a=5, Normal=14, Risk-managed=14, Using=14 units"
+    ],
+    [
+      256,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      257,
+      "Stage 2 bet calculation: a=6, Normal=16, Risk-managed=16, Using=16 units"
+    ],
+    [
+      257,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      258,
+      "Stage 2 bet calculation: a=7, Normal=18, Risk-managed=18, Using=18 units"
+    ],
+    [
+      258,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      259,
+      "Stage 2 bet calculation: a=8, Normal=20, Risk-managed=20, Using=20 units"
+    ],
+    [
+      260,
+      "Stage 2 bet calculation: a=5, Normal=26, Risk-managed=26, Using=26 units"
+    ],
+    [
+      261,
+      "Stage 2 bet calculation: a=3, Normal=26, Risk-managed=10, Using=10 units"
+    ],
+    [
+      261,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      262,
+      "Stage 2 bet calculation: a=4, Normal=32, Risk-managed=18, Using=18 units"
+    ],
+    [
+      262,
+      "Stage 2 recovery successful! Recovered 17 chips plus 1 profit."
+    ],
+    [
+      262,
+      "Sequence completed successfully."
+    ],
+    [
+      262,
+      "Sequence 15 completed! (a=2 < 3)"
+    ],
+    [
+      263,
+      "Sequence 16 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      264,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      266,
+      "Sequence 16 completed! (a=1 < 3)"
+    ],
+    [
+      269,
+      "Sequence 17 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      270,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      271,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      272,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      273,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      273,
+      "Four corner rule triggered! Calculated codes {'a': 12, 'b': 46, 'c': 6} will be delayed"
+    ],
+    [
+      274,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      274,
+      "Consecutive non-A1 count: 5"
+    ],
+    [
+      275,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      275,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      275,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      276,
+      "Applying pending sequence codes: {'a': 12, 'b': 46, 'c': 6}"
+    ],
+    [
+      277,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      279,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      280,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      282,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      283,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      284,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      284,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      285,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      285,
+      "Four corner rule triggered! Calculated codes {'a': 9, 'b': 72, 'c': 16} will be delayed"
+    ],
+    [
+      286,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      286,
+      "Consecutive non-A1 count: 5"
+    ],
+    [
+      287,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      287,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      287,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      288,
+      "Applying pending sequence codes: {'a': 9, 'b': 72, 'c': 16}"
+    ],
+    [
+      288,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      292,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      293,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      294,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      294,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      295,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      295,
+      "Four corner rule triggered! Calculated codes {'a': 7, 'b': 72, 'c': 20} will be delayed"
+    ],
+    [
+      296,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      296,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      296,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      297,
+      "Applying pending sequence codes: {'a': 7, 'b': 72, 'c': 20}"
+    ],
+    [
+      297,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      300,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      301,
+      "Sequence 17 completed! (a=2 < 3)"
+    ],
+    [
+      303,
+      "Sequence 18 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      304,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      305,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      307,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      309,
+      "Sequence 18 completed! (a=1 < 3)"
+    ],
+    [
+      314,
+      "Sequence 19 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      315,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      316,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      317,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      318,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      319,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      320,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      320,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      321,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      323,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      324,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      325,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      325,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      326,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      326,
+      "Four corner rule triggered! Calculated codes {'a': 9, 'b': 46, 'c': 10} will be delayed"
+    ],
+    [
+      327,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      327,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      327,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      328,
+      "Applying pending sequence codes: {'a': 9, 'b': 46, 'c': 10}"
+    ],
+    [
+      328,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      331,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      333,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      334,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      336,
+      "Sequence 19 completed! (a=2 < 3)"
+    ],
+    [
+      337,
+      "Sequence 20 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      338,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      339,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      340,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      342,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      344,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      345,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      346,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      346,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      347,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      348,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      350,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      351,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      353,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      354,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      356,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      358,
+      "Sequence 20 completed! (a=1 < 3)"
+    ],
+    [
+      359,
+      "Sequence 21 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      360,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      362,
+      "Sequence 21 completed! (a=1 < 3)"
+    ],
+    [
+      364,
+      "Sequence 22 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      365,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      367,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      368,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      370,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      371,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      373,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      374,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      376,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      377,
+      "Sequence 22 completed! (a=2 < 3)"
+    ],
+    [
+      378,
+      "Sequence 23 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      379,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      380,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      381,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      384,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      385,
+      "Sequence 23 completed! (a=2 < 3)"
+    ],
+    [
+      387,
+      "Sequence 24 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      388,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      390,
+      "Sequence 24 completed! (a=1 < 3)"
+    ],
+    [
+      391,
+      "Sequence 25 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      392,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      393,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      394,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      397,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      398,
+      "Sequence 25 completed! (a=2 < 3)"
+    ],
+    [
+      399,
+      "Sequence 26 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      400,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      401,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      402,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      404,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      406,
+      "Sequence 26 completed! (a=2 < 3)"
+    ],
+    [
+      407,
+      "Sequence 27 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      408,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      409,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      410,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      411,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      412,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      414,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      417,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      418,
+      "Sequence 27 completed! (a=2 < 3)"
+    ],
+    [
+      420,
+      "Sequence 28 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      421,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      422,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      423,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      426,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      427,
+      "Sequence 28 completed! (a=2 < 3)"
+    ],
+    [
+      430,
+      "Sequence 29 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      431,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      432,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      433,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      435,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      436,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      438,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      439,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      441,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      442,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      443,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      443,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      444,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      444,
+      "Four corner rule triggered! Calculated codes {'a': 9, 'b': 52, 'c': 10} will be delayed"
+    ],
+    [
+      445,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      445,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      445,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      446,
+      "Applying pending sequence codes: {'a': 9, 'b': 52, 'c': 10}"
+    ],
+    [
+      446,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      447,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      448,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      448,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      449,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      450,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      452,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      454,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      455,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      457,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      458,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      460,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      461,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      462,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      462,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      463,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      463,
+      "Four corner rule triggered! Calculated codes {'a': 9, 'b': 81, 'c': 18} will be delayed"
+    ],
+    [
+      464,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      464,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      464,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      465,
+      "Applying pending sequence codes: {'a': 9, 'b': 81, 'c': 18}"
+    ],
+    [
+      465,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      466,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      467,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      467,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      468,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      471,
+      "Sequence 29 completed! (a=1 < 3)"
+    ],
+    [
+      472,
+      "Sequence 30 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      473,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      474,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      475,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      476,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      476,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      477,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      479,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      480,
+      "Sequence 30 completed! (a=2 < 3)"
+    ],
+    [
+      481,
+      "Sequence 31 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      482,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      483,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      484,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      485,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      486,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      487,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      487,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      488,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      488,
+      "Four corner rule triggered! Calculated codes {'a': 11, 'b': 61, 'c': 10} will be delayed"
+    ],
+    [
+      489,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      489,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      489,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      490,
+      "Applying pending sequence codes: {'a': 11, 'b': 61, 'c': 10}"
+    ],
+    [
+      492,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      493,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      495,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      496,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      497,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      497,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      498,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      498,
+      "Four corner rule triggered! Calculated codes {'a': 9, 'b': 71, 'c': 14} will be delayed"
+    ],
+    [
+      499,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      499,
+      "Consecutive non-A1 count: 5"
+    ],
+    [
+      500,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      500,
+      "Consecutive non-A1 count: 6"
+    ],
+    [
+      501,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      501,
+      "Consecutive non-A1 count: 7"
+    ],
+    [
+      502,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      502,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      502,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      503,
+      "Applying pending sequence codes: {'a': 9, 'b': 71, 'c': 14}"
+    ],
+    [
+      503,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      506,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      508,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      510,
+      "Sequence 31 completed! (a=1 < 3)"
+    ],
+    [
+      515,
+      "Sequence 32 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      516,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      517,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      518,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      519,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      522,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      523,
+      "Sequence 32 completed! (a=2 < 3)"
+    ],
+    [
+      525,
+      "Sequence 33 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      526,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      527,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      528,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      529,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      530,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      531,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      531,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      532,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      533,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      534,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      536,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      538,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      539,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      541,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      542,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      545,
+      "Sequence 33 completed! (a=1 < 3)"
+    ],
+    [
+      546,
+      "Sequence 34 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      547,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      548,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      549,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      550,
+      "A1 wait period ended after 3 non-A1 outcomes"
+    ],
+    [
+      550,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      551,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      551,
+      "Four corner rule triggered! Calculated codes {'a': 9, 'b': 47, 'c': 10} will be delayed"
+    ],
+    [
+      552,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      552,
+      "Consecutive non-A1 count: 5"
+    ],
+    [
+      553,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      553,
+      "A1 win detected - starting wait for 3 consecutive non-A1 outcomes"
+    ],
+    [
+      553,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      554,
+      "Applying pending sequence codes: {'a': 9, 'b': 47, 'c': 10}"
+    ],
+    [
+      554,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      557,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      558,
+      "Consecutive non-A1 count: 2"
+    ]
+  ]
+}

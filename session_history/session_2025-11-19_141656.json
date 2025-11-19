@@ -1,0 +1,2724 @@
+{
+  "timestamp": "2025-11-19T14:16:56.096268",
+  "configuration": {
+    "file": "2011-09-02_203.xls",
+    "sequence_codes": "Standard (3, 4, 2)",
+    "stage2_divisor": 8,
+    "bypass_a10_rule": true,
+    "total_outcomes": 117
+  },
+  "results": {
+    "sequences_completed": 18,
+    "final_balance_chips": 8,
+    "starting_bank_units": 250,
+    "final_bank_units": 252,
+    "session_status": "ACTIVE",
+    "outcomes_processed": 117,
+    "profit_loss_chips": 8,
+    "profit_loss_units": 2,
+    "worst_drawdown": {
+      "line": 0,
+      "bet": "",
+      "negative": 0,
+      "positive": "0",
+      "positive_chips": 0,
+      "chip_loss": 0,
+      "balance": 0,
+      "total_loss": 0
+    },
+    "session_successful": true,
+    "final_stage": 1,
+    "total_turnover": 40
+  },
+  "dataframe": [
+    {
+      "line": 1,
+      "outcome": 6,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 2,
+      "outcome": 31,
+      "win": "W",
+      "a": 3,
+      "b": 4,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 3,
+      "outcome": 11,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 4,
+      "outcome": 6,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 5,
+      "outcome": 9,
+      "win": "L",
+      "a": 3,
+      "b": 4,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 6,
+      "outcome": 34,
+      "win": "W",
+      "a": 4,
+      "b": 6,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 7,
+      "outcome": 15,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 8,
+      "outcome": 22,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 9,
+      "outcome": 26,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 10,
+      "outcome": 25,
+      "win": "W",
+      "a": 3,
+      "b": 4,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 11,
+      "outcome": 16,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 12,
+      "outcome": 6,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 13,
+      "outcome": 2,
+      "win": "W",
+      "a": 3,
+      "b": 4,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 14,
+      "outcome": 22,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 15,
+      "outcome": 12,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 16,
+      "outcome": 3,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 17,
+      "outcome": 21,
+      "win": "W",
+      "a": 3,
+      "b": 4,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 18,
+      "outcome": 29,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 19,
+      "outcome": 36,
+      "win": "L",
+      "a": 3,
+      "b": 4,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 20,
+      "outcome": 8,
+      "win": "L",
+      "a": 4,
+      "b": 6,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 21,
+      "outcome": 9,
+      "win": "L",
+      "a": 5,
+      "b": 8,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 22,
+      "outcome": 4,
+      "win": "L",
+      "a": 6,
+      "b": 10,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 23,
+      "outcome": 13,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 24,
+      "outcome": 31,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 25,
+      "outcome": 24,
+      "win": "L",
+      "a": 7,
+      "b": 12,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 26,
+      "outcome": 35,
+      "win": "W",
+      "a": 8,
+      "b": 14,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 27,
+      "outcome": 17,
+      "win": "W",
+      "a": 5,
+      "b": 12,
+      "c": 4,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 28,
+      "outcome": 32,
+      "win": "W",
+      "a": 3,
+      "b": 8,
+      "c": 4,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 29,
+      "outcome": 35,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 30,
+      "outcome": 24,
+      "win": "L",
+      "a": 3,
+      "b": 4,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 31,
+      "outcome": 26,
+      "win": "W",
+      "a": 4,
+      "b": 6,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 32,
+      "outcome": 29,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 33,
+      "outcome": 7,
+      "win": "L",
+      "a": 3,
+      "b": 4,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 34,
+      "outcome": 19,
+      "win": "L",
+      "a": 4,
+      "b": 6,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 35,
+      "outcome": 19,
+      "win": "L",
+      "a": 5,
+      "b": 8,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 36,
+      "outcome": 30,
+      "win": "L",
+      "a": 6,
+      "b": 10,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 37,
+      "outcome": 13,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 38,
+      "outcome": 32,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 39,
+      "outcome": 21,
+      "win": "W",
+      "a": 7,
+      "b": 12,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 40,
+      "outcome": 21,
+      "win": "W",
+      "a": 5,
+      "b": 10,
+      "c": 4,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 41,
+      "outcome": 20,
+      "win": "W",
+      "a": 3,
+      "b": 6,
+      "c": 4,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 42,
+      "outcome": 35,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 43,
+      "outcome": 9,
+      "win": "L",
+      "a": 3,
+      "b": 4,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 44,
+      "outcome": 6,
+      "win": "W",
+      "a": 4,
+      "b": 6,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 45,
+      "outcome": 16,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 46,
+      "outcome": 30,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 47,
+      "outcome": 22,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 48,
+      "outcome": 18,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 49,
+      "outcome": 35,
+      "win": "W",
+      "a": 3,
+      "b": 4,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 50,
+      "outcome": 14,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 51,
+      "outcome": 26,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 52,
+      "outcome": 15,
+      "win": "L",
+      "a": 3,
+      "b": 4,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 53,
+      "outcome": 13,
+      "win": "L",
+      "a": 4,
+      "b": 6,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 54,
+      "outcome": 14,
+      "win": "L",
+      "a": 5,
+      "b": 8,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 55,
+      "outcome": 26,
+      "win": "W",
+      "a": 6,
+      "b": 10,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 56,
+      "outcome": 16,
+      "win": "L",
+      "a": 4,
+      "b": 8,
+      "c": 4,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 57,
+      "outcome": 8,
+      "win": "L",
+      "a": 5,
+      "b": 12,
+      "c": 4,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 58,
+      "outcome": 11,
+      "win": "L",
+      "a": 6,
+      "b": 16,
+      "c": 4,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 59,
+      "outcome": 20,
+      "win": "W",
+      "a": 7,
+      "b": 20,
+      "c": 4,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 60,
+      "outcome": 17,
+      "win": "W",
+      "a": 5,
+      "b": 16,
+      "c": 6,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 61,
+      "outcome": 4,
+      "win": "L",
+      "a": 3,
+      "b": 10,
+      "c": 6,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 62,
+      "outcome": 16,
+      "win": "L",
+      "a": 4,
+      "b": 16,
+      "c": 8,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 1
+    },
+    {
+      "line": 63,
+      "outcome": 18,
+      "win": "W",
+      "a": 5,
+      "b": 24,
+      "c": 8,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 2
+    },
+    {
+      "line": 64,
+      "outcome": 36,
+      "win": "L",
+      "a": 3,
+      "b": 16,
+      "c": 10,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 3
+    },
+    {
+      "line": 65,
+      "outcome": 4,
+      "win": "L",
+      "a": 4,
+      "b": 26,
+      "c": 12,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 4
+    },
+    {
+      "line": 66,
+      "outcome": 18,
+      "win": "W",
+      "a": 5,
+      "b": 38,
+      "c": 14,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 5
+    },
+    {
+      "line": 67,
+      "outcome": 4,
+      "win": "L",
+      "a": 3,
+      "b": 24,
+      "c": 16,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 6
+    },
+    {
+      "line": 68,
+      "outcome": 21,
+      "win": "W",
+      "a": 4,
+      "b": 40,
+      "c": 20,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 7
+    },
+    {
+      "line": 69,
+      "outcome": 21,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 70,
+      "outcome": 2,
+      "win": "W",
+      "a": 3,
+      "b": 4,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 71,
+      "outcome": 23,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 72,
+      "outcome": 3,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 73,
+      "outcome": 15,
+      "win": "L",
+      "a": 3,
+      "b": 4,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 74,
+      "outcome": 23,
+      "win": "L",
+      "a": 4,
+      "b": 6,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 75,
+      "outcome": 1,
+      "win": "L",
+      "a": 5,
+      "b": 8,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 76,
+      "outcome": 10,
+      "win": "L",
+      "a": 6,
+      "b": 10,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 77,
+      "outcome": 9,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 78,
+      "outcome": 22,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 79,
+      "outcome": 35,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 80,
+      "outcome": 12,
+      "win": "L",
+      "a": 7,
+      "b": 12,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 81,
+      "outcome": 5,
+      "win": "W",
+      "a": 8,
+      "b": 14,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 82,
+      "outcome": 25,
+      "win": "W",
+      "a": 5,
+      "b": 12,
+      "c": 4,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 83,
+      "outcome": 4,
+      "win": "L",
+      "a": 3,
+      "b": 8,
+      "c": 4,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 84,
+      "outcome": 14,
+      "win": "L",
+      "a": 4,
+      "b": 12,
+      "c": 6,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 85,
+      "outcome": 3,
+      "win": "W",
+      "a": 5,
+      "b": 18,
+      "c": 6,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 86,
+      "outcome": 31,
+      "win": "W",
+      "a": 3,
+      "b": 12,
+      "c": 8,
+      "actual bet": "Bet 1",
+      "negative": "",
+      "positive": "",
+      "balance": 8
+    },
+    {
+      "line": 87,
+      "outcome": 25,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 88,
+      "outcome": 9,
+      "win": "L",
+      "a": 3,
+      "b": 4,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 89,
+      "outcome": 31,
+      "win": "W",
+      "a": 4,
+      "b": 6,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 90,
+      "outcome": 36,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 91,
+      "outcome": 36,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 92,
+      "outcome": 19,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 93,
+      "outcome": 34,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 94,
+      "outcome": 5,
+      "win": "W",
+      "a": 3,
+      "b": 4,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 95,
+      "outcome": 30,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 96,
+      "outcome": 34,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 97,
+      "outcome": 13,
+      "win": "L",
+      "a": 3,
+      "b": 4,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 98,
+      "outcome": 23,
+      "win": "L",
+      "a": 4,
+      "b": 6,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 99,
+      "outcome": 12,
+      "win": "L",
+      "a": 5,
+      "b": 8,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 100,
+      "outcome": 6,
+      "win": "W",
+      "a": 6,
+      "b": 10,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 101,
+      "outcome": 9,
+      "win": "L",
+      "a": 4,
+      "b": 8,
+      "c": 4,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 102,
+      "outcome": 25,
+      "win": "W",
+      "a": 5,
+      "b": 12,
+      "c": 4,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 103,
+      "outcome": 27,
+      "win": "L",
+      "a": 3,
+      "b": 8,
+      "c": 4,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 104,
+      "outcome": 34,
+      "win": "W",
+      "a": 4,
+      "b": 12,
+      "c": 6,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 105,
+      "outcome": 14,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 106,
+      "outcome": 33,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 107,
+      "outcome": 15,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 108,
+      "outcome": 24,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 109,
+      "outcome": 12,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 110,
+      "outcome": 32,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 111,
+      "outcome": 30,
+      "win": "L",
+      "a": 3,
+      "b": 4,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 112,
+      "outcome": 33,
+      "win": "L",
+      "a": 4,
+      "b": 6,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 113,
+      "outcome": 34,
+      "win": "W",
+      "a": 5,
+      "b": 8,
+      "c": 2,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 114,
+      "outcome": 3,
+      "win": "W",
+      "a": 3,
+      "b": 6,
+      "c": 4,
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 115,
+      "outcome": 4,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 116,
+      "outcome": 12,
+      "win": "L",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    },
+    {
+      "line": 117,
+      "outcome": 35,
+      "win": "W",
+      "a": "",
+      "b": "",
+      "c": "",
+      "actual bet": "",
+      "negative": "",
+      "positive": "",
+      "balance": ""
+    }
+  ],
+  "balance_history": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8
+  ],
+  "debug_messages": [
+    [
+      1,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      1,
+      "Sequence 1 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      2,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      2,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=31, c=2"
+    ],
+    [
+      2,
+      "Sequence 1 completed! (a=1 < 3)"
+    ],
+    [
+      3,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      4,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      4,
+      "Sequence 2 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      5,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      5,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=9, c=2"
+    ],
+    [
+      5,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      6,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      6,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=34, c=2"
+    ],
+    [
+      6,
+      "Sequence 2 completed! (a=2 < 3)"
+    ],
+    [
+      7,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      8,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      9,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      9,
+      "Sequence 3 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      10,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      10,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=25, c=2"
+    ],
+    [
+      10,
+      "Sequence 3 completed! (a=1 < 3)"
+    ],
+    [
+      11,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      12,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      12,
+      "Sequence 4 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      13,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      13,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=2, c=2"
+    ],
+    [
+      13,
+      "Sequence 4 completed! (a=1 < 3)"
+    ],
+    [
+      14,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      15,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      16,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      16,
+      "Sequence 5 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      17,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      17,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=21, c=2"
+    ],
+    [
+      17,
+      "Sequence 5 completed! (a=1 < 3)"
+    ],
+    [
+      18,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      18,
+      "Sequence 6 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      19,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      19,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=36, c=2"
+    ],
+    [
+      19,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      20,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      20,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=8, c=2"
+    ],
+    [
+      20,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      21,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      21,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=9, c=2"
+    ],
+    [
+      21,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      22,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      22,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=4, c=2"
+    ],
+    [
+      22,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      22,
+      "Four corner rule triggered! Calculated codes {'a': 7, 'b': 12, 'c': 2} will be delayed"
+    ],
+    [
+      23,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=True, waiting_for_a1=False"
+    ],
+    [
+      23,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      23,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=13, c=2"
+    ],
+    [
+      23,
+      "Consecutive non-A1 count: 5"
+    ],
+    [
+      23,
+      "[DEBUG] Sequence code update skipped - four corner rule active"
+    ],
+    [
+      24,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=True, waiting_for_a1=False"
+    ],
+    [
+      24,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      24,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=31, c=2"
+    ],
+    [
+      24,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      25,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      25,
+      "Applying pending sequence codes: {'a': 7, 'b': 12, 'c': 2}"
+    ],
+    [
+      25,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=24, c=2"
+    ],
+    [
+      25,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      26,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      26,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=35, c=2"
+    ],
+    [
+      27,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      27,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=17, c=4"
+    ],
+    [
+      28,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      28,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=32, c=4"
+    ],
+    [
+      28,
+      "Sequence 6 completed! (a=1 < 3)"
+    ],
+    [
+      29,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      29,
+      "Sequence 7 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      30,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      30,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=24, c=2"
+    ],
+    [
+      30,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      31,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      31,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=26, c=2"
+    ],
+    [
+      31,
+      "Sequence 7 completed! (a=2 < 3)"
+    ],
+    [
+      32,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      32,
+      "Sequence 8 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      33,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      33,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=7, c=2"
+    ],
+    [
+      33,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      34,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      34,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=19, c=2"
+    ],
+    [
+      34,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      35,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      35,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=19, c=2"
+    ],
+    [
+      35,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      36,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      36,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=30, c=2"
+    ],
+    [
+      36,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      36,
+      "Four corner rule triggered! Calculated codes {'a': 7, 'b': 12, 'c': 2} will be delayed"
+    ],
+    [
+      37,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=True, waiting_for_a1=False"
+    ],
+    [
+      37,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      37,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=13, c=2"
+    ],
+    [
+      37,
+      "Consecutive non-A1 count: 5"
+    ],
+    [
+      37,
+      "[DEBUG] Sequence code update skipped - four corner rule active"
+    ],
+    [
+      38,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=True, waiting_for_a1=False"
+    ],
+    [
+      38,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      38,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=32, c=2"
+    ],
+    [
+      38,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      39,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      39,
+      "Applying pending sequence codes: {'a': 7, 'b': 12, 'c': 2}"
+    ],
+    [
+      39,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=21, c=2"
+    ],
+    [
+      40,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      40,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=21, c=4"
+    ],
+    [
+      41,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      41,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=20, c=4"
+    ],
+    [
+      41,
+      "Sequence 8 completed! (a=1 < 3)"
+    ],
+    [
+      42,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      42,
+      "Sequence 9 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      43,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      43,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=9, c=2"
+    ],
+    [
+      43,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      44,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      44,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=6, c=2"
+    ],
+    [
+      44,
+      "Sequence 9 completed! (a=2 < 3)"
+    ],
+    [
+      45,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      46,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      47,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      48,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      48,
+      "Sequence 10 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      49,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      49,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=35, c=2"
+    ],
+    [
+      49,
+      "Sequence 10 completed! (a=1 < 3)"
+    ],
+    [
+      50,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      51,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      51,
+      "Sequence 11 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      52,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      52,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=15, c=2"
+    ],
+    [
+      52,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      53,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      53,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=13, c=2"
+    ],
+    [
+      53,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      54,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      54,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=14, c=2"
+    ],
+    [
+      54,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      55,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      55,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=26, c=2"
+    ],
+    [
+      56,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      56,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=16, c=4"
+    ],
+    [
+      56,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      57,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      57,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=8, c=4"
+    ],
+    [
+      57,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      58,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      58,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=11, c=4"
+    ],
+    [
+      58,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      59,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      59,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=20, c=4"
+    ],
+    [
+      60,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      60,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=17, c=6"
+    ],
+    [
+      61,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      61,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=4, c=6"
+    ],
+    [
+      61,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      62,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      62,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=16, c=8"
+    ],
+    [
+      62,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      63,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      63,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=18, c=8"
+    ],
+    [
+      64,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      64,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=36, c=10"
+    ],
+    [
+      64,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      65,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      65,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=4, c=12"
+    ],
+    [
+      65,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      66,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      66,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=18, c=14"
+    ],
+    [
+      67,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      67,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=4, c=16"
+    ],
+    [
+      67,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      68,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      68,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=21, c=20"
+    ],
+    [
+      68,
+      "Sequence 11 completed! (a=2 < 3)"
+    ],
+    [
+      69,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      69,
+      "Sequence 12 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      70,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      70,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=2, c=2"
+    ],
+    [
+      70,
+      "Sequence 12 completed! (a=1 < 3)"
+    ],
+    [
+      71,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      72,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      72,
+      "Sequence 13 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      73,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      73,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=15, c=2"
+    ],
+    [
+      73,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      74,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      74,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=23, c=2"
+    ],
+    [
+      74,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      75,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      75,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=1, c=2"
+    ],
+    [
+      75,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      76,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      76,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=10, c=2"
+    ],
+    [
+      76,
+      "Consecutive non-A1 count: 4"
+    ],
+    [
+      76,
+      "Four corner rule triggered! Calculated codes {'a': 7, 'b': 12, 'c': 2} will be delayed"
+    ],
+    [
+      77,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=True, waiting_for_a1=False"
+    ],
+    [
+      77,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      77,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=9, c=2"
+    ],
+    [
+      77,
+      "Consecutive non-A1 count: 5"
+    ],
+    [
+      77,
+      "[DEBUG] Sequence code update skipped - four corner rule active"
+    ],
+    [
+      78,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=True, waiting_for_a1=False"
+    ],
+    [
+      78,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      78,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=22, c=2"
+    ],
+    [
+      78,
+      "Consecutive non-A1 count: 6"
+    ],
+    [
+      78,
+      "[DEBUG] Sequence code update skipped - four corner rule active"
+    ],
+    [
+      79,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=True, waiting_for_a1=False"
+    ],
+    [
+      79,
+      "Four corner rule: suppressing sequence codes"
+    ],
+    [
+      79,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=35, c=2"
+    ],
+    [
+      79,
+      "Four corner loss rule ended - A1 outcome detected"
+    ],
+    [
+      80,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      80,
+      "Applying pending sequence codes: {'a': 7, 'b': 12, 'c': 2}"
+    ],
+    [
+      80,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=12, c=2"
+    ],
+    [
+      80,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      81,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      81,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=5, c=2"
+    ],
+    [
+      82,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      82,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=25, c=4"
+    ],
+    [
+      83,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      83,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=4, c=4"
+    ],
+    [
+      83,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      84,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      84,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=14, c=6"
+    ],
+    [
+      84,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      85,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      85,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=3, c=6"
+    ],
+    [
+      86,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      86,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=31, c=8"
+    ],
+    [
+      86,
+      "Sequence 13 completed! (a=1 < 3)"
+    ],
+    [
+      87,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      87,
+      "Sequence 14 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      88,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      88,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=9, c=2"
+    ],
+    [
+      88,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      89,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      89,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=31, c=2"
+    ],
+    [
+      89,
+      "Sequence 14 completed! (a=2 < 3)"
+    ],
+    [
+      90,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      91,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      92,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      93,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      93,
+      "Sequence 15 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      94,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      94,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=5, c=2"
+    ],
+    [
+      94,
+      "Sequence 15 completed! (a=1 < 3)"
+    ],
+    [
+      95,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      96,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      96,
+      "Sequence 16 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      97,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      97,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=13, c=2"
+    ],
+    [
+      97,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      98,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      98,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=23, c=2"
+    ],
+    [
+      98,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      99,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      99,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=12, c=2"
+    ],
+    [
+      99,
+      "Consecutive non-A1 count: 3"
+    ],
+    [
+      100,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      100,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=6, c=2"
+    ],
+    [
+      101,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      101,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=9, c=4"
+    ],
+    [
+      101,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      102,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      102,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=25, c=4"
+    ],
+    [
+      103,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      103,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=27, c=4"
+    ],
+    [
+      103,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      104,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      104,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=34, c=6"
+    ],
+    [
+      104,
+      "Sequence 16 completed! (a=2 < 3)"
+    ],
+    [
+      105,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      106,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      107,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      108,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      109,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      110,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      110,
+      "Sequence 17 started! First A1 win - sequence codes will start next line"
+    ],
+    [
+      111,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      111,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=30, c=2"
+    ],
+    [
+      111,
+      "Consecutive non-A1 count: 1"
+    ],
+    [
+      112,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      112,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=33, c=2"
+    ],
+    [
+      112,
+      "Consecutive non-A1 count: 2"
+    ],
+    [
+      113,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      113,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=34, c=2"
+    ],
+    [
+      114,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      114,
+      "[DEBUG] Before betting: current_bet_type=1, outcome=3, c=4"
+    ],
+    [
+      114,
+      "Sequence 17 completed! (a=1 < 3)"
+    ],
+    [
+      115,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      116,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      117,
+      "[DEBUG] Start of line: stage=1, current_bet_type=1, four_corner_active=False, waiting_for_a1=False"
+    ],
+    [
+      117,
+      "Sequence 18 started! First A1 win - sequence codes will start next line"
+    ]
+  ]
+}

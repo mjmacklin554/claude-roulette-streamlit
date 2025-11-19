@@ -1,0 +1,4 @@
+Date,File,Seq Codes,Divisor,Bypass,Sequences,Success,Turnover,Profit (Chips),Profit (Units),Worst Loss,Status
+2025-11-13 14:33:14,2011-09-15_99.xls,"Standard (3, 4, 2)",8,Yes,11,✗,797,-398,-100,-398 chips,ACTIVE
+2025-11-13 14:12:33,blakey_example_h.txt,"Alternative (8, 44, 10)",8,Yes,1,✗,1753,-964,-241,-964 chips,ENDED
+2025-11-13 14:09:56,2011-09-02_203.xls,"Alternative (8, 44, 10)",8,Yes,8,✓,507,69,17,-9 chips,ACTIVE
