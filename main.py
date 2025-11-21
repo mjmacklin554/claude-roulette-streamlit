@@ -1,110 +1,24 @@
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
-import json
 import os
 import itertools
 from datetime import datetime
 
+# Import utility functions and constants
+from utils import (
+    A1, A2, get_betting_recommendation, NoOpList,
+    chips_to_mixed_number, add_mixed_numbers, mixed_to_chips_from_dict, mixed_to_chips,
+    calculate_new_a, add_chips_to_mixed_positive, calculate_recovery_profit
+)
+from session_manager import (
+    save_session, load_all_sessions, delete_session,
+    get_available_files, HISTORY_FOLDER
+)
+
 # From mb_roulette_v1.txt - Technical Requirements
 outcomes = [0, 15, 27, 33, 26, 14, 36, 2, 16, 22, 7, 17, 30, 22, 28, 9, 10, 11, 6, 1, 33, 10, 15, 18, 11, 9, 1, 7, 30, 30, 36, 36,4,4,
 32,28,6,10,22,24,33,36,15,34,9,0,0,1,18,19,20,8,17,11,27,16,26,4,29,2,2]
-
-# A1 consisting of 16 numbers (4 x Corner Bets)
-A1 = [2, 3, 5, 6, 17, 18, 20, 21, 25, 26, 28, 29, 31, 32, 34, 35]
-
-# Helper function to get betting recommendation for live play
-def get_betting_recommendation(sequence_code, stage, current_bet_type, cumulative_negative, waiting_for_a1_losses=False):
-    """Returns the current betting recommendation based on system state"""
-    if waiting_for_a1_losses:
-        return "Wait (A1 wait period)"
-
-    if stage == 1:
-        # Stage 1 betting
-        if current_bet_type == 1:
-            return "Bet 1: 5 chips on A2 (Six-Line)"
-        elif current_bet_type == 2:
-            return "Bet 2: 4 chips on A1 (Corners)"
-        elif current_bet_type == 3:
-            return "Bet 3: 8 chips on A1 (Corners)"
-        else:
-            return "No bet (wait for A1)"
-    elif stage == 2:
-        # Stage 2 betting - check if we should bet
-        a = sequence_code['a']
-        negative_units = abs(cumulative_negative['integer'])
-
-        # This will be filled in when we process
-        return f"Stage 2: Check a={a}, negative={negative_units}"
-    else:
-        return "Session complete"
-
-# A2 consisting of 30 numbers (5 x Six-Line Bets): 1-6, 13-18, 19-24, 25-30, 31-36
-A2 = []
-for start in [1, 13, 19, 25, 31]:
-    A2.extend(range(start, start + 6))
-
-# Session history functions
-HISTORY_FOLDER = "session_history"
-
-def ensure_history_folder():
-    """Create history folder if it doesn't exist"""
-    if not os.path.exists(HISTORY_FOLDER):
-        os.makedirs(HISTORY_FOLDER)
-
-def save_session(session_data):
-    """Save session to JSON file"""
-    ensure_history_folder()
-    timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-    filename = f"session_{timestamp}.json"
-    filepath = os.path.join(HISTORY_FOLDER, filename)
-
-    with open(filepath, 'w') as f:
-        json.dump(session_data, f, indent=2)
-
-    return filename
-
-@st.cache_data(ttl=60)  # Cache for 60 seconds
-def load_all_sessions():
-    """Load all session files and return as list"""
-    ensure_history_folder()
-    sessions = []
-
-    if not os.path.exists(HISTORY_FOLDER):
-        return sessions
-
-    files = [f for f in os.listdir(HISTORY_FOLDER) if f.endswith('.json')]
-
-    for filename in sorted(files, reverse=True):  # Most recent first
-        filepath = os.path.join(HISTORY_FOLDER, filename)
-        try:
-            with open(filepath, 'r') as f:
-                session = json.load(f)
-                session['filename'] = filename
-                sessions.append(session)
-        except Exception as e:
-            st.warning(f"Error loading {filename}: {str(e)}")
-
-    return sessions
-
-def delete_session(filename):
-    """Delete a session file"""
-    filepath = os.path.join(HISTORY_FOLDER, filename)
-    if os.path.exists(filepath):
-        os.remove(filepath)
-        return True
-    return False
-
-@st.cache_data(ttl=60)  # Cache for 60 seconds
-def get_available_files(numbers_folder):
-    """Get list of available outcome files from numbers folder"""
-    available_files = []
-    if os.path.exists(numbers_folder):
-        files = [f for f in os.listdir(numbers_folder) if f.endswith(('.xls', '.xlsx', '.csv', '.txt'))]
-        # Sort files by date (format: YYYY-MM-DD_nnn)
-        # Extract date portion before underscore for sorting
-        available_files = sorted(files, key=lambda x: x.split('_')[0] if '_' in x else x)
-    return available_files
 
 # Streamlit user inputs - Create tabs for main app, live play, and history
 tab1, tab2, tab3, tab4 = st.tabs(["Run Simulation", "Live Play Mode", "View History", "Batch Processing"])
@@ -248,6 +162,9 @@ with tab1:
 
     # Process simulation if button was clicked
     if run_simulation:
+        # Save the user's divisor selection for batch mode resets
+        user_selected_divisor = stage2_divisor
+
         # Determine files to process
         files_to_process = []
         if batch_mode and batch_files_to_run:
@@ -338,8 +255,10 @@ with tab1:
             stage2_recovery_target = 0  # Will be set when Stage 1 ends
             stage2_starts_next_spin = False  # Flag to delay Stage 2 start to next spin
 
-            # Stage 2 variables - save initial divisor for reset
-            initial_stage2_divisor = stage2_divisor  # Save user's initial choice
+            # Stage 2 variables - reset divisor to user's selection for each file
+            # (During simulation, divisor may be modified, but each file should start fresh)
+            stage2_divisor = user_selected_divisor  # Reset to user's original selection
+            initial_stage2_divisor = stage2_divisor  # Save for within-file resets
             stage2_betting_active = False
 
             # Mixed numbers tracking
@@ -359,11 +278,6 @@ with tab1:
             # Create DataFrame and collect debug messages - must be before functions
             results = []
             # Use a no-op list class when debug mode is disabled for performance
-            class NoOpList:
-                def append(self, item): pass
-                def __iter__(self): return iter([])
-                def __bool__(self): return False
-                def __len__(self): return 0
             debug_messages = [] if debug_mode else NoOpList()
             balance_history = []  # Track balance at each spin
 
@@ -386,104 +300,9 @@ with tab1:
                 'total_loss': 0
             }
 
-            def calculate_new_a(a):
-                """Calculate new 'a' value for wins - from mb_roulette_v1.txt"""
-                if a > 13:
-                    return 10
-                elif 10 < a < 14:
-                    return a - 4
-                elif 7 < a < 11:
-                    return a - 3
-                elif a < 8:
-                    return a - 2
-                return a
+            # Functions now imported from utils.py - no need to define them here
 
-            def chips_to_mixed_number(chips):
-                """Convert chip loss to mixed number format"""
-                if chips == 0:
-                    return {'integer': 0, 'decimal': 0}
-
-                # For losses, chips will be negative
-                abs_chips = abs(chips)
-                units_of_4 = abs_chips // 4
-                remainder = abs_chips % 4
-
-                if chips < 0:
-                    # For negative chips, we need to handle the remainder correctly
-                    if remainder == 0:
-                        return {'integer': -units_of_4, 'decimal': 0}
-                    else:
-                        # Adjust for proper mixed number representation
-                        # e.g., 5 chips = -2.3 where -2*4 + 3 = -8+3 = -5
-                        return {'integer': -(units_of_4 + 1), 'decimal': 4 - remainder}
-                else:
-                    return {'integer': units_of_4, 'decimal': remainder}
-
-            def add_mixed_numbers(mixed1, mixed2):
-                """Add two mixed numbers together"""
-                if mixed1['integer'] == 0 and mixed1['decimal'] == 0:
-                    return mixed2
-                if mixed2['integer'] == 0 and mixed2['decimal'] == 0:
-                    return mixed1
-
-                # Simply add the integer parts (the decimal part is handled separately)
-                return {'integer': mixed1['integer'] + mixed2['integer'], 'decimal': mixed1['decimal']}
-
-            def add_chips_to_mixed_positive(current_mixed_positive, additional_chips):
-                """Add chips to existing mixed number in positive column, return new mixed number"""
-                # Convert current mixed positive decimal to chips
-                current_chips = current_mixed_positive
-
-                # Add the additional chips
-                total_chips = current_chips + additional_chips
-
-                # Convert back to mixed number
-                return chips_to_mixed_number(total_chips)
-
-            def calculate_recovery_profit(negative_mixed, positive_mixed):
-                """Calculate if loss is recovered and return profit in chips"""
-                # Convert both to chips and add
-                negative_chips = mixed_to_chips_from_dict(negative_mixed)
-                positive_chips = positive_mixed  # This is already in chips from decimal part
-
-                total = negative_chips + positive_chips
-                return max(0, total)  # Return 0 if still negative, otherwise return profit
-
-            def mixed_to_chips_from_dict(mixed_dict):
-                """Convert mixed number dict back to chips"""
-                if mixed_dict['integer'] < 0:
-                    # For negative mixed numbers, decimal is already accounted for in the conversion
-                    return mixed_dict['integer'] * 4
-                else:
-                    return (mixed_dict['integer'] * 4) + mixed_dict['decimal']
-
-            def mixed_to_chips(mixed_num):
-                """Convert mixed number back to chips"""
-                if mixed_num == 0:
-                    return 0
-
-                if mixed_num < 0:
-                    # Handle negative mixed numbers
-                    str_mixed = str(mixed_num)
-                    if '.' in str_mixed:
-                        parts = str_mixed.split('.')
-                        units = int(parts[0])  # Already negative
-                        decimal = int(parts[1])
-                        return (units * 4) + decimal  # units*4 is negative, decimal positive
-                    else:
-                        return int(mixed_num) * 4
-                else:
-                    # Handle positive mixed numbers
-                    str_mixed = str(mixed_num)
-                    if '.' in str_mixed:
-                        parts = str_mixed.split('.')
-                        units = int(parts[0])
-                        decimal = int(parts[1])
-                        return (units * 4) + decimal
-                    else:
-                        return int(mixed_num) * 4
-
-            # Remove the nested functions and put logic inline in the main loop
+            # Main simulation loop
 
             # Show status message and progress bar for simulation processing
             if not batch_mode:
@@ -1086,6 +905,15 @@ with tab1:
                     st.write(f"- Session Status: **ACTIVE** (All outcomes processed)")
                 st.write(f"- Outcomes Processed: {len(results)}/{len(outcomes)}")
 
+                # Store CSV data in session state for download button persistence
+                csv_data = df.to_csv(index=False)
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                filename_prefix = current_file.replace('.xlsx', '').replace('.xls', '').replace('.csv', '').replace('.txt', '') if current_file else 'default'
+
+                # Store in session state
+                st.session_state.last_csv_data = csv_data
+                st.session_state.last_csv_filename = f"simulation_{filename_prefix}_{timestamp}.csv"
+
             print("\nBetting Results:")
             print(df.to_string(index=False))
             print(f"\nFinal Balance: {balance}")
@@ -1193,22 +1021,36 @@ with tab1:
             with col_b:
                 st.metric("Success Rate", f"{successful}/{len(batch_results_list)} ({(successful/len(batch_results_list)*100):.1f}%)")
 
-            # Option to export results
-            if st.button("Export Batch Results to CSV"):
-                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                csv_filename = f"session_history/batch_results_{timestamp}.csv"
+            # Option to export results - use download button instead of file write
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-                # Create CSV with summary at top (like original format)
-                with open(csv_filename, 'w') as f:
-                    f.write("SUMMARY\n")
-                    f.write(f"Total Turnover:,{total_turnover_all}\n")
-                    f.write(f"Total Balance:,{total_balance:+}\n")
-                    f.write(f"Total Profit/Loss:,{total_profit:+}\n")
-                    f.write("\n")
-                    # Add batch results
-                    batch_df.to_csv(f, index=False)
+            # Create CSV with summary at top (like original format)
+            csv_lines = []
+            csv_lines.append("SUMMARY")
+            csv_lines.append(f"Total Turnover:,{total_turnover_all}")
+            csv_lines.append(f"Total Balance:,{total_balance:+}")
+            csv_lines.append(f"Total Profit/Loss:,{total_profit:+}")
+            csv_lines.append("")  # Empty line
+            csv_lines.append(batch_df.to_csv(index=False))
+            csv_with_summary = '\n'.join(csv_lines)
 
-                st.success(f"Results exported to {csv_filename}")
+            st.download_button(
+                label="📥 Export Batch Results to CSV",
+                data=csv_with_summary,
+                file_name=f"batch_results_{timestamp}.csv",
+                mime="text/csv",
+                key=f"download_batch_{timestamp}"
+            )
+
+    # Show CSV download button for single file run (outside the simulation block for persistence)
+    if not batch_mode and 'last_csv_data' in st.session_state and st.session_state.last_csv_data:
+        st.download_button(
+            label="📥 Export Results to CSV",
+            data=st.session_state.last_csv_data,
+            file_name=st.session_state.last_csv_filename,
+            mime="text/csv",
+            key="download_single_simulation"
+        )
 
 # Helper function to process an outcome in live mode (used by both manual and wheel modes)
 def process_outcome_live(outcome, st, A1, A2, live_bypass_a10, sequence_code_options, live_sequence_option):
@@ -1518,6 +1360,17 @@ def process_outcome_live(outcome, st, A1, A2, live_bypass_a10, sequence_code_opt
         st.success(f"✓ Number {outcome} processed - {'WIN' if outcome in A1 else 'LOSS'}")
 
     st.rerun()
+
+    # Persistent CSV download button (shows after simulation completes)
+    if 'last_csv_data' in st.session_state and st.session_state.get('last_csv_data'):
+        st.subheader("Export Results")
+        st.download_button(
+            label="📥 Export Last Simulation to CSV",
+            data=st.session_state.last_csv_data,
+            file_name=st.session_state.last_csv_filename,
+            mime="text/csv",
+            key="download_single_simulation_csv"
+        )
 
 # Live Play Mode Tab
 with tab2:
@@ -2501,7 +2354,10 @@ with tab4:
                     test_num += 1
                     seq_code_name, divisor, bypass, c_gt_7, a1_wait, always_bet, div_below_1, loss_limit = combo
 
-                    batch_status.text(f"Test {test_num}/{total_tests}: {batch_file[:20]}... | {seq_code_name[:15]} | Div:{divisor}")
+                    # Update progress only every 10 tests for better performance
+                    if test_num % 10 == 0 or test_num == total_tests:
+                        batch_progress.progress(test_num / total_tests)
+                        batch_status.text(f"Test {test_num}/{total_tests}: {batch_file[:20]}... | {seq_code_name[:15]} | Div:{divisor}")
 
                     # Convert string options to boolean
                     bypass_enabled = (bypass == "Enabled")
@@ -2563,11 +2419,6 @@ with tab4:
                         # Create DataFrame and collect debug messages - must be before functions
                         results = []
                         # Use a no-op list class for debug messages in optimization mode for performance
-                        class NoOpList:
-                            def append(self, item): pass
-                            def __iter__(self): return iter([])
-                            def __bool__(self): return False
-                            def __len__(self): return 0
                         debug_messages = NoOpList()  # Always disabled in optimization mode for speed
                         balance_history = []  # Track balance at each spin
 
